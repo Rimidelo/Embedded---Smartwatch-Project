@@ -136,30 +136,40 @@ static void twoDigitString(uint8_t val, char *buffer)
   buffer[2] = '\0';
 }
 
+// Global or static buffer to remember what was previously drawn:
+static char oldTimeString[9] = {0}; // "HH:MM:SS"
+
 // Draw "HH:MM:SS" at a fixed location on the OLED
 void drawClock(ClockTime *time)
 {
-  // 1) Create a background rectangle to clear the old text
-  oledC_DrawRectangle(0, 40, 95, 60, OLEDC_COLOR_BLACK);
+  // Convert the current time into a new string "HH:MM:SS"
+  char newTimeString[9];
+  char buff[3];
 
-  // 2) Format the time into a string "HH:MM:SS"
-  char displayStr[9];
-  char buff[4];
-
-  // HH:
+  // Format hours
   twoDigitString(time->hours, buff);
-  sprintf(displayStr, "%s:", buff);
+  sprintf(newTimeString, "%s:", buff);
 
-  // MM:
+  // Append minutes
   twoDigitString(time->minutes, buff);
-  strcat(displayStr, buff);
-  strcat(displayStr, ":");
+  strcat(newTimeString, buff);
+  strcat(newTimeString, ":");
 
-  // SS
+  // Append seconds
   twoDigitString(time->seconds, buff);
-  strcat(displayStr, buff);
+  strcat(newTimeString, buff);
 
-  // 3) Draw the string in the center or any position you like
-  // (x=10, y=45 chosen arbitrarily)
-  oledC_DrawString(10, 45, 2, 2, displayStr, OLEDC_COLOR_WHITE);
+  // Only update if the new string differs from the old one
+  if (strcmp(oldTimeString, newTimeString) != 0)
+  {
+    // 1) Erase the old string by drawing it in the background color
+    //    (x=10, y=45, scale=2 in this example)
+    oledC_DrawString(8, 45, 2, 2, oldTimeString, OLEDC_COLOR_BLACK);
+
+    // 2) Draw the new time string in the foreground color
+    oledC_DrawString(8, 45, 2, 2, newTimeString, OLEDC_COLOR_WHITE);
+
+    // 3) Remember the new string as "oldTimeString" for next time
+    strcpy(oldTimeString, newTimeString);
+  }
 }
