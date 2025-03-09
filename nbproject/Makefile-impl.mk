@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=CuriosityOledBase.X
+PROJECTNAME=FinalProjectVlad.X
 
 # Active Configuration
 DEFAULTCONF=default
