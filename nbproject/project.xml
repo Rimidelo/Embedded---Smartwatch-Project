@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>CuriosityOledBase</name>
+            <name>finalProject</name>
             <creation-uuid>b262455c-9351-4f85-b141-570101b9eef2</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
