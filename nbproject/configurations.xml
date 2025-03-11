@@ -23,6 +23,7 @@
         <itemPath>System/traps.h</itemPath>
       </logicalFolder>
       <itemPath>oledC_example.h</itemPath>
+      <itemPath>i2cDriver/i2c1_driver.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -52,6 +53,7 @@
         <itemPath>System/traps.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
+      <itemPath>i2cDriver/i2c1_driver.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

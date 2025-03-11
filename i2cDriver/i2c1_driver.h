@@ -20,31 +20,33 @@
     TERMS.
 */
 
-#ifndef SPI1_DRIVER_H
-#define SPI1_DRIVER_H
- 
+#ifndef __I2C1_DRIVER_H
+#define __I2C1_DRIVER_H
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
 
-#define INLINE  inline 
+typedef void (*interruptHandler)(void);
 
-/* arbitration interface */
-void spi1_close(void);
+/* I2C interfaces */
+void i2c1_driver_close(void);
+bool i2c1_driver_open(void);
 
-bool spi1_open(/*spi1_modes spiUniqueConfiguration*/);
-/* SPI native data exchange function */
-uint8_t spi1_exchangeByte(uint8_t b);
-/* SPI Block move functions }(future DMA support will be here) */
-void spi1_exchangeBlock(void *block, size_t blockSize);
-void spi1_writeBlock(void *block, size_t blockSize);
-void spi1_readBlock(void *block, size_t blockSize);
+void i2cReadSlaveRegister(uint8_t slaveAddr, uint8_t reg, unsigned char *dataPtr);
 
-void spi1_writeByte(uint8_t byte);
-uint8_t spi1_readByte(void);
+char i2c1_driver_getRXData(void);
+void i2c1_driver_TXData(uint8_t);
+// void i2c1_driver_resetBus(void);
+void i2c1_driver_start(void);
+void i2c1_driver_restart(void);
+void i2c1_driver_stop(void);
+bool i2c1_driver_isNACK(void);
+void i2c1_driver_startRX(void);
+void i2c1_driver_waitRX(void);
+void i2c1_driver_sendACK(void);
+void i2c1_driver_sendNACK(void);
+void i2c1_driver_clearBusCollision(void);
 
-void spi1_isr(void);
-void spi1_setSpiISR(void(*handler)(void));
-
-#endif // SPI1_DRIVER_H
+#endif // __I2C1_DRIVER_H
