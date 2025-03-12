@@ -20,6 +20,7 @@
 #define REG_DATAY0 0x34
 #define REG_DATAZ0 0x36
 #define MEASURE_MODE 0x08
+#define STEP_THRESHOLD 600.0f
 
 typedef struct
 {
@@ -32,6 +33,8 @@ static bool movementDetected = false;
 static uint16_t stepCount = 0;
 static uint8_t inactivityCounter = 0;
 const float baselineGravity = 1024.0f;
+static uint8_t footDisplayTimer = 0;
+static uint8_t counterDisplayTimer = 0;
 
 typedef struct
 {
@@ -117,18 +120,25 @@ void initAccelerometer(void)
 void detectStep(void)
 {
     ACCEL_DATA_t accel;
-    accel.x = readAxis(0x32);
-    accel.y = readAxis(0x34);
-    accel.z = readAxis(0x36);
-    float ax = accel.x * 4.0f, ay = accel.y * 4.0f, az = accel.z * 4.0f;
+    accel.x = readAxis(REG_DATAX0);
+    accel.y = readAxis(REG_DATAY0);
+    accel.z = readAxis(REG_DATAZ0);
+
+    float ax = accel.x * 4.0f;
+    float ay = accel.y * 4.0f;
+    float az = accel.z * 4.0f;
     float mag = sqrtf(ax * ax + ay * ay + az * az);
     float dynamic = fabsf(mag - baselineGravity);
-    bool above = (dynamic > 200.0f);
+
+    bool above = (dynamic > STEP_THRESHOLD);
     movementDetected = above;
+
     if (above && !wasAboveThreshold)
     {
         stepCount++;
-        printf("Step detected! Count=%u\n", stepCount);
+        // Reset timers on a new valid step:
+        footDisplayTimer = 4;    // Foot animation will display for 4 seconds
+        counterDisplayTimer = 4; // Step counter remains visible for 4 seconds
     }
     wasAboveThreshold = above;
 }
@@ -137,6 +147,18 @@ void drawSteps(void)
 {
     static char oldStr[6] = "";
     char newStr[6];
+
+    // Hide counter if no steps or if the counter display timer has expired
+    if (stepCount == 0 || counterDisplayTimer == 0)
+    {
+        if (oldStr[0] != '\0')
+        { // Clear previously displayed counter
+            oledC_DrawString(80, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
+            oldStr[0] = '\0';
+        }
+        return;
+    }
+
     sprintf(newStr, "%u", stepCount);
     if (strcmp(oldStr, newStr) != 0)
     {
@@ -251,10 +273,16 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
 {
     incrementTime(&currentTime);
     footToggle = !footToggle;
-    if (!movementDetected)
-        inactivityCounter++;
-    else
-        inactivityCounter = 0;
+
+    if (footDisplayTimer > 0)
+    {
+        footDisplayTimer--;
+    }
+    if (counterDisplayTimer > 0)
+    {
+        counterDisplayTimer--;
+    }
+
     IFS0bits.T1IF = 0;
 }
 
@@ -285,7 +313,7 @@ int main(void)
         drawSteps();
         drawClock(&currentTime);
         oledC_DrawRectangle(0, 0, 15, 15, OLEDC_COLOR_BLACK);
-        if (inactivityCounter < 10 && movementDetected)
+        if (footDisplayTimer > 0)
             drawFootIcon(0, 0, footToggle ? foot1Bitmap : foot2Bitmap, 16, 16);
         DELAY_milliseconds(100);
     }
