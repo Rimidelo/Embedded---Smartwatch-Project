@@ -33,8 +33,17 @@ static bool movementDetected = false;
 static uint16_t stepCount = 0;
 static uint8_t inactivityCounter = 0;
 const float baselineGravity = 1024.0f;
-static uint8_t footDisplayTimer = 0;
-static uint8_t counterDisplayTimer = 0;
+
+// Use a 60-second history for steps per minute calculation
+#define HISTORY_SIZE 60                          // One slot per second (60 seconds total)
+static uint8_t stepsHistory[HISTORY_SIZE] = {0}; // Holds steps for each of the last 60 seconds
+static uint8_t currentSecondIndex = 0;           // Points to the current second slot
+
+// For smoothing the displayed pace (steps per minute)
+static float displayedPace = 0.0f;
+
+// A global seconds counter updated every Timer1 interrupt
+static uint32_t globalSeconds = 0;
 
 typedef struct
 {
@@ -42,15 +51,20 @@ typedef struct
 } ClockTime;
 static const uint8_t daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 ClockTime currentTime = {8, 24, 35, 24, 1};
+
 static bool footToggle = false;
 
 // ---------------- Foot Bitmaps (16×16) ----------------
 static const uint16_t foot1Bitmap[16] = {
-    0x7800, 0xF800, 0xFC00, 0xFC00, 0xFC00, 0x7C1E, 0x783E, 0x047F,
-    0x3F9F, 0x1F3E, 0x0C3E, 0x003E, 0x0004, 0x00F0, 0x01F0, 0x00E0};
+    0x7800, 0xF800, 0xFC00, 0xFC00,
+    0xFC00, 0x7C1E, 0x783E, 0x047F,
+    0x3F9F, 0x1F3E, 0x0C3E, 0x003E,
+    0x0004, 0x00F0, 0x01F0, 0x00E0};
 static const uint16_t foot2Bitmap[16] = {
-    0x001E, 0x003F, 0x003F, 0x007F, 0x003F, 0x383E, 0x7C1E, 0x7E10,
-    0x7E7C, 0x7E78, 0x7C30, 0x3C00, 0x2000, 0x1E00, 0x1F00, 0x0E00};
+    0x001E, 0x003F, 0x003F, 0x007F,
+    0x003F, 0x383E, 0x7C1E, 0x7E10,
+    0x7E7C, 0x7E78, 0x7C30, 0x3C00,
+    0x2000, 0x1E00, 0x1F00, 0x0E00};
 
 // ---------------- Functions ----------------
 void errorStop(char *msg)
@@ -129,37 +143,64 @@ void detectStep(void)
     float az = accel.z * 4.0f;
     float mag = sqrtf(ax * ax + ay * ay + az * az);
     float dynamic = fabsf(mag - baselineGravity);
-
     bool above = (dynamic > STEP_THRESHOLD);
     movementDetected = above;
 
     if (above && !wasAboveThreshold)
     {
-        stepCount++;
-        // Reset timers on a new valid step:
-        footDisplayTimer = 4;    // Foot animation will display for 4 seconds
-        counterDisplayTimer = 4; // Step counter remains visible for 4 seconds
+        stepCount++; // (Keep total count if needed)
+        // Record one step in the current second's slot.
+        stepsHistory[currentSecondIndex]++;
+        printf("Step detected! Count=%u\n", stepCount);
     }
     wasAboveThreshold = above;
 }
 
 void drawSteps(void)
 {
+    uint16_t sum = 0;
+    for (int i = 0; i < HISTORY_SIZE; i++)
+    {
+        sum += stepsHistory[i];
+    }
+    // Raw pace is the total steps in the last 60 seconds (i.e., steps per minute)
+    uint16_t rawPace = sum;
+
+    // Update displayedPace once per second using globalSeconds.
+    static uint32_t lastUpdateSecond = 0;
+    if (globalSeconds != lastUpdateSecond)
+    {
+        if (rawPace > displayedPace)
+        {
+            // Increase gradually: 1 unit per second
+            displayedPace += 1.0f;
+            if (displayedPace > rawPace)
+                displayedPace = rawPace;
+        }
+        else if (rawPace < displayedPace)
+        {
+            // Drop faster: 2 units per second (adjust this value if needed)
+            displayedPace -= 2.0f;
+            if (displayedPace < rawPace)
+                displayedPace = rawPace;
+        }
+        lastUpdateSecond = globalSeconds;
+    }
+
+    uint16_t pace = (uint16_t)(displayedPace + 0.5f);
+
     static char oldStr[6] = "";
     char newStr[6];
-
-    // Hide counter if no steps or if the counter display timer has expired
-    if (stepCount == 0 || counterDisplayTimer == 0)
+    if (pace == 0)
     {
         if (oldStr[0] != '\0')
-        { // Clear previously displayed counter
+        {
             oledC_DrawString(80, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
             oldStr[0] = '\0';
         }
         return;
     }
-
-    sprintf(newStr, "%u", stepCount);
+    sprintf(newStr, "%u", pace);
     if (strcmp(oldStr, newStr) != 0)
     {
         oledC_DrawString(80, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
@@ -249,12 +290,14 @@ void Timer_Initialize(void)
     T1CONbits.TGATE = 0;
     T1CONbits.TON = 1;
 }
+
 void Timer1_Interrupt_Initialize(void)
 {
     IPC0bits.T1IP = 5;
     IFS0bits.T1IF = 0;
     IEC0bits.T1IE = 1;
 }
+
 void User_Initialize(void)
 {
     TRISA &= ~(1 << 8 | 1 << 9);
@@ -273,15 +316,31 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
 {
     incrementTime(&currentTime);
     footToggle = !footToggle;
+    globalSeconds++; // Update global seconds counter
 
-    if (footDisplayTimer > 0)
+    // Update inactivity counter: if no movement is detected, increment it.
+    if (!movementDetected)
     {
-        footDisplayTimer--;
+        inactivityCounter++;
+        // After 2 seconds of inactivity, clear history and force pace to 0.
+        if (inactivityCounter >= 4)
+        {
+            for (int i = 0; i < HISTORY_SIZE; i++)
+            {
+                stepsHistory[i] = 0;
+            }
+            displayedPace = 0.0f;
+        }
     }
-    if (counterDisplayTimer > 0)
+    else
     {
-        counterDisplayTimer--;
+        // Reset inactivity counter if movement is detected.
+        inactivityCounter = 0;
     }
+
+    // Advance the circular buffer index and clear that slot.
+    currentSecondIndex = (currentSecondIndex + 1) % HISTORY_SIZE;
+    stepsHistory[currentSecondIndex] = 0;
 
     IFS0bits.T1IF = 0;
 }
@@ -312,10 +371,23 @@ int main(void)
         detectStep();
         drawSteps();
         drawClock(&currentTime);
+
+        // Clear the foot icon area.
         oledC_DrawRectangle(0, 0, 15, 15, OLEDC_COLOR_BLACK);
-        if (footDisplayTimer > 0)
+
+        // Compute the sum of steps in the history buffer.
+        uint16_t sum = 0;
+        for (int i = 0; i < HISTORY_SIZE; i++)
+        {
+            sum += stepsHistory[i];
+        }
+
+        // Show the foot animation if any steps occurred in the last 60 seconds.
+        if (sum > 0)
             drawFootIcon(0, 0, footToggle ? foot1Bitmap : foot2Bitmap, 16, 16);
+
         DELAY_milliseconds(100);
     }
+
     return 0;
 }
