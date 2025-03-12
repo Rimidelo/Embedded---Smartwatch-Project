@@ -34,7 +34,6 @@ typedef void (*interruptHandler)(void);
 void i2c1_driver_close(void);
 bool i2c1_driver_open(void);
 
-void i2cReadSlaveRegister(uint8_t slaveAddr, uint8_t reg, unsigned char *dataPtr);
 
 char i2c1_driver_getRXData(void);
 void i2c1_driver_TXData(uint8_t);

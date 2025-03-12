@@ -24,6 +24,7 @@
       </logicalFolder>
       <itemPath>oledC_example.h</itemPath>
       <itemPath>i2cDriver/i2c1_driver.h</itemPath>
+      <itemPath>Accel_i2c.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -54,6 +55,7 @@
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>i2cDriver/i2c1_driver.c</itemPath>
+      <itemPath>Accel_i2c.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

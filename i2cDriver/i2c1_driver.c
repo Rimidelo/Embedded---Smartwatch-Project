@@ -39,41 +39,6 @@ void (*i2c1_driver_Slavei2cISR)(void);
 #include "i2c1_driver.h" // Make sure this header is available
 
 
-void i2cReadSlaveRegister(uint8_t slaveAddr, uint8_t reg, unsigned char *dataPtr)
-{
-    // Generate a Start condition
-    i2c1_driver_start();
-
-    // Transmit the slave address in write mode (LSB = 0)
-    i2c1_driver_TXData(slaveAddr << 1);
-    while (I2C1STATbits.TRSTAT)
-        ; // wait until transmission completes
-
-    // Transmit the register address
-    i2c1_driver_TXData(reg);
-    while (I2C1STATbits.TRSTAT)
-        ;
-
-    // Generate a Repeated Start condition
-    i2c1_driver_restart();
-
-    // Transmit the slave address in read mode (LSB = 1)
-    i2c1_driver_TXData((slaveAddr << 1) | 1);
-    while (I2C1STATbits.TRSTAT)
-        ;
-
-    // Start reception of data
-    i2c1_driver_startRX();
-    i2c1_driver_waitRX();
-
-    // Retrieve the received data and store it
-    *dataPtr = i2c1_driver_getRXData();
-
-    // Send a NACK to signal the end of the read and then a Stop condition
-    i2c1_driver_sendNACK();
-    i2c1_driver_stop();
-}
-
 void i2c1_driver_close(void)
 {
     I2C1CONLbits.I2CEN = 0;
