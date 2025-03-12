@@ -20,7 +20,7 @@
 #define REG_DATAY0 0x34
 #define REG_DATAZ0 0x36
 #define MEASURE_MODE 0x08
-#define STEP_THRESHOLD 600.0f
+#define STEP_THRESHOLD 500.0f
 
 typedef struct
 {
@@ -163,26 +163,41 @@ void drawSteps(void)
     {
         sum += stepsHistory[i];
     }
-    // Raw pace is the total steps in the last 60 seconds (i.e., steps per minute)
+    // The raw pace is the total steps over the last 60 seconds.
     uint16_t rawPace = sum;
 
-    // Update displayedPace once per second using globalSeconds.
     static uint32_t lastUpdateSecond = 0;
     if (globalSeconds != lastUpdateSecond)
     {
-        if (rawPace > displayedPace)
+        if (movementDetected)
         {
-            // Increase gradually: 1 unit per second
-            displayedPace += 1.0f;
-            if (displayedPace > rawPace)
-                displayedPace = rawPace;
+            // When shaking, allow displayedPace to rise gradually toward rawPace.
+            if (rawPace > displayedPace)
+            {
+                displayedPace += 1.0f; // Increase by 1 unit per second.
+                if (displayedPace > rawPace)
+                    displayedPace = rawPace;
+            }
+            else if (rawPace < displayedPace)
+            {
+                // If rawPace is slightly lower even during movement,
+                // decrease a little to follow the trend.
+                displayedPace -= 1.0f;
+                if (displayedPace < rawPace)
+                    displayedPace = rawPace;
+            }
         }
-        else if (rawPace < displayedPace)
+        else
         {
-            // Drop faster: 2 units per second (adjust this value if needed)
-            displayedPace -= 2.0f;
-            if (displayedPace < rawPace)
-                displayedPace = rawPace;
+            // When not shaking, wait for at least 1 second of inactivity before dropping.
+            if (inactivityCounter >= 1)
+            {
+                // Then drop gradually (1 unit per second) until 0.
+                displayedPace -= 1.0f;
+                if (displayedPace < 0)
+                    displayedPace = 0.0f;
+            }
+            // If inactivityCounter is less than 1, hold displayedPace.
         }
         lastUpdateSecond = globalSeconds;
     }
@@ -322,19 +337,11 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
     if (!movementDetected)
     {
         inactivityCounter++;
-        // After 2 seconds of inactivity, clear history and force pace to 0.
-        if (inactivityCounter >= 4)
-        {
-            for (int i = 0; i < HISTORY_SIZE; i++)
-            {
-                stepsHistory[i] = 0;
-            }
-            displayedPace = 0.0f;
-        }
+        // (Optional) You can use inactivityCounter for logging or hysteresis,
+        // but do NOT force clear the history here.
     }
     else
     {
-        // Reset inactivity counter if movement is detected.
         inactivityCounter = 0;
     }
 
@@ -375,15 +382,8 @@ int main(void)
         // Clear the foot icon area.
         oledC_DrawRectangle(0, 0, 15, 15, OLEDC_COLOR_BLACK);
 
-        // Compute the sum of steps in the history buffer.
-        uint16_t sum = 0;
-        for (int i = 0; i < HISTORY_SIZE; i++)
-        {
-            sum += stepsHistory[i];
-        }
-
-        // Show the foot animation if any steps occurred in the last 60 seconds.
-        if (sum > 0)
+        // Show the foot animation only if the displayed pace is nonzero.
+        if (displayedPace > 0)
             drawFootIcon(0, 0, footToggle ? foot1Bitmap : foot2Bitmap, 16, 16);
 
         DELAY_milliseconds(100);
