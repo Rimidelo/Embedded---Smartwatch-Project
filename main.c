@@ -27,6 +27,7 @@
 #define REG_DATAY0 0x34
 #define REG_DATAZ0 0x36
 #define MEASURE_MODE 0x08
+#define HISTORY_SIZE 60
 #define STEP_THRESHOLD 500.0f
 
 typedef struct
@@ -40,26 +41,27 @@ static bool movementDetected = false;
 static uint16_t stepCount = 0;
 static uint8_t inactivityCounter = 0;
 const float baselineGravity = 1024.0f;
-
-// 60-second history for steps per minute calculation
-#define HISTORY_SIZE 60
 static uint8_t stepsHistory[HISTORY_SIZE] = {0};
 static uint8_t currentSecondIndex = 0;
-
 // For smoothing the displayed pace
 static float displayedPace = 0.0f;
-
 // Global seconds counter (updated every Timer1 interrupt)
 static uint32_t globalSeconds = 0;
-
+bool is12HourFormat = false;      // Tracks if we are in 12H mode (true) or 24H (false)
+bool inTimeFormatSubpage = false; // Are we currently in the “12H/24H” sub-page?
+// For the sub-page selection: 0 => “12H”, 1 => “24H”
+uint8_t timeFormatSelectedIndex = 0;
+static bool footToggle = false;
+bool forceClockRedraw = false;
 typedef struct
 {
     uint8_t hours, minutes, seconds, day, month;
 } ClockTime;
 static const uint8_t daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 ClockTime currentTime = {8, 24, 35, 24, 1};
-
-static bool footToggle = false;
+// ---------------- Function declaration to avoid implicit warnings ----------------
+void updateMenuClock(void);
+void drawTimeFormatSubpage(void);
 
 // ---------------- Foot Bitmaps (16×16) ----------------
 static const uint16_t foot1Bitmap[16] = {
@@ -230,6 +232,19 @@ static void twoDigitString(uint8_t val, char *buffer)
     buffer[2] = '\0';
 }
 
+void updateDate(ClockTime *t)
+{
+    t->day++;                                 // Increment the day
+    uint8_t days = daysInMonth[t->month - 1]; // Get max days for current month
+    if (t->day > days)
+    {
+        t->day = 1;
+        t->month++;
+        if (t->month > 12)
+            t->month = 1;
+    }
+}
+
 void incrementTime(ClockTime *t)
 {
     t->seconds++;
@@ -246,44 +261,83 @@ void incrementTime(ClockTime *t)
     if (t->hours >= 24)
     {
         t->hours = 0;
-        t->day++;
-        uint8_t idx = t->month - 1;
-        if (t->day > daysInMonth[idx])
-        {
-            t->day = 1;
-            t->month++;
-            if (t->month > 12)
-                t->month = 1;
-        }
+        updateDate(t);
     }
 }
 
 void drawClock(ClockTime *time)
 {
-    static char oldTime[9] = "", oldDate[6] = "";
-    char newTime[9], buff[3], newDate[6];
-    twoDigitString(time->hours, buff);
+    static char oldTime[9] = "";
+    static char oldDate[6] = "";
+    static bool oldWas12H = false;
+    static bool oldPM = false;
+
+    if (forceClockRedraw)
+    {
+        oldTime[0] = '\0';
+        oldDate[0] = '\0';
+        oldWas12H = !is12HourFormat;
+        oldPM = false;
+        forceClockRedraw = false;
+    }
+
+    char newTime[9];
+    char buff[3];
+    char newDateStr[6];
+    bool pm = false;
+
+    uint8_t displayHrs = time->hours;
+    if (is12HourFormat)
+    {
+        if (displayHrs == 0)
+        {
+            displayHrs = 12; // midnight is 12 AM
+        }
+        else if (displayHrs >= 12)
+        {
+            pm = true;
+            if (displayHrs > 12)
+                displayHrs -= 12;
+        }
+    }
+
+    twoDigitString(displayHrs, buff);
     sprintf(newTime, "%s:", buff);
     twoDigitString(time->minutes, buff);
     strcat(newTime, buff);
     strcat(newTime, ":");
     twoDigitString(time->seconds, buff);
     strcat(newTime, buff);
-    if (strcmp(oldTime, newTime) != 0)
+
+    // If there is any change in time or format, clear old areas and redraw.
+    if (strcmp(oldTime, newTime) != 0 || oldWas12H != is12HourFormat || oldPM != pm)
     {
         oledC_DrawString(8, 45, 2, 2, (uint8_t *)oldTime, OLEDC_COLOR_BLACK);
+        oledC_DrawRectangle(50, 45, 80, 60, OLEDC_COLOR_BLACK);
         oledC_DrawString(8, 45, 2, 2, (uint8_t *)newTime, OLEDC_COLOR_WHITE);
+        if (is12HourFormat)
+        {
+            if (pm)
+                oledC_DrawString(0, 85, 1, 1, (uint8_t *)"PM", OLEDC_COLOR_WHITE);
+            else
+                oledC_DrawString(0, 85, 1, 1, (uint8_t *)"AM", OLEDC_COLOR_WHITE);
+        }
+
         strcpy(oldTime, newTime);
+        oldWas12H = is12HourFormat;
+        oldPM = pm;
     }
+
     twoDigitString(time->day, buff);
-    sprintf(newDate, "%s/", buff);
+    sprintf(newDateStr, "%s/", buff);
     twoDigitString(time->month, buff);
-    strcat(newDate, buff);
-    if (strcmp(oldDate, newDate) != 0)
+    strcat(newDateStr, buff);
+
+    if (strcmp(oldDate, newDateStr) != 0)
     {
         oledC_DrawString(65, 85, 1, 1, (uint8_t *)oldDate, OLEDC_COLOR_BLACK);
-        oledC_DrawString(65, 85, 1, 1, (uint8_t *)newDate, OLEDC_COLOR_WHITE);
-        strcpy(oldDate, newDate);
+        oledC_DrawString(65, 85, 1, 1, (uint8_t *)newDateStr, OLEDC_COLOR_WHITE);
+        strcpy(oldDate, newDateStr);
     }
 }
 
@@ -293,6 +347,74 @@ void drawFootIcon(uint8_t x, uint8_t y, const uint16_t *bitmap, uint8_t width, u
         for (uint8_t col = 0; col < width; col++)
             if (bitmap[row] & (1 << (width - 1 - col)))
                 oledC_DrawPoint(x + col, y + row, OLEDC_COLOR_WHITE);
+}
+
+// ---------------- 12H/24H SYSTEM ---------------- //
+// New function to handle the 12H/24H subpage logic
+void handleTimeFormatSelection(void)
+{
+    inTimeFormatSubpage = true;
+    timeFormatSelectedIndex = (is12HourFormat ? 0 : 1);
+
+    drawTimeFormatSubpage();
+
+    bool s1WasPressed = false;
+    bool s2WasPressed = false;
+
+    while (inTimeFormatSubpage)
+    {
+        bool s1State = (PORTAbits.RA11 == 0); // Confirmation button
+        bool s2State = (PORTAbits.RA12 == 0); // Navigation button
+
+        // S2 cycles the selection on a rising edge.
+        if (s2State && !s2WasPressed)
+        {
+            timeFormatSelectedIndex = (timeFormatSelectedIndex + 1) % 2;
+            drawTimeFormatSubpage();
+        }
+
+        // S1 confirms the current selection.
+        if (s1State && !s1WasPressed)
+        {
+            is12HourFormat = (timeFormatSelectedIndex == 0); // index 0 = 12H, 1 = 24H
+            inTimeFormatSubpage = false;
+            break;
+        }
+
+        s1WasPressed = s1State;
+        s2WasPressed = s2State;
+
+        DELAY_milliseconds(100); // Adjust as needed.
+    }
+}
+
+void drawTimeFormatSubpage(void)
+{
+    oledC_clearScreen();
+    // Display a title (optional)
+    oledC_DrawString(10, 5, 1, 1, (uint8_t *)"Choose Format:", OLEDC_COLOR_WHITE);
+
+    // Draw "12H" item at y=25.
+    if (timeFormatSelectedIndex == 0)
+    {
+        oledC_DrawRectangle(8, 23, 60, 35, OLEDC_COLOR_WHITE);
+        oledC_DrawString(10, 25, 1, 1, (uint8_t *)"12H", OLEDC_COLOR_BLACK);
+    }
+    else
+    {
+        oledC_DrawString(10, 25, 1, 1, (uint8_t *)"12H", OLEDC_COLOR_WHITE);
+    }
+
+    // Draw "24H" item at y=40.
+    if (timeFormatSelectedIndex == 1)
+    {
+        oledC_DrawRectangle(8, 38, 60, 50, OLEDC_COLOR_WHITE);
+        oledC_DrawString(10, 40, 1, 1, (uint8_t *)"24H", OLEDC_COLOR_BLACK);
+    }
+    else
+    {
+        oledC_DrawString(10, 40, 1, 1, (uint8_t *)"24H", OLEDC_COLOR_WHITE);
+    }
 }
 
 // ---------------- MENU SYSTEM (Integrated in main.c) ----------------
@@ -337,7 +459,26 @@ void drawMenu(void)
 void updateMenuClock(void)
 {
     char timeStr[9], buff[3];
-    twoDigitString(currentTime.hours, buff);
+    // If 12H, subtract 12 if hours >= 12, etc.
+    // Then append AM/PM if is12HourFormat is true.
+
+    uint8_t displayHrs = currentTime.hours;
+    bool pm = false;
+    if (is12HourFormat)
+    {
+        if (displayHrs >= 12)
+        {
+            pm = true;
+            if (displayHrs > 12)
+                displayHrs -= 12;
+        }
+        else if (displayHrs == 0)
+        {
+            displayHrs = 12; // midnight hour = 12 AM
+        }
+    }
+
+    twoDigitString(displayHrs, buff);
     strcpy(timeStr, buff);
     strcat(timeStr, ":");
     twoDigitString(currentTime.minutes, buff);
@@ -346,10 +487,19 @@ void updateMenuClock(void)
     twoDigitString(currentTime.seconds, buff);
     strcat(timeStr, buff);
 
-    // Overwrite the clock area at the top right with black first
-    oledC_DrawRectangle(40, 2, 115, 10, OLEDC_COLOR_BLACK);
-    // Draw the updated time in white, using the same size as your pace counter
-    oledC_DrawString(40, 2, 1, 1, (uint8_t *)timeStr, OLEDC_COLOR_WHITE);
+    // Clear old clock
+    oledC_DrawRectangle(30, 2, 115, 10, OLEDC_COLOR_BLACK);
+    // Draw time
+    oledC_DrawString(30, 2, 1, 1, (uint8_t *)timeStr, OLEDC_COLOR_WHITE);
+
+    // If 12H, append AM/PM
+    if (is12HourFormat)
+    {
+        if (pm)
+            oledC_DrawString(80, 2, 1, 1, (uint8_t *)"PM", OLEDC_COLOR_WHITE);
+        else
+            oledC_DrawString(80, 2, 1, 1, (uint8_t *)"AM", OLEDC_COLOR_WHITE);
+    }
 }
 
 void executeMenuAction(void)
@@ -359,8 +509,9 @@ void executeMenuAction(void)
     case 0:
         // TODO: Show pedometer graph
         break;
-    case 1:
-        // TODO: Toggle 12H/24H mode
+    case 1: // "12H/24H Interval"
+        handleTimeFormatSelection();
+        drawMenu();
         break;
     case 2:
         // TODO: Set Time
@@ -368,17 +519,20 @@ void executeMenuAction(void)
     case 3:
         // TODO: Set Date
         break;
-    case 4:
+    case 4: // "Exit"
         inMenu = false;
+        forceClockRedraw = true;
         oledC_DrawRectangle(40, 2, 115, 10, OLEDC_COLOR_BLACK);
         oledC_clearScreen();
         break;
+
     default:
         break;
     }
 }
 
 // ---------------- TIMER & USER INITIALIZATION ---------------- //
+
 void Timer_Initialize(void)
 {
     TMR1 = 0;
@@ -461,6 +615,7 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
 }
 
 // ---------------- MAIN ----------------
+
 int main(void)
 {
     int rc;
@@ -470,6 +625,8 @@ int main(void)
     oledC_setBackground(OLEDC_COLOR_BLACK);
     oledC_clearScreen();
     i2c1_open();
+
+    // Detect the accelerometer
     for (int i = 0; i < 3; i++)
     {
         rc = i2cReadSlaveRegister(WRITE_ADDRESS, 0x00, &deviceId);
@@ -482,6 +639,8 @@ int main(void)
     initAccelerometer();
     Timer_Initialize();
     Timer1_Interrupt_Initialize();
+
+    // Declare all static variables used for button debouncing and state tracking at the beginning.
 
     static bool wasInMenu = false;
 
@@ -541,7 +700,7 @@ int main(void)
             // clear the mini clock area.
             if (wasInMenu)
             {
-                oledC_DrawRectangle(40, 2, 115, 10, OLEDC_COLOR_BLACK);
+                oledC_DrawRectangle(30, 2, 115, 10, OLEDC_COLOR_BLACK);
                 wasInMenu = false;
             }
 
