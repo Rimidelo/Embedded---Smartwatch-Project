@@ -13,6 +13,13 @@
 #include <libpic30.h>
 #include <xc.h>
 
+// ---------------- Button Pin Defines ----------------
+// Adjust these to match your hardware (active-low assumed)
+#define S1_PORT PORTAbits.RA0
+#define S2_PORT PORTAbits.RA1
+#define S1_TRIS TRISAbits.TRISA0
+#define S2_TRIS TRISAbits.TRISA1
+
 // ---------------- Defines ----------------
 #define WRITE_ADDRESS 0x3A
 #define REG_POWER_CTL 0x2D
@@ -27,22 +34,22 @@ typedef struct
     int16_t x, y, z;
 } ACCEL_DATA_t;
 
-// ---------------- Globals ----------------
+// ---------------- Globals for Pedometer & Clock ----------------
 static bool wasAboveThreshold = false;
 static bool movementDetected = false;
 static uint16_t stepCount = 0;
 static uint8_t inactivityCounter = 0;
 const float baselineGravity = 1024.0f;
 
-// Use a 60-second history for steps per minute calculation
-#define HISTORY_SIZE 60                          // One slot per second (60 seconds total)
-static uint8_t stepsHistory[HISTORY_SIZE] = {0}; // Holds steps for each of the last 60 seconds
-static uint8_t currentSecondIndex = 0;           // Points to the current second slot
+// 60-second history for steps per minute calculation
+#define HISTORY_SIZE 60
+static uint8_t stepsHistory[HISTORY_SIZE] = {0};
+static uint8_t currentSecondIndex = 0;
 
-// For smoothing the displayed pace (steps per minute)
+// For smoothing the displayed pace
 static float displayedPace = 0.0f;
 
-// A global seconds counter updated every Timer1 interrupt
+// Global seconds counter (updated every Timer1 interrupt)
 static uint32_t globalSeconds = 0;
 
 typedef struct
@@ -66,7 +73,7 @@ static const uint16_t foot2Bitmap[16] = {
     0x7E7C, 0x7E78, 0x7C30, 0x3C00,
     0x2000, 0x1E00, 0x1F00, 0x0E00};
 
-// ---------------- Functions ----------------
+// ---------------- Functions for Pedometer, Clock, etc. ----------------
 void errorStop(char *msg)
 {
     oledC_DrawString(0, 20, 1, 1, (uint8_t *)msg, OLEDC_COLOR_DARKRED);
@@ -148,8 +155,7 @@ void detectStep(void)
 
     if (above && !wasAboveThreshold)
     {
-        stepCount++; // (Keep total count if needed)
-        // Record one step in the current second's slot.
+        stepCount++;
         stepsHistory[currentSecondIndex]++;
         printf("Step detected! Count=%u\n", stepCount);
     }
@@ -163,7 +169,6 @@ void drawSteps(void)
     {
         sum += stepsHistory[i];
     }
-    // The raw pace is the total steps over the last 60 seconds.
     uint16_t rawPace = sum;
 
     static uint32_t lastUpdateSecond = 0;
@@ -171,17 +176,14 @@ void drawSteps(void)
     {
         if (movementDetected)
         {
-            // When shaking, allow displayedPace to rise gradually toward rawPace.
             if (rawPace > displayedPace)
             {
-                displayedPace += 1.0f; // Increase by 1 unit per second.
+                displayedPace += 1.0f;
                 if (displayedPace > rawPace)
                     displayedPace = rawPace;
             }
             else if (rawPace < displayedPace)
             {
-                // If rawPace is slightly lower even during movement,
-                // decrease a little to follow the trend.
                 displayedPace -= 1.0f;
                 if (displayedPace < rawPace)
                     displayedPace = rawPace;
@@ -189,15 +191,12 @@ void drawSteps(void)
         }
         else
         {
-            // When not shaking, wait for at least 1 second of inactivity before dropping.
             if (inactivityCounter >= 1)
             {
-                // Then drop gradually (1 unit per second) until 0.
                 displayedPace -= 1.0f;
                 if (displayedPace < 0)
                     displayedPace = 0.0f;
             }
-            // If inactivityCounter is less than 1, hold displayedPace.
         }
         lastUpdateSecond = globalSeconds;
     }
@@ -296,6 +295,90 @@ void drawFootIcon(uint8_t x, uint8_t y, const uint16_t *bitmap, uint8_t width, u
                 oledC_DrawPoint(x + col, y + row, OLEDC_COLOR_WHITE);
 }
 
+// ---------------- MENU SYSTEM (Integrated in main.c) ----------------
+#define MENU_ITEMS_COUNT 5
+const char *menuItems[MENU_ITEMS_COUNT] = {
+    "Pedometer Graph",
+    "12H/24H Interval",
+    "Set Time",
+    "Set Date",
+    "Exit"};
+
+bool inMenu = false;
+uint8_t selectedMenuItem = 0;
+
+void drawMenu(void)
+{
+    // Clear the screen to black.
+    oledC_clearScreen();
+
+    // Draw the mini clock at the top right.
+    updateMenuClock();
+
+    // Draw menu items (no "MENU" label)
+    for (uint8_t i = 0; i < MENU_ITEMS_COUNT; i++)
+    {
+        uint8_t yPos = 20 + (i * 12);
+        if (i == selectedMenuItem)
+        {
+            // Draw a white highlight rectangle for the selected item.
+            oledC_DrawRectangle(3, yPos - 2, 115, yPos + 10, OLEDC_COLOR_WHITE);
+            // Draw black text inside the blue rectangle.
+            oledC_DrawString(4, yPos, 1, 1, (uint8_t *)menuItems[i], OLEDC_COLOR_BLACK);
+        }
+        else
+        {
+            // Draw unselected items as white text on black.
+            oledC_DrawString(4, yPos, 1, 1, (uint8_t *)menuItems[i], OLEDC_COLOR_WHITE);
+        }
+    }
+}
+
+void updateMenuClock(void)
+{
+    char timeStr[9], buff[3];
+    twoDigitString(currentTime.hours, buff);
+    strcpy(timeStr, buff);
+    strcat(timeStr, ":");
+    twoDigitString(currentTime.minutes, buff);
+    strcat(timeStr, buff);
+    strcat(timeStr, ":");
+    twoDigitString(currentTime.seconds, buff);
+    strcat(timeStr, buff);
+
+    // Overwrite the clock area at the top right with black first
+    oledC_DrawRectangle(40, 2, 115, 10, OLEDC_COLOR_BLACK);
+    // Draw the updated time in white, using the same size as your pace counter
+    oledC_DrawString(40, 2, 1, 1, (uint8_t *)timeStr, OLEDC_COLOR_WHITE);
+}
+
+void executeMenuAction(void)
+{
+    switch (selectedMenuItem)
+    {
+    case 0:
+        // TODO: Show pedometer graph
+        break;
+    case 1:
+        // TODO: Toggle 12H/24H mode
+        break;
+    case 2:
+        // TODO: Set Time
+        break;
+    case 3:
+        // TODO: Set Date
+        break;
+    case 4:
+        inMenu = false;
+        oledC_DrawRectangle(40, 2, 115, 10, OLEDC_COLOR_BLACK);
+        oledC_clearScreen();
+        break;
+    default:
+        break;
+    }
+}
+
+// ---------------- TIMER & USER INITIALIZATION ---------------- //
 void Timer_Initialize(void)
 {
     TMR1 = 0;
@@ -325,7 +408,15 @@ void User_Initialize(void)
     AD1CHS = 0;
     AD1CHS |= (1 << 3);
     AD1CON1 |= (1 << 15);
+
+    // Set S1 and S2 as inputs
+    S1_TRIS = 1;
+    S2_TRIS = 1;
 }
+
+// ---------------- TIMER1 INTERRUPT (Integrated Menu Handling) ----------------
+// Global or file-scope variable to indicate we just entered the menu
+static bool justEnteredMenu = false;
 
 void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
 {
@@ -333,25 +424,43 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
     footToggle = !footToggle;
     globalSeconds++; // Update global seconds counter
 
-    // Update inactivity counter: if no movement is detected, increment it.
-    if (!movementDetected)
+    // Long press detection for S1
+    static uint8_t s1HoldCounter = 0;
+    bool s1State = (PORTAbits.RA11 == 0); // active-low
+    if (s1State)
     {
-        inactivityCounter++;
-        // (Optional) You can use inactivityCounter for logging or hysteresis,
-        // but do NOT force clear the history here.
+        s1HoldCounter++;
+        // For example, 4 ticks = ~2 seconds if each interrupt ~500ms
+        if (s1HoldCounter >= 2 && !inMenu)
+        {
+            inMenu = true;
+            selectedMenuItem = 0;
+            drawMenu();
+            justEnteredMenu = true; // <--- set this flag
+            s1HoldCounter = 0;
+        }
     }
     else
     {
-        inactivityCounter = 0;
+        s1HoldCounter = 0;
     }
 
-    // Advance the circular buffer index and clear that slot.
-    currentSecondIndex = (currentSecondIndex + 1) % HISTORY_SIZE;
-    stepsHistory[currentSecondIndex] = 0;
+    // If not in menu, do pedometer stuff
+    if (!inMenu)
+    {
+        if (!movementDetected)
+            inactivityCounter++;
+        else
+            inactivityCounter = 0;
 
-    IFS0bits.T1IF = 0;
+        currentSecondIndex = (currentSecondIndex + 1) % HISTORY_SIZE;
+        stepsHistory[currentSecondIndex] = 0;
+    }
+
+    IFS0bits.T1IF = 0; // Clear interrupt flag
 }
 
+// ---------------- MAIN ----------------
 int main(void)
 {
     int rc;
@@ -373,18 +482,77 @@ int main(void)
     initAccelerometer();
     Timer_Initialize();
     Timer1_Interrupt_Initialize();
-    for (;;)
+
+    static bool wasInMenu = false;
+
+    while (1)
     {
-        detectStep();
-        drawSteps();
-        drawClock(&currentTime);
+        if (inMenu)
+        {
+            // In menu mode: Handle navigation and update the mini clock.
+            static bool s1WasPressed = false;
+            static bool s2WasPressed = false;
 
-        // Clear the foot icon area.
-        oledC_DrawRectangle(0, 0, 15, 15, OLEDC_COLOR_BLACK);
+            if (justEnteredMenu)
+            {
+                // When first entering the menu, wait for the user to release the buttons.
+                justEnteredMenu = false;
+                bool s1State = (PORTAbits.RA11 == 0);
+                bool s2State = (PORTAbits.RA12 == 0);
+                s1WasPressed = s1State;
+                s2WasPressed = s2State;
+            }
+            else
+            {
+                // Poll the button states for short presses.
+                bool s1State = (PORTAbits.RA11 == 0);
+                bool s2State = (PORTAbits.RA12 == 0);
 
-        // Show the foot animation only if the displayed pace is nonzero.
-        if (displayedPace > 0)
-            drawFootIcon(0, 0, footToggle ? foot1Bitmap : foot2Bitmap, 16, 16);
+                // If S1 is newly pressed, move selection UP.
+                if (s1State && !s1WasPressed)
+                {
+                    if (selectedMenuItem > 0)
+                        selectedMenuItem--;
+                    drawMenu();
+                }
+                // If S2 is newly pressed, move selection DOWN.
+                if (s2State && !s2WasPressed)
+                {
+                    if (selectedMenuItem < MENU_ITEMS_COUNT - 1)
+                        selectedMenuItem++;
+                    drawMenu();
+                }
+                // If both buttons are pressed, execute the selected action.
+                if (s1State && s2State)
+                {
+                    executeMenuAction();
+                }
+                s1WasPressed = s1State;
+                s2WasPressed = s2State;
+
+                // Update the mini clock so it stays current.
+                updateMenuClock();
+            }
+            wasInMenu = true;
+        }
+        else
+        {
+            // When not in menu: If we were in menu in the previous loop,
+            // clear the mini clock area.
+            if (wasInMenu)
+            {
+                oledC_DrawRectangle(40, 2, 115, 10, OLEDC_COLOR_BLACK);
+                wasInMenu = false;
+            }
+
+            // Run the normal pedometer/clock functions.
+            detectStep();
+            drawSteps();
+            drawClock(&currentTime);
+            oledC_DrawRectangle(0, 0, 15, 15, OLEDC_COLOR_BLACK);
+            if (displayedPace > 0)
+                drawFootIcon(0, 0, footToggle ? foot1Bitmap : foot2Bitmap, 16, 16);
+        }
 
         DELAY_milliseconds(100);
     }
