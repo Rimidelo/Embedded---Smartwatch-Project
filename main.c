@@ -521,6 +521,25 @@ void handleSetTimeInput(void)
     s1WasPressed = s1State;
     s2WasPressed = s2State;
 }
+bool detectTiltForSave(void)
+{
+    ACCEL_DATA_t accel;
+    accel.x = readAxis(REG_DATAX0);
+    accel.y = readAxis(REG_DATAY0);
+    accel.z = readAxis(REG_DATAZ0);
+
+    // Adjust the threshold as needed for your device sensitivity.
+    const float tiltThreshold = 700.0f;
+
+    // Convert raw values to a magnitude.
+    float ax = accel.x * 4.0f;
+    float ay = accel.y * 4.0f;
+    float az = accel.z * 4.0f;
+    float magnitude = sqrtf(ax * ax + ay * ay + az * az);
+
+    // If the magnitude is below the threshold, we consider that a tilt save gesture.
+    return (magnitude < tiltThreshold);
+}
 
 void handleSetTimePage(void)
 {
@@ -533,17 +552,38 @@ void handleSetTimePage(void)
 
     drawSetTimeMenuBase();
 
-    // Wait until both buttons are released to clear any prior presses.
+    // Wait until both buttons are released.
     while ((PORTAbits.RA11 == 0) || (PORTAbits.RA12 == 0))
     {
         DELAY_milliseconds(10);
     }
 
-    // Blocking loop: poll S1 and S2.
+    int tiltCounter = 0; // Debounce counter for the tilt
+    // Poll for tilt while handling input.
     while (inTimeSetSubpage)
     {
         handleSetTimeInput();
-        DELAY_milliseconds(100);
+
+        if (detectTiltForSave())
+        {
+            tiltCounter++;
+            // Save if tilt is detected for one iteration (~50ms)
+            if (tiltCounter >= 1)
+            {
+                currentTime.hours = setClock.hours;
+                currentTime.minutes = setClock.minutes;
+                currentTime.seconds = 0; // Reset seconds to 00
+
+                inTimeSetSubpage = false;
+                break;
+            }
+        }
+        else
+        {
+            tiltCounter = 0; // Reset if no tilt is detected.
+        }
+
+        DELAY_milliseconds(50); // Reduced delay for quicker response
     }
 }
 
