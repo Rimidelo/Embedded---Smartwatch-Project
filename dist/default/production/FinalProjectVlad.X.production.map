@@ -225,15 +225,15 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x100              0x1b84          0x2946  (10566)
-.const                      0x1c84               0x496           0x6e1  (1761)
-.text                       0x211a              0x2038          0x3054  (12372)
-.dinit                      0x4152                0xa8            0xfc  (252)
-.text                       0x41fa               0x1b2           0x28b  (651)
-.init.delay32               0x43ac                0x1c            0x2a  (42)
-.text                       0x43c8                0x24            0x36  (54)
+.text                        0x100              0x1b80          0x2940  (10560)
+.const                      0x1c80               0x496           0x6e1  (1761)
+.text                       0x2116              0x2036          0x3051  (12369)
+.dinit                      0x414c                0xa8            0xfc  (252)
+.text                       0x41f4               0x1b2           0x28b  (651)
+.init.delay32               0x43a6                0x1c            0x2a  (42)
+.text                       0x43c2                0x24            0x36  (54)
 
-                 Total "program" memory used (bytes):         0x6462  (25698) 9%
+                 Total "program" memory used (bytes):         0x6459  (25689) 9%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -319,695 +319,695 @@ External Symbols in Program Memory (by address):
                   0x00013c                  __psv_init
                   0x000152                  __data_init
                   0x000152                  __data_init_da
-                  0x000238                  __OscillatorFail
-                  0x000258                  __StackError
-                  0x00027a                  __AddressError
-                  0x00029a                  __MathError
-                  0x0002ba                  __NVMError
-                  0x0002da                  __T1Interrupt
-                  0x000394                  __DefaultInterrupt
-                  0x000430                  ___lesf2
-                  0x000430                  ___eqsf2
-                  0x000430                  ___ltsf2
-                  0x000434                  ___gesf2
-                  0x000434                  ___gtsf2
-                  0x000438                  ___fixunssfsi
-                  0x00046e                  ___floatsisf
-                  0x000474                  ___floatunsisf
-                  0x000478                  __funpack
-                  0x0004a2                  ___subsf3x
-                  0x0004a2                  ___subsf3
-                  0x0004b4                  ___addsf3x
-                  0x0004b4                  ___addsf3
-                  0x00067e                  ___mulsf3
-                  0x00067e                  ___mulsf3x
-                  0x00078a                  __dnrmpackf
-                  0x0007de                  __unpackdnrmf
-                  0x00083c                  __typef
-                  0x000870                  __propnanf
-                  0x000882                  __fcompare
-                  0x0008b8                  ___floatdisf
-                  0x0008d8                  ___floatundisf
-                  0x000936                  __fpack
-                  0x000982                  __funpack2
-                  0x000992                  _sqrtf
-                  0x000ab6                  ___sio_printf_dosux
-                  0x000ad4                  ___sio_printf_s
-                  0x000ae2                  ___sio_sprintf_dosux
-                  0x000afc                  ___sio_sprintf_doux
-                  0x000b0a                  _memcpy
-                  0x000b1e                  ___init_stdout
-                  0x000b26                  _strcat
-                  0x000b3a                  _strcmp
-                  0x000b50                  _strcpy
-                  0x000b5e                  _strlen
-                  0x000b8e                  ___fmt_d
-                  0x000c40                  ___fmt_o
-                  0x000caa                  ___fmt_s
-                  0x000cfe                  ___cvt_u
-                  0x000da4                  ___fmt_u
-                  0x000df6                  ___fmt_x
-                  0x000f40                  ___vfprintf
-                  0x000f5c                  ___vsprintf
-                  0x000f8e                  ___out
-                  0x000f9e                  ___pop_int
-                  0x001046                  ___pop_ptr
-                  0x0010dc                  ___pad
-                  0x001156                  ___fmt_state
-                  0x00145a                  ___printf_core
-                  0x00149a                  ___stdio_close
-                  0x0014d8                  ___stdio_close_rw
-                  0x001544                  _atoi
-                  0x001590                  ___lseek
-                  0x00159c                  _memset
-                  0x001664                  ___stpcpy
-                  0x0016a4                  ___syscall_ret
-                  0x0016b8                  _tolower
-                  0x0016c4                  ___tolower_l
-                  0x0016c6                  _toupper
-                  0x0016d2                  ___toupper_l
-                  0x0016d6                  ___init_stdio
-                  0x0016dc                  ___vsnprintf
-                  0x001726                  ___pop_float
-                  0x00176c                  ___extendsfdf2
-                  0x0017aa                  ___mulsi3
-                  0x0017aa                  ___mulp32peds3
-                  0x0017aa                  ___mulp32eds3
-                  0x0017b6                  ___divsf3
-                  0x0017b6                  ___divsf3x
-                  0x001948                  __sdivf
-                  0x001974                  __spackf
-                  0x001a1a                  __unpackf
-                  0x001acc                  ___udivmoddi3
-                  0x001bb2                  ___udivdi3
-                  0x001bc0                  ___umoddi3
-                  0x001bc8                  ___divdi3
-                  0x001c28                  ___moddi3
-                  0x001c84                  _OLEDC_COLOR_ALICEBLUE
-                  0x001c86                  _OLEDC_COLOR_ANTIQUEWHITE
-                  0x001c88                  _OLEDC_COLOR_AQUA
-                  0x001c8a                  _OLEDC_COLOR_AQUAMARINE
-                  0x001c8c                  _OLEDC_COLOR_AZURE
-                  0x001c8e                  _OLEDC_COLOR_BEIGE
-                  0x001c90                  _OLEDC_COLOR_BISQUE
-                  0x001c92                  _OLEDC_COLOR_BLACK
-                  0x001c94                  _OLEDC_COLOR_BLANCHEDALMOND
-                  0x001c96                  _OLEDC_COLOR_BLUE
-                  0x001c98                  _OLEDC_COLOR_BLUEVIOLET
-                  0x001c9a                  _OLEDC_COLOR_BROWN
-                  0x001c9c                  _OLEDC_COLOR_BURLYWOOD
-                  0x001c9e                  _OLEDC_COLOR_CADETBLUE
-                  0x001ca0                  _OLEDC_COLOR_CHARTREUSE
-                  0x001ca2                  _OLEDC_COLOR_CHOCOLATE
-                  0x001ca4                  _OLEDC_COLOR_CORAL
-                  0x001ca6                  _OLEDC_COLOR_CORNFLOWERBLUE
-                  0x001ca8                  _OLEDC_COLOR_CORNSILK
-                  0x001caa                  _OLEDC_COLOR_CRIMSON
-                  0x001cac                  _OLEDC_COLOR_CYAN
-                  0x001cae                  _OLEDC_COLOR_DARKBLUE
-                  0x001cb0                  _OLEDC_COLOR_DARKCYAN
-                  0x001cb2                  _OLEDC_COLOR_DARKGOLDENROD
-                  0x001cb4                  _OLEDC_COLOR_DARKGRAY
-                  0x001cb6                  _OLEDC_COLOR_DARKGREEN
-                  0x001cb8                  _OLEDC_COLOR_DARKGREY
-                  0x001cba                  _OLEDC_COLOR_DARKKHAKI
-                  0x001cbc                  _OLEDC_COLOR_DARKMAGENTA
-                  0x001cbe                  _OLEDC_COLOR_DARKOLIVEGREEN
-                  0x001cc0                  _OLEDC_COLOR_DARKORANGE
-                  0x001cc2                  _OLEDC_COLOR_DARKORCHID
-                  0x001cc4                  _OLEDC_COLOR_DARKRED
-                  0x001cc6                  _OLEDC_COLOR_DARKSALMON
-                  0x001cc8                  _OLEDC_COLOR_DARKSEAGREEN
-                  0x001cca                  _OLEDC_COLOR_DARKSLATEBLUE
-                  0x001ccc                  _OLEDC_COLOR_DARKSLATEGRAY
-                  0x001cce                  _OLEDC_COLOR_DARKSLATEGREY
-                  0x001cd0                  _OLEDC_COLOR_DARKTURQUOISE
-                  0x001cd2                  _OLEDC_COLOR_DARKVIOLET
-                  0x001cd4                  _OLEDC_COLOR_DEEPPINK
-                  0x001cd6                  _OLEDC_COLOR_DEEPSKYBLUE
-                  0x001cd8                  _OLEDC_COLOR_DIMGRAY
-                  0x001cda                  _OLEDC_COLOR_DIMGREY
-                  0x001cdc                  _OLEDC_COLOR_DODGERBLUE
-                  0x001cde                  _OLEDC_COLOR_FIREBRICK
-                  0x001ce0                  _OLEDC_COLOR_FLORALWHITE
-                  0x001ce2                  _OLEDC_COLOR_FORESTGREEN
-                  0x001ce4                  _OLEDC_COLOR_FUCHSIA
-                  0x001ce6                  _OLEDC_COLOR_GAINSBORO
-                  0x001ce8                  _OLEDC_COLOR_GHOSTWHITE
-                  0x001cea                  _OLEDC_COLOR_GOLD
-                  0x001cec                  _OLEDC_COLOR_GOLDENROD
-                  0x001cee                  _OLEDC_COLOR_GRAY
-                  0x001cf0                  _OLEDC_COLOR_GREEN
-                  0x001cf2                  _OLEDC_COLOR_GREENYELLOW
-                  0x001cf4                  _OLEDC_COLOR_GREY
-                  0x001cf6                  _OLEDC_COLOR_HONEYDEW
-                  0x001cf8                  _OLEDC_COLOR_HOTPINK
-                  0x001cfa                  _OLEDC_COLOR_INDIANRED
-                  0x001cfc                  _OLEDC_COLOR_INDIGO
-                  0x001cfe                  _OLEDC_COLOR_IVORY
-                  0x001d00                  _OLEDC_COLOR_KHAKI
-                  0x001d02                  _OLEDC_COLOR_LAVENDER
-                  0x001d04                  _OLEDC_COLOR_LAVENDERBLUSH
-                  0x001d06                  _OLEDC_COLOR_LAWNGREEN
-                  0x001d08                  _OLEDC_COLOR_LEMONCHIFFON
-                  0x001d0a                  _OLEDC_COLOR_LIGHTBLUE
-                  0x001d0c                  _OLEDC_COLOR_LIGHTCORAL
-                  0x001d0e                  _OLEDC_COLOR_LIGHTCYAN
-                  0x001d10                  _OLEDC_COLOR_LIGHTGOLDENRODYELLOW
-                  0x001d12                  _OLEDC_COLOR_LIGHTGRAY
-                  0x001d14                  _OLEDC_COLOR_LIGHTGREEN
-                  0x001d16                  _OLEDC_COLOR_LIGHTGREY
-                  0x001d18                  _OLEDC_COLOR_LIGHTPINK
-                  0x001d1a                  _OLEDC_COLOR_LIGHTSALMON
-                  0x001d1c                  _OLEDC_COLOR_LIGHTSEAGREEN
-                  0x001d1e                  _OLEDC_COLOR_LIGHTSKYBLUE
-                  0x001d20                  _OLEDC_COLOR_LIGHTSLATEGRAY
-                  0x001d22                  _OLEDC_COLOR_LIGHTSLATEGREY
-                  0x001d24                  _OLEDC_COLOR_LIGHTSTEELBLUE
-                  0x001d26                  _OLEDC_COLOR_LIGHTYELLOW
-                  0x001d28                  _OLEDC_COLOR_LIME
-                  0x001d2a                  _OLEDC_COLOR_LIMEGREEN
-                  0x001d2c                  _OLEDC_COLOR_LINEN
-                  0x001d2e                  _OLEDC_COLOR_MAGENTA
-                  0x001d30                  _OLEDC_COLOR_MAROON
-                  0x001d32                  _OLEDC_COLOR_MEDIUMAQUAMARINE
-                  0x001d34                  _OLEDC_COLOR_MEDIUMBLUE
-                  0x001d36                  _OLEDC_COLOR_MEDIUMORCHID
-                  0x001d38                  _OLEDC_COLOR_MEDIUMPURPLE
-                  0x001d3a                  _OLEDC_COLOR_MEDIUMSEAGREEN
-                  0x001d3c                  _OLEDC_COLOR_MEDIUMSLATEBLUE
-                  0x001d3e                  _OLEDC_COLOR_MEDIUMSPRINGGREEN
-                  0x001d40                  _OLEDC_COLOR_MEDIUMTURQUOISE
-                  0x001d42                  _OLEDC_COLOR_MEDIUMVIOLETRED
-                  0x001d44                  _OLEDC_COLOR_MIDNIGHTBLUE
-                  0x001d46                  _OLEDC_COLOR_MINTCREAM
-                  0x001d48                  _OLEDC_COLOR_MISTYROSE
-                  0x001d4a                  _OLEDC_COLOR_MOCCASIN
-                  0x001d4c                  _OLEDC_COLOR_NAVAJOWHITE
-                  0x001d4e                  _OLEDC_COLOR_NAVY
-                  0x001d50                  _OLEDC_COLOR_OLDLACE
-                  0x001d52                  _OLEDC_COLOR_OLIVE
-                  0x001d54                  _OLEDC_COLOR_OLIVEDRAB
-                  0x001d56                  _OLEDC_COLOR_ORANGE
-                  0x001d58                  _OLEDC_COLOR_ORANGERED
-                  0x001d5a                  _OLEDC_COLOR_ORCHID
-                  0x001d5c                  _OLEDC_COLOR_PALEGOLDENROD
-                  0x001d5e                  _OLEDC_COLOR_PALEGREEN
-                  0x001d60                  _OLEDC_COLOR_PALETURQUOISE
-                  0x001d62                  _OLEDC_COLOR_PALEVIOLETRED
-                  0x001d64                  _OLEDC_COLOR_PAPAYAWHIP
-                  0x001d66                  _OLEDC_COLOR_PEACHPUFF
-                  0x001d68                  _OLEDC_COLOR_PERU
-                  0x001d6a                  _OLEDC_COLOR_PINK
-                  0x001d6c                  _OLEDC_COLOR_PLUM
-                  0x001d6e                  _OLEDC_COLOR_POWDERBLUE
-                  0x001d70                  _OLEDC_COLOR_PURPLE
-                  0x001d72                  _OLEDC_COLOR_RED
-                  0x001d74                  _OLEDC_COLOR_ROSYBROWN
-                  0x001d76                  _OLEDC_COLOR_ROYALBLUE
-                  0x001d78                  _OLEDC_COLOR_SADDLEBROWN
-                  0x001d7a                  _OLEDC_COLOR_SALMON
-                  0x001d7c                  _OLEDC_COLOR_SANDYBROWN
-                  0x001d7e                  _OLEDC_COLOR_SEAGREEN
-                  0x001d80                  _OLEDC_COLOR_SEASHELL
-                  0x001d82                  _OLEDC_COLOR_SIENNA
-                  0x001d84                  _OLEDC_COLOR_SILVER
-                  0x001d86                  _OLEDC_COLOR_SKYBLUE
-                  0x001d88                  _OLEDC_COLOR_SLATEBLUE
-                  0x001d8a                  _OLEDC_COLOR_SLATEGRAY
-                  0x001d8c                  _OLEDC_COLOR_SLATEGREY
-                  0x001d8e                  _OLEDC_COLOR_SNOW
-                  0x001d90                  _OLEDC_COLOR_SPRINGGREEN
-                  0x001d92                  _OLEDC_COLOR_STEELBLUE
-                  0x001d94                  _OLEDC_COLOR_TAN
-                  0x001d96                  _OLEDC_COLOR_TEAL
-                  0x001d98                  _OLEDC_COLOR_THISTLE
-                  0x001d9a                  _OLEDC_COLOR_TOMATO
-                  0x001d9c                  _OLEDC_COLOR_TURQUOISE
-                  0x001d9e                  _OLEDC_COLOR_VIOLET
-                  0x001da0                  _OLEDC_COLOR_WHEAT
-                  0x001da2                  _OLEDC_COLOR_WHITE
-                  0x001da4                  _OLEDC_COLOR_WHITESMOKE
-                  0x001da6                  _OLEDC_COLOR_YELLOW
-                  0x001da8                  _OLEDC_COLOR_YELLOWGREEN
-                  0x001daa                  _baselineGravity
-                  0x00211a                  _errorStop
-                  0x00213c                  _readAxis
-                  0x0021c2                  _initAccelerometer
-                  0x00226c                  _detectStep
-                  0x002346                  _drawSteps
-                  0x00252a                  _updateDate
-                  0x00256e                  _incrementTime
-                  0x0025c6                  _drawClock
-                  0x00274e                  _drawFootIcon
-                  0x0027b0                  _handleTimeFormatSelection
-                  0x00284e                  _drawTimeFormatSubpage
-                  0x0028dc                  _drawSetTimeMenuBase
-                  0x00297e                  _drawSetTimeStatus
-                  0x0029e8                  _handleSetTimeInput
-                  0x002af4                  _detectTiltForSave
-                  0x002b8c                  _handleSetTimePage
-                  0x002c02                  _drawSetDateMenuBase
-                  0x002ca6                  _drawSetDateStatus
-                  0x002d10                  _handleSetDateInput
-                  0x002e7c                  _handleSetDatePage
-                  0x002eec                  _drawMenu
-                  0x002f64                  _updateMenuClock
-                  0x003030                  _executeMenuAction
-                  0x003084                  _Timer_Initialize
-                  0x00309e                  _Timer1_Interrupt_Initialize
-                  0x0030b4                  _User_Initialize
-                  0x0030ec                  _main
-                  0x003252                  _oledC_createShape
-                  0x003382                  _oledC_ReadPoint
-                  0x0033b2                  _oledC_DrawPoint
-                  0x0033ea                  _oledC_DrawThickPoint
-                  0x0034f2                  _oledC_DrawCircle
-                  0x003604                  _oledC_DrawRing
-                  0x003700                  _oledC_DrawLine
-                  0x0037a0                  _oledC_DrawRectangle
-                  0x0037ee                  _oledC_DrawCharacter
-                  0x0038ac                  _oledC_DrawString
-                  0x0038f2                  _oledC_DrawBitmap
-                  0x0039c6                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
-                  0x0039dc                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
-                  0x0039f6                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
-                  0x003a14                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
-                  0x003a32                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
-                  0x003a54                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
-                  0x003a76                  build/default/production/oledDriver/oledC_shapes.o:_drawString
-                  0x003a98                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
-                  0x003abe                  _oledC_parseIntToRGB
-                  0x003b0c                  _oledC_parseRGBToInt
-                  0x003bb8                  _oledC_sendCommand
-                  0x003bf6                  _oledC_setRowAddressBounds
-                  0x003c20                  _oledC_setColumnAddressBounds
-                  0x003c56                  _oledC_setSleepMode
-                  0x003c70                  _oledC_setDisplayOrientation
-                  0x003c8e                  _oledC_startReadingDisplay
-                  0x003ca0                  _oledC_stopReadingDisplay
-                  0x003ca8                  _oledC_readColor
-                  0x003cc6                  _oledC_startWritingDisplay
-                  0x003cd8                  _oledC_stopWritingDisplay
-                  0x003ce4                  _oledC_sendColor
-                  0x003cfa                  _oledC_sendColorInt
-                  0x003d20                  _oledC_open
-                  0x003d28                  _oledC_setup
-                  0x003d5c                  _oledC_clearScreen
-                  0x003d96                  _oledC_setBackground
-                  0x003da4                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
-                  0x003dac                  _initShapesMem
-                  0x003dd8                  _oledC_removeShape
-                  0x003e0e                  _oledC_getShape
-                  0x003e2a                  _oledC_addShape
-                  0x003e84                  _oledC_redrawIndex
-                  0x003ea2                  _oledC_redrawTo
-                  0x003eb0                  _oledC_redrawFrom
-                  0x003ebe                  _oledC_redrawSome
-                  0x003f0a                  _oledC_eraseShape
-                  0x003f34                  _oledC_eraseAll
-                  0x003f60                  _oledC_redrawAll
-                  0x003f6c                  _spi1_close
-                  0x003f74                  _spi1_open
-                  0x003f94                  _spi1_exchangeByte
-                  0x003fae                  _spi1_exchangeBlock
-                  0x003fe0                  _spi1_writeBlock
-                  0x00400e                  _spi1_readBlock
-                  0x00403e                  _spi1_writeByte
-                  0x00404a                  _spi1_readByte
-                  0x004054                  _spi1_isr
-                  0x004070                  _spi1_setSpiISR
-                  0x00407c                  _i2c1_driver_close
-                  0x004084                  _i2c1_driver_open
-                  0x0040a4                  _i2c1_driver_start
-                  0x0040b6                  _i2c1_driver_restart
-                  0x0040c8                  _i2c1_driver_stop
-                  0x0040da                  _i2c1_driver_isNACK
-                  0x0040f2                  _i2c1_driver_startRX
-                  0x0040fa                  _i2c1_driver_waitRX
-                  0x00410a                  _i2c1_driver_getRXData
-                  0x004114                  _i2c1_driver_TXData
-                  0x00412c                  _i2c1_driver_sendACK
-                  0x004140                  _i2c1_driver_sendNACK
-                  0x00414a                  _i2c1_driver_clearBusCollision
-                  0x004212                  _i2c1_open
-                  0x00421a                  _i2cReadSlaveRegister
-                  0x004262                  _i2cWriteSlave
-                  0x004298                  _PIN_MANAGER_Initialize
-                  0x004310                  _DELAY_milliseconds
-                  0x004332                  _DELAY_microseconds
-                  0x004366                  _CLOCK_Initialize
-                  0x0043ac                  ___delay32
-                  0x0043e0                  _SYSTEM_Initialize
+                  0x000234                  __OscillatorFail
+                  0x000254                  __StackError
+                  0x000276                  __AddressError
+                  0x000296                  __MathError
+                  0x0002b6                  __NVMError
+                  0x0002d6                  __T1Interrupt
+                  0x000390                  __DefaultInterrupt
+                  0x00042c                  ___lesf2
+                  0x00042c                  ___eqsf2
+                  0x00042c                  ___ltsf2
+                  0x000430                  ___gesf2
+                  0x000430                  ___gtsf2
+                  0x000434                  ___fixunssfsi
+                  0x00046a                  ___floatsisf
+                  0x000470                  ___floatunsisf
+                  0x000474                  __funpack
+                  0x00049e                  ___subsf3x
+                  0x00049e                  ___subsf3
+                  0x0004b0                  ___addsf3x
+                  0x0004b0                  ___addsf3
+                  0x00067a                  ___mulsf3
+                  0x00067a                  ___mulsf3x
+                  0x000786                  __dnrmpackf
+                  0x0007da                  __unpackdnrmf
+                  0x000838                  __typef
+                  0x00086c                  __propnanf
+                  0x00087e                  __fcompare
+                  0x0008b4                  ___floatdisf
+                  0x0008d4                  ___floatundisf
+                  0x000932                  __fpack
+                  0x00097e                  __funpack2
+                  0x00098e                  _sqrtf
+                  0x000ab2                  ___sio_printf_dosux
+                  0x000ad0                  ___sio_printf_s
+                  0x000ade                  ___sio_sprintf_dosux
+                  0x000af8                  ___sio_sprintf_doux
+                  0x000b06                  _memcpy
+                  0x000b1a                  ___init_stdout
+                  0x000b22                  _strcat
+                  0x000b36                  _strcmp
+                  0x000b4c                  _strcpy
+                  0x000b5a                  _strlen
+                  0x000b8a                  ___fmt_d
+                  0x000c3c                  ___fmt_o
+                  0x000ca6                  ___fmt_s
+                  0x000cfa                  ___cvt_u
+                  0x000da0                  ___fmt_u
+                  0x000df2                  ___fmt_x
+                  0x000f3c                  ___vfprintf
+                  0x000f58                  ___vsprintf
+                  0x000f8a                  ___out
+                  0x000f9a                  ___pop_int
+                  0x001042                  ___pop_ptr
+                  0x0010d8                  ___pad
+                  0x001152                  ___fmt_state
+                  0x001456                  ___printf_core
+                  0x001496                  ___stdio_close
+                  0x0014d4                  ___stdio_close_rw
+                  0x001540                  _atoi
+                  0x00158c                  ___lseek
+                  0x001598                  _memset
+                  0x001660                  ___stpcpy
+                  0x0016a0                  ___syscall_ret
+                  0x0016b4                  _tolower
+                  0x0016c0                  ___tolower_l
+                  0x0016c2                  _toupper
+                  0x0016ce                  ___toupper_l
+                  0x0016d2                  ___init_stdio
+                  0x0016d8                  ___vsnprintf
+                  0x001722                  ___pop_float
+                  0x001768                  ___extendsfdf2
+                  0x0017a6                  ___mulsi3
+                  0x0017a6                  ___mulp32peds3
+                  0x0017a6                  ___mulp32eds3
+                  0x0017b2                  ___divsf3
+                  0x0017b2                  ___divsf3x
+                  0x001944                  __sdivf
+                  0x001970                  __spackf
+                  0x001a16                  __unpackf
+                  0x001ac8                  ___udivmoddi3
+                  0x001bae                  ___udivdi3
+                  0x001bbc                  ___umoddi3
+                  0x001bc4                  ___divdi3
+                  0x001c24                  ___moddi3
+                  0x001c80                  _OLEDC_COLOR_ALICEBLUE
+                  0x001c82                  _OLEDC_COLOR_ANTIQUEWHITE
+                  0x001c84                  _OLEDC_COLOR_AQUA
+                  0x001c86                  _OLEDC_COLOR_AQUAMARINE
+                  0x001c88                  _OLEDC_COLOR_AZURE
+                  0x001c8a                  _OLEDC_COLOR_BEIGE
+                  0x001c8c                  _OLEDC_COLOR_BISQUE
+                  0x001c8e                  _OLEDC_COLOR_BLACK
+                  0x001c90                  _OLEDC_COLOR_BLANCHEDALMOND
+                  0x001c92                  _OLEDC_COLOR_BLUE
+                  0x001c94                  _OLEDC_COLOR_BLUEVIOLET
+                  0x001c96                  _OLEDC_COLOR_BROWN
+                  0x001c98                  _OLEDC_COLOR_BURLYWOOD
+                  0x001c9a                  _OLEDC_COLOR_CADETBLUE
+                  0x001c9c                  _OLEDC_COLOR_CHARTREUSE
+                  0x001c9e                  _OLEDC_COLOR_CHOCOLATE
+                  0x001ca0                  _OLEDC_COLOR_CORAL
+                  0x001ca2                  _OLEDC_COLOR_CORNFLOWERBLUE
+                  0x001ca4                  _OLEDC_COLOR_CORNSILK
+                  0x001ca6                  _OLEDC_COLOR_CRIMSON
+                  0x001ca8                  _OLEDC_COLOR_CYAN
+                  0x001caa                  _OLEDC_COLOR_DARKBLUE
+                  0x001cac                  _OLEDC_COLOR_DARKCYAN
+                  0x001cae                  _OLEDC_COLOR_DARKGOLDENROD
+                  0x001cb0                  _OLEDC_COLOR_DARKGRAY
+                  0x001cb2                  _OLEDC_COLOR_DARKGREEN
+                  0x001cb4                  _OLEDC_COLOR_DARKGREY
+                  0x001cb6                  _OLEDC_COLOR_DARKKHAKI
+                  0x001cb8                  _OLEDC_COLOR_DARKMAGENTA
+                  0x001cba                  _OLEDC_COLOR_DARKOLIVEGREEN
+                  0x001cbc                  _OLEDC_COLOR_DARKORANGE
+                  0x001cbe                  _OLEDC_COLOR_DARKORCHID
+                  0x001cc0                  _OLEDC_COLOR_DARKRED
+                  0x001cc2                  _OLEDC_COLOR_DARKSALMON
+                  0x001cc4                  _OLEDC_COLOR_DARKSEAGREEN
+                  0x001cc6                  _OLEDC_COLOR_DARKSLATEBLUE
+                  0x001cc8                  _OLEDC_COLOR_DARKSLATEGRAY
+                  0x001cca                  _OLEDC_COLOR_DARKSLATEGREY
+                  0x001ccc                  _OLEDC_COLOR_DARKTURQUOISE
+                  0x001cce                  _OLEDC_COLOR_DARKVIOLET
+                  0x001cd0                  _OLEDC_COLOR_DEEPPINK
+                  0x001cd2                  _OLEDC_COLOR_DEEPSKYBLUE
+                  0x001cd4                  _OLEDC_COLOR_DIMGRAY
+                  0x001cd6                  _OLEDC_COLOR_DIMGREY
+                  0x001cd8                  _OLEDC_COLOR_DODGERBLUE
+                  0x001cda                  _OLEDC_COLOR_FIREBRICK
+                  0x001cdc                  _OLEDC_COLOR_FLORALWHITE
+                  0x001cde                  _OLEDC_COLOR_FORESTGREEN
+                  0x001ce0                  _OLEDC_COLOR_FUCHSIA
+                  0x001ce2                  _OLEDC_COLOR_GAINSBORO
+                  0x001ce4                  _OLEDC_COLOR_GHOSTWHITE
+                  0x001ce6                  _OLEDC_COLOR_GOLD
+                  0x001ce8                  _OLEDC_COLOR_GOLDENROD
+                  0x001cea                  _OLEDC_COLOR_GRAY
+                  0x001cec                  _OLEDC_COLOR_GREEN
+                  0x001cee                  _OLEDC_COLOR_GREENYELLOW
+                  0x001cf0                  _OLEDC_COLOR_GREY
+                  0x001cf2                  _OLEDC_COLOR_HONEYDEW
+                  0x001cf4                  _OLEDC_COLOR_HOTPINK
+                  0x001cf6                  _OLEDC_COLOR_INDIANRED
+                  0x001cf8                  _OLEDC_COLOR_INDIGO
+                  0x001cfa                  _OLEDC_COLOR_IVORY
+                  0x001cfc                  _OLEDC_COLOR_KHAKI
+                  0x001cfe                  _OLEDC_COLOR_LAVENDER
+                  0x001d00                  _OLEDC_COLOR_LAVENDERBLUSH
+                  0x001d02                  _OLEDC_COLOR_LAWNGREEN
+                  0x001d04                  _OLEDC_COLOR_LEMONCHIFFON
+                  0x001d06                  _OLEDC_COLOR_LIGHTBLUE
+                  0x001d08                  _OLEDC_COLOR_LIGHTCORAL
+                  0x001d0a                  _OLEDC_COLOR_LIGHTCYAN
+                  0x001d0c                  _OLEDC_COLOR_LIGHTGOLDENRODYELLOW
+                  0x001d0e                  _OLEDC_COLOR_LIGHTGRAY
+                  0x001d10                  _OLEDC_COLOR_LIGHTGREEN
+                  0x001d12                  _OLEDC_COLOR_LIGHTGREY
+                  0x001d14                  _OLEDC_COLOR_LIGHTPINK
+                  0x001d16                  _OLEDC_COLOR_LIGHTSALMON
+                  0x001d18                  _OLEDC_COLOR_LIGHTSEAGREEN
+                  0x001d1a                  _OLEDC_COLOR_LIGHTSKYBLUE
+                  0x001d1c                  _OLEDC_COLOR_LIGHTSLATEGRAY
+                  0x001d1e                  _OLEDC_COLOR_LIGHTSLATEGREY
+                  0x001d20                  _OLEDC_COLOR_LIGHTSTEELBLUE
+                  0x001d22                  _OLEDC_COLOR_LIGHTYELLOW
+                  0x001d24                  _OLEDC_COLOR_LIME
+                  0x001d26                  _OLEDC_COLOR_LIMEGREEN
+                  0x001d28                  _OLEDC_COLOR_LINEN
+                  0x001d2a                  _OLEDC_COLOR_MAGENTA
+                  0x001d2c                  _OLEDC_COLOR_MAROON
+                  0x001d2e                  _OLEDC_COLOR_MEDIUMAQUAMARINE
+                  0x001d30                  _OLEDC_COLOR_MEDIUMBLUE
+                  0x001d32                  _OLEDC_COLOR_MEDIUMORCHID
+                  0x001d34                  _OLEDC_COLOR_MEDIUMPURPLE
+                  0x001d36                  _OLEDC_COLOR_MEDIUMSEAGREEN
+                  0x001d38                  _OLEDC_COLOR_MEDIUMSLATEBLUE
+                  0x001d3a                  _OLEDC_COLOR_MEDIUMSPRINGGREEN
+                  0x001d3c                  _OLEDC_COLOR_MEDIUMTURQUOISE
+                  0x001d3e                  _OLEDC_COLOR_MEDIUMVIOLETRED
+                  0x001d40                  _OLEDC_COLOR_MIDNIGHTBLUE
+                  0x001d42                  _OLEDC_COLOR_MINTCREAM
+                  0x001d44                  _OLEDC_COLOR_MISTYROSE
+                  0x001d46                  _OLEDC_COLOR_MOCCASIN
+                  0x001d48                  _OLEDC_COLOR_NAVAJOWHITE
+                  0x001d4a                  _OLEDC_COLOR_NAVY
+                  0x001d4c                  _OLEDC_COLOR_OLDLACE
+                  0x001d4e                  _OLEDC_COLOR_OLIVE
+                  0x001d50                  _OLEDC_COLOR_OLIVEDRAB
+                  0x001d52                  _OLEDC_COLOR_ORANGE
+                  0x001d54                  _OLEDC_COLOR_ORANGERED
+                  0x001d56                  _OLEDC_COLOR_ORCHID
+                  0x001d58                  _OLEDC_COLOR_PALEGOLDENROD
+                  0x001d5a                  _OLEDC_COLOR_PALEGREEN
+                  0x001d5c                  _OLEDC_COLOR_PALETURQUOISE
+                  0x001d5e                  _OLEDC_COLOR_PALEVIOLETRED
+                  0x001d60                  _OLEDC_COLOR_PAPAYAWHIP
+                  0x001d62                  _OLEDC_COLOR_PEACHPUFF
+                  0x001d64                  _OLEDC_COLOR_PERU
+                  0x001d66                  _OLEDC_COLOR_PINK
+                  0x001d68                  _OLEDC_COLOR_PLUM
+                  0x001d6a                  _OLEDC_COLOR_POWDERBLUE
+                  0x001d6c                  _OLEDC_COLOR_PURPLE
+                  0x001d6e                  _OLEDC_COLOR_RED
+                  0x001d70                  _OLEDC_COLOR_ROSYBROWN
+                  0x001d72                  _OLEDC_COLOR_ROYALBLUE
+                  0x001d74                  _OLEDC_COLOR_SADDLEBROWN
+                  0x001d76                  _OLEDC_COLOR_SALMON
+                  0x001d78                  _OLEDC_COLOR_SANDYBROWN
+                  0x001d7a                  _OLEDC_COLOR_SEAGREEN
+                  0x001d7c                  _OLEDC_COLOR_SEASHELL
+                  0x001d7e                  _OLEDC_COLOR_SIENNA
+                  0x001d80                  _OLEDC_COLOR_SILVER
+                  0x001d82                  _OLEDC_COLOR_SKYBLUE
+                  0x001d84                  _OLEDC_COLOR_SLATEBLUE
+                  0x001d86                  _OLEDC_COLOR_SLATEGRAY
+                  0x001d88                  _OLEDC_COLOR_SLATEGREY
+                  0x001d8a                  _OLEDC_COLOR_SNOW
+                  0x001d8c                  _OLEDC_COLOR_SPRINGGREEN
+                  0x001d8e                  _OLEDC_COLOR_STEELBLUE
+                  0x001d90                  _OLEDC_COLOR_TAN
+                  0x001d92                  _OLEDC_COLOR_TEAL
+                  0x001d94                  _OLEDC_COLOR_THISTLE
+                  0x001d96                  _OLEDC_COLOR_TOMATO
+                  0x001d98                  _OLEDC_COLOR_TURQUOISE
+                  0x001d9a                  _OLEDC_COLOR_VIOLET
+                  0x001d9c                  _OLEDC_COLOR_WHEAT
+                  0x001d9e                  _OLEDC_COLOR_WHITE
+                  0x001da0                  _OLEDC_COLOR_WHITESMOKE
+                  0x001da2                  _OLEDC_COLOR_YELLOW
+                  0x001da4                  _OLEDC_COLOR_YELLOWGREEN
+                  0x001da6                  _baselineGravity
+                  0x002116                  _errorStop
+                  0x002138                  _readAxis
+                  0x0021be                  _initAccelerometer
+                  0x002268                  _detectStep
+                  0x002342                  _drawSteps
+                  0x002526                  _updateDate
+                  0x00256a                  _incrementTime
+                  0x0025c2                  _drawClock
+                  0x00274a                  _drawFootIcon
+                  0x0027ac                  _handleTimeFormatSelection
+                  0x00284a                  _drawTimeFormatSubpage
+                  0x0028d8                  _drawSetTimeMenuBase
+                  0x00297a                  _drawSetTimeStatus
+                  0x0029e4                  _handleSetTimeInput
+                  0x002af0                  _detectTiltForSave
+                  0x002b88                  _handleSetTimePage
+                  0x002bfe                  _drawSetDateMenuBase
+                  0x002ca0                  _drawSetDateStatus
+                  0x002d0a                  _handleSetDateInput
+                  0x002e76                  _handleSetDatePage
+                  0x002ee6                  _drawMenu
+                  0x002f5e                  _updateMenuClock
+                  0x00302a                  _executeMenuAction
+                  0x00307e                  _Timer_Initialize
+                  0x003098                  _Timer1_Interrupt_Initialize
+                  0x0030ae                  _User_Initialize
+                  0x0030e6                  _main
+                  0x00324c                  _oledC_createShape
+                  0x00337c                  _oledC_ReadPoint
+                  0x0033ac                  _oledC_DrawPoint
+                  0x0033e4                  _oledC_DrawThickPoint
+                  0x0034ec                  _oledC_DrawCircle
+                  0x0035fe                  _oledC_DrawRing
+                  0x0036fa                  _oledC_DrawLine
+                  0x00379a                  _oledC_DrawRectangle
+                  0x0037e8                  _oledC_DrawCharacter
+                  0x0038a6                  _oledC_DrawString
+                  0x0038ec                  _oledC_DrawBitmap
+                  0x0039c0                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
+                  0x0039d6                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
+                  0x0039f0                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
+                  0x003a0e                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
+                  0x003a2c                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
+                  0x003a4e                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
+                  0x003a70                  build/default/production/oledDriver/oledC_shapes.o:_drawString
+                  0x003a92                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
+                  0x003ab8                  _oledC_parseIntToRGB
+                  0x003b06                  _oledC_parseRGBToInt
+                  0x003bb2                  _oledC_sendCommand
+                  0x003bf0                  _oledC_setRowAddressBounds
+                  0x003c1a                  _oledC_setColumnAddressBounds
+                  0x003c50                  _oledC_setSleepMode
+                  0x003c6a                  _oledC_setDisplayOrientation
+                  0x003c88                  _oledC_startReadingDisplay
+                  0x003c9a                  _oledC_stopReadingDisplay
+                  0x003ca2                  _oledC_readColor
+                  0x003cc0                  _oledC_startWritingDisplay
+                  0x003cd2                  _oledC_stopWritingDisplay
+                  0x003cde                  _oledC_sendColor
+                  0x003cf4                  _oledC_sendColorInt
+                  0x003d1a                  _oledC_open
+                  0x003d22                  _oledC_setup
+                  0x003d56                  _oledC_clearScreen
+                  0x003d90                  _oledC_setBackground
+                  0x003d9e                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
+                  0x003da6                  _initShapesMem
+                  0x003dd2                  _oledC_removeShape
+                  0x003e08                  _oledC_getShape
+                  0x003e24                  _oledC_addShape
+                  0x003e7e                  _oledC_redrawIndex
+                  0x003e9c                  _oledC_redrawTo
+                  0x003eaa                  _oledC_redrawFrom
+                  0x003eb8                  _oledC_redrawSome
+                  0x003f04                  _oledC_eraseShape
+                  0x003f2e                  _oledC_eraseAll
+                  0x003f5a                  _oledC_redrawAll
+                  0x003f66                  _spi1_close
+                  0x003f6e                  _spi1_open
+                  0x003f8e                  _spi1_exchangeByte
+                  0x003fa8                  _spi1_exchangeBlock
+                  0x003fda                  _spi1_writeBlock
+                  0x004008                  _spi1_readBlock
+                  0x004038                  _spi1_writeByte
+                  0x004044                  _spi1_readByte
+                  0x00404e                  _spi1_isr
+                  0x00406a                  _spi1_setSpiISR
+                  0x004076                  _i2c1_driver_close
+                  0x00407e                  _i2c1_driver_open
+                  0x00409e                  _i2c1_driver_start
+                  0x0040b0                  _i2c1_driver_restart
+                  0x0040c2                  _i2c1_driver_stop
+                  0x0040d4                  _i2c1_driver_isNACK
+                  0x0040ec                  _i2c1_driver_startRX
+                  0x0040f4                  _i2c1_driver_waitRX
+                  0x004104                  _i2c1_driver_getRXData
+                  0x00410e                  _i2c1_driver_TXData
+                  0x004126                  _i2c1_driver_sendACK
+                  0x00413a                  _i2c1_driver_sendNACK
+                  0x004144                  _i2c1_driver_clearBusCollision
+                  0x00420c                  _i2c1_open
+                  0x004214                  _i2cReadSlaveRegister
+                  0x00425c                  _i2cWriteSlave
+                  0x004292                  _PIN_MANAGER_Initialize
+                  0x00430a                  _DELAY_milliseconds
+                  0x00432c                  _DELAY_microseconds
+                  0x004360                  _CLOCK_Initialize
+                  0x0043a6                  ___delay32
+                  0x0043da                  _SYSTEM_Initialize
                   0x02af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x004366                  _CLOCK_Initialize
-                  0x004332                  _DELAY_microseconds
-                  0x004310                  _DELAY_milliseconds
-                  0x001c84                  _OLEDC_COLOR_ALICEBLUE
-                  0x001c86                  _OLEDC_COLOR_ANTIQUEWHITE
-                  0x001c88                  _OLEDC_COLOR_AQUA
-                  0x001c8a                  _OLEDC_COLOR_AQUAMARINE
-                  0x001c8c                  _OLEDC_COLOR_AZURE
-                  0x001c8e                  _OLEDC_COLOR_BEIGE
-                  0x001c90                  _OLEDC_COLOR_BISQUE
-                  0x001c92                  _OLEDC_COLOR_BLACK
-                  0x001c94                  _OLEDC_COLOR_BLANCHEDALMOND
-                  0x001c96                  _OLEDC_COLOR_BLUE
-                  0x001c98                  _OLEDC_COLOR_BLUEVIOLET
-                  0x001c9a                  _OLEDC_COLOR_BROWN
-                  0x001c9c                  _OLEDC_COLOR_BURLYWOOD
-                  0x001c9e                  _OLEDC_COLOR_CADETBLUE
-                  0x001ca0                  _OLEDC_COLOR_CHARTREUSE
-                  0x001ca2                  _OLEDC_COLOR_CHOCOLATE
-                  0x001ca4                  _OLEDC_COLOR_CORAL
-                  0x001ca6                  _OLEDC_COLOR_CORNFLOWERBLUE
-                  0x001ca8                  _OLEDC_COLOR_CORNSILK
-                  0x001caa                  _OLEDC_COLOR_CRIMSON
-                  0x001cac                  _OLEDC_COLOR_CYAN
-                  0x001cae                  _OLEDC_COLOR_DARKBLUE
-                  0x001cb0                  _OLEDC_COLOR_DARKCYAN
-                  0x001cb2                  _OLEDC_COLOR_DARKGOLDENROD
-                  0x001cb4                  _OLEDC_COLOR_DARKGRAY
-                  0x001cb6                  _OLEDC_COLOR_DARKGREEN
-                  0x001cb8                  _OLEDC_COLOR_DARKGREY
-                  0x001cba                  _OLEDC_COLOR_DARKKHAKI
-                  0x001cbc                  _OLEDC_COLOR_DARKMAGENTA
-                  0x001cbe                  _OLEDC_COLOR_DARKOLIVEGREEN
-                  0x001cc0                  _OLEDC_COLOR_DARKORANGE
-                  0x001cc2                  _OLEDC_COLOR_DARKORCHID
-                  0x001cc4                  _OLEDC_COLOR_DARKRED
-                  0x001cc6                  _OLEDC_COLOR_DARKSALMON
-                  0x001cc8                  _OLEDC_COLOR_DARKSEAGREEN
-                  0x001cca                  _OLEDC_COLOR_DARKSLATEBLUE
-                  0x001ccc                  _OLEDC_COLOR_DARKSLATEGRAY
-                  0x001cce                  _OLEDC_COLOR_DARKSLATEGREY
-                  0x001cd0                  _OLEDC_COLOR_DARKTURQUOISE
-                  0x001cd2                  _OLEDC_COLOR_DARKVIOLET
-                  0x001cd4                  _OLEDC_COLOR_DEEPPINK
-                  0x001cd6                  _OLEDC_COLOR_DEEPSKYBLUE
-                  0x001cd8                  _OLEDC_COLOR_DIMGRAY
-                  0x001cda                  _OLEDC_COLOR_DIMGREY
-                  0x001cdc                  _OLEDC_COLOR_DODGERBLUE
-                  0x001cde                  _OLEDC_COLOR_FIREBRICK
-                  0x001ce0                  _OLEDC_COLOR_FLORALWHITE
-                  0x001ce2                  _OLEDC_COLOR_FORESTGREEN
-                  0x001ce4                  _OLEDC_COLOR_FUCHSIA
-                  0x001ce6                  _OLEDC_COLOR_GAINSBORO
-                  0x001ce8                  _OLEDC_COLOR_GHOSTWHITE
-                  0x001cea                  _OLEDC_COLOR_GOLD
-                  0x001cec                  _OLEDC_COLOR_GOLDENROD
-                  0x001cee                  _OLEDC_COLOR_GRAY
-                  0x001cf0                  _OLEDC_COLOR_GREEN
-                  0x001cf2                  _OLEDC_COLOR_GREENYELLOW
-                  0x001cf4                  _OLEDC_COLOR_GREY
-                  0x001cf6                  _OLEDC_COLOR_HONEYDEW
-                  0x001cf8                  _OLEDC_COLOR_HOTPINK
-                  0x001cfa                  _OLEDC_COLOR_INDIANRED
-                  0x001cfc                  _OLEDC_COLOR_INDIGO
-                  0x001cfe                  _OLEDC_COLOR_IVORY
-                  0x001d00                  _OLEDC_COLOR_KHAKI
-                  0x001d02                  _OLEDC_COLOR_LAVENDER
-                  0x001d04                  _OLEDC_COLOR_LAVENDERBLUSH
-                  0x001d06                  _OLEDC_COLOR_LAWNGREEN
-                  0x001d08                  _OLEDC_COLOR_LEMONCHIFFON
-                  0x001d0a                  _OLEDC_COLOR_LIGHTBLUE
-                  0x001d0c                  _OLEDC_COLOR_LIGHTCORAL
-                  0x001d0e                  _OLEDC_COLOR_LIGHTCYAN
-                  0x001d10                  _OLEDC_COLOR_LIGHTGOLDENRODYELLOW
-                  0x001d12                  _OLEDC_COLOR_LIGHTGRAY
-                  0x001d14                  _OLEDC_COLOR_LIGHTGREEN
-                  0x001d16                  _OLEDC_COLOR_LIGHTGREY
-                  0x001d18                  _OLEDC_COLOR_LIGHTPINK
-                  0x001d1a                  _OLEDC_COLOR_LIGHTSALMON
-                  0x001d1c                  _OLEDC_COLOR_LIGHTSEAGREEN
-                  0x001d1e                  _OLEDC_COLOR_LIGHTSKYBLUE
-                  0x001d20                  _OLEDC_COLOR_LIGHTSLATEGRAY
-                  0x001d22                  _OLEDC_COLOR_LIGHTSLATEGREY
-                  0x001d24                  _OLEDC_COLOR_LIGHTSTEELBLUE
-                  0x001d26                  _OLEDC_COLOR_LIGHTYELLOW
-                  0x001d28                  _OLEDC_COLOR_LIME
-                  0x001d2a                  _OLEDC_COLOR_LIMEGREEN
-                  0x001d2c                  _OLEDC_COLOR_LINEN
-                  0x001d2e                  _OLEDC_COLOR_MAGENTA
-                  0x001d30                  _OLEDC_COLOR_MAROON
-                  0x001d32                  _OLEDC_COLOR_MEDIUMAQUAMARINE
-                  0x001d34                  _OLEDC_COLOR_MEDIUMBLUE
-                  0x001d36                  _OLEDC_COLOR_MEDIUMORCHID
-                  0x001d38                  _OLEDC_COLOR_MEDIUMPURPLE
-                  0x001d3a                  _OLEDC_COLOR_MEDIUMSEAGREEN
-                  0x001d3c                  _OLEDC_COLOR_MEDIUMSLATEBLUE
-                  0x001d3e                  _OLEDC_COLOR_MEDIUMSPRINGGREEN
-                  0x001d40                  _OLEDC_COLOR_MEDIUMTURQUOISE
-                  0x001d42                  _OLEDC_COLOR_MEDIUMVIOLETRED
-                  0x001d44                  _OLEDC_COLOR_MIDNIGHTBLUE
-                  0x001d46                  _OLEDC_COLOR_MINTCREAM
-                  0x001d48                  _OLEDC_COLOR_MISTYROSE
-                  0x001d4a                  _OLEDC_COLOR_MOCCASIN
-                  0x001d4c                  _OLEDC_COLOR_NAVAJOWHITE
-                  0x001d4e                  _OLEDC_COLOR_NAVY
-                  0x001d50                  _OLEDC_COLOR_OLDLACE
-                  0x001d52                  _OLEDC_COLOR_OLIVE
-                  0x001d54                  _OLEDC_COLOR_OLIVEDRAB
-                  0x001d56                  _OLEDC_COLOR_ORANGE
-                  0x001d58                  _OLEDC_COLOR_ORANGERED
-                  0x001d5a                  _OLEDC_COLOR_ORCHID
-                  0x001d5c                  _OLEDC_COLOR_PALEGOLDENROD
-                  0x001d5e                  _OLEDC_COLOR_PALEGREEN
-                  0x001d60                  _OLEDC_COLOR_PALETURQUOISE
-                  0x001d62                  _OLEDC_COLOR_PALEVIOLETRED
-                  0x001d64                  _OLEDC_COLOR_PAPAYAWHIP
-                  0x001d66                  _OLEDC_COLOR_PEACHPUFF
-                  0x001d68                  _OLEDC_COLOR_PERU
-                  0x001d6a                  _OLEDC_COLOR_PINK
-                  0x001d6c                  _OLEDC_COLOR_PLUM
-                  0x001d6e                  _OLEDC_COLOR_POWDERBLUE
-                  0x001d70                  _OLEDC_COLOR_PURPLE
-                  0x001d72                  _OLEDC_COLOR_RED
-                  0x001d74                  _OLEDC_COLOR_ROSYBROWN
-                  0x001d76                  _OLEDC_COLOR_ROYALBLUE
-                  0x001d78                  _OLEDC_COLOR_SADDLEBROWN
-                  0x001d7a                  _OLEDC_COLOR_SALMON
-                  0x001d7c                  _OLEDC_COLOR_SANDYBROWN
-                  0x001d7e                  _OLEDC_COLOR_SEAGREEN
-                  0x001d80                  _OLEDC_COLOR_SEASHELL
-                  0x001d82                  _OLEDC_COLOR_SIENNA
-                  0x001d84                  _OLEDC_COLOR_SILVER
-                  0x001d86                  _OLEDC_COLOR_SKYBLUE
-                  0x001d88                  _OLEDC_COLOR_SLATEBLUE
-                  0x001d8a                  _OLEDC_COLOR_SLATEGRAY
-                  0x001d8c                  _OLEDC_COLOR_SLATEGREY
-                  0x001d8e                  _OLEDC_COLOR_SNOW
-                  0x001d90                  _OLEDC_COLOR_SPRINGGREEN
-                  0x001d92                  _OLEDC_COLOR_STEELBLUE
-                  0x001d94                  _OLEDC_COLOR_TAN
-                  0x001d96                  _OLEDC_COLOR_TEAL
-                  0x001d98                  _OLEDC_COLOR_THISTLE
-                  0x001d9a                  _OLEDC_COLOR_TOMATO
-                  0x001d9c                  _OLEDC_COLOR_TURQUOISE
-                  0x001d9e                  _OLEDC_COLOR_VIOLET
-                  0x001da0                  _OLEDC_COLOR_WHEAT
-                  0x001da2                  _OLEDC_COLOR_WHITE
-                  0x001da4                  _OLEDC_COLOR_WHITESMOKE
-                  0x001da6                  _OLEDC_COLOR_YELLOW
-                  0x001da8                  _OLEDC_COLOR_YELLOWGREEN
-                  0x004298                  _PIN_MANAGER_Initialize
-                  0x0043e0                  _SYSTEM_Initialize
-                  0x00309e                  _Timer1_Interrupt_Initialize
-                  0x003084                  _Timer_Initialize
-                  0x0030b4                  _User_Initialize
-                  0x00027a                  __AddressError
-                  0x000394                  __DefaultInterrupt
+                  0x004360                  _CLOCK_Initialize
+                  0x00432c                  _DELAY_microseconds
+                  0x00430a                  _DELAY_milliseconds
+                  0x001c80                  _OLEDC_COLOR_ALICEBLUE
+                  0x001c82                  _OLEDC_COLOR_ANTIQUEWHITE
+                  0x001c84                  _OLEDC_COLOR_AQUA
+                  0x001c86                  _OLEDC_COLOR_AQUAMARINE
+                  0x001c88                  _OLEDC_COLOR_AZURE
+                  0x001c8a                  _OLEDC_COLOR_BEIGE
+                  0x001c8c                  _OLEDC_COLOR_BISQUE
+                  0x001c8e                  _OLEDC_COLOR_BLACK
+                  0x001c90                  _OLEDC_COLOR_BLANCHEDALMOND
+                  0x001c92                  _OLEDC_COLOR_BLUE
+                  0x001c94                  _OLEDC_COLOR_BLUEVIOLET
+                  0x001c96                  _OLEDC_COLOR_BROWN
+                  0x001c98                  _OLEDC_COLOR_BURLYWOOD
+                  0x001c9a                  _OLEDC_COLOR_CADETBLUE
+                  0x001c9c                  _OLEDC_COLOR_CHARTREUSE
+                  0x001c9e                  _OLEDC_COLOR_CHOCOLATE
+                  0x001ca0                  _OLEDC_COLOR_CORAL
+                  0x001ca2                  _OLEDC_COLOR_CORNFLOWERBLUE
+                  0x001ca4                  _OLEDC_COLOR_CORNSILK
+                  0x001ca6                  _OLEDC_COLOR_CRIMSON
+                  0x001ca8                  _OLEDC_COLOR_CYAN
+                  0x001caa                  _OLEDC_COLOR_DARKBLUE
+                  0x001cac                  _OLEDC_COLOR_DARKCYAN
+                  0x001cae                  _OLEDC_COLOR_DARKGOLDENROD
+                  0x001cb0                  _OLEDC_COLOR_DARKGRAY
+                  0x001cb2                  _OLEDC_COLOR_DARKGREEN
+                  0x001cb4                  _OLEDC_COLOR_DARKGREY
+                  0x001cb6                  _OLEDC_COLOR_DARKKHAKI
+                  0x001cb8                  _OLEDC_COLOR_DARKMAGENTA
+                  0x001cba                  _OLEDC_COLOR_DARKOLIVEGREEN
+                  0x001cbc                  _OLEDC_COLOR_DARKORANGE
+                  0x001cbe                  _OLEDC_COLOR_DARKORCHID
+                  0x001cc0                  _OLEDC_COLOR_DARKRED
+                  0x001cc2                  _OLEDC_COLOR_DARKSALMON
+                  0x001cc4                  _OLEDC_COLOR_DARKSEAGREEN
+                  0x001cc6                  _OLEDC_COLOR_DARKSLATEBLUE
+                  0x001cc8                  _OLEDC_COLOR_DARKSLATEGRAY
+                  0x001cca                  _OLEDC_COLOR_DARKSLATEGREY
+                  0x001ccc                  _OLEDC_COLOR_DARKTURQUOISE
+                  0x001cce                  _OLEDC_COLOR_DARKVIOLET
+                  0x001cd0                  _OLEDC_COLOR_DEEPPINK
+                  0x001cd2                  _OLEDC_COLOR_DEEPSKYBLUE
+                  0x001cd4                  _OLEDC_COLOR_DIMGRAY
+                  0x001cd6                  _OLEDC_COLOR_DIMGREY
+                  0x001cd8                  _OLEDC_COLOR_DODGERBLUE
+                  0x001cda                  _OLEDC_COLOR_FIREBRICK
+                  0x001cdc                  _OLEDC_COLOR_FLORALWHITE
+                  0x001cde                  _OLEDC_COLOR_FORESTGREEN
+                  0x001ce0                  _OLEDC_COLOR_FUCHSIA
+                  0x001ce2                  _OLEDC_COLOR_GAINSBORO
+                  0x001ce4                  _OLEDC_COLOR_GHOSTWHITE
+                  0x001ce6                  _OLEDC_COLOR_GOLD
+                  0x001ce8                  _OLEDC_COLOR_GOLDENROD
+                  0x001cea                  _OLEDC_COLOR_GRAY
+                  0x001cec                  _OLEDC_COLOR_GREEN
+                  0x001cee                  _OLEDC_COLOR_GREENYELLOW
+                  0x001cf0                  _OLEDC_COLOR_GREY
+                  0x001cf2                  _OLEDC_COLOR_HONEYDEW
+                  0x001cf4                  _OLEDC_COLOR_HOTPINK
+                  0x001cf6                  _OLEDC_COLOR_INDIANRED
+                  0x001cf8                  _OLEDC_COLOR_INDIGO
+                  0x001cfa                  _OLEDC_COLOR_IVORY
+                  0x001cfc                  _OLEDC_COLOR_KHAKI
+                  0x001cfe                  _OLEDC_COLOR_LAVENDER
+                  0x001d00                  _OLEDC_COLOR_LAVENDERBLUSH
+                  0x001d02                  _OLEDC_COLOR_LAWNGREEN
+                  0x001d04                  _OLEDC_COLOR_LEMONCHIFFON
+                  0x001d06                  _OLEDC_COLOR_LIGHTBLUE
+                  0x001d08                  _OLEDC_COLOR_LIGHTCORAL
+                  0x001d0a                  _OLEDC_COLOR_LIGHTCYAN
+                  0x001d0c                  _OLEDC_COLOR_LIGHTGOLDENRODYELLOW
+                  0x001d0e                  _OLEDC_COLOR_LIGHTGRAY
+                  0x001d10                  _OLEDC_COLOR_LIGHTGREEN
+                  0x001d12                  _OLEDC_COLOR_LIGHTGREY
+                  0x001d14                  _OLEDC_COLOR_LIGHTPINK
+                  0x001d16                  _OLEDC_COLOR_LIGHTSALMON
+                  0x001d18                  _OLEDC_COLOR_LIGHTSEAGREEN
+                  0x001d1a                  _OLEDC_COLOR_LIGHTSKYBLUE
+                  0x001d1c                  _OLEDC_COLOR_LIGHTSLATEGRAY
+                  0x001d1e                  _OLEDC_COLOR_LIGHTSLATEGREY
+                  0x001d20                  _OLEDC_COLOR_LIGHTSTEELBLUE
+                  0x001d22                  _OLEDC_COLOR_LIGHTYELLOW
+                  0x001d24                  _OLEDC_COLOR_LIME
+                  0x001d26                  _OLEDC_COLOR_LIMEGREEN
+                  0x001d28                  _OLEDC_COLOR_LINEN
+                  0x001d2a                  _OLEDC_COLOR_MAGENTA
+                  0x001d2c                  _OLEDC_COLOR_MAROON
+                  0x001d2e                  _OLEDC_COLOR_MEDIUMAQUAMARINE
+                  0x001d30                  _OLEDC_COLOR_MEDIUMBLUE
+                  0x001d32                  _OLEDC_COLOR_MEDIUMORCHID
+                  0x001d34                  _OLEDC_COLOR_MEDIUMPURPLE
+                  0x001d36                  _OLEDC_COLOR_MEDIUMSEAGREEN
+                  0x001d38                  _OLEDC_COLOR_MEDIUMSLATEBLUE
+                  0x001d3a                  _OLEDC_COLOR_MEDIUMSPRINGGREEN
+                  0x001d3c                  _OLEDC_COLOR_MEDIUMTURQUOISE
+                  0x001d3e                  _OLEDC_COLOR_MEDIUMVIOLETRED
+                  0x001d40                  _OLEDC_COLOR_MIDNIGHTBLUE
+                  0x001d42                  _OLEDC_COLOR_MINTCREAM
+                  0x001d44                  _OLEDC_COLOR_MISTYROSE
+                  0x001d46                  _OLEDC_COLOR_MOCCASIN
+                  0x001d48                  _OLEDC_COLOR_NAVAJOWHITE
+                  0x001d4a                  _OLEDC_COLOR_NAVY
+                  0x001d4c                  _OLEDC_COLOR_OLDLACE
+                  0x001d4e                  _OLEDC_COLOR_OLIVE
+                  0x001d50                  _OLEDC_COLOR_OLIVEDRAB
+                  0x001d52                  _OLEDC_COLOR_ORANGE
+                  0x001d54                  _OLEDC_COLOR_ORANGERED
+                  0x001d56                  _OLEDC_COLOR_ORCHID
+                  0x001d58                  _OLEDC_COLOR_PALEGOLDENROD
+                  0x001d5a                  _OLEDC_COLOR_PALEGREEN
+                  0x001d5c                  _OLEDC_COLOR_PALETURQUOISE
+                  0x001d5e                  _OLEDC_COLOR_PALEVIOLETRED
+                  0x001d60                  _OLEDC_COLOR_PAPAYAWHIP
+                  0x001d62                  _OLEDC_COLOR_PEACHPUFF
+                  0x001d64                  _OLEDC_COLOR_PERU
+                  0x001d66                  _OLEDC_COLOR_PINK
+                  0x001d68                  _OLEDC_COLOR_PLUM
+                  0x001d6a                  _OLEDC_COLOR_POWDERBLUE
+                  0x001d6c                  _OLEDC_COLOR_PURPLE
+                  0x001d6e                  _OLEDC_COLOR_RED
+                  0x001d70                  _OLEDC_COLOR_ROSYBROWN
+                  0x001d72                  _OLEDC_COLOR_ROYALBLUE
+                  0x001d74                  _OLEDC_COLOR_SADDLEBROWN
+                  0x001d76                  _OLEDC_COLOR_SALMON
+                  0x001d78                  _OLEDC_COLOR_SANDYBROWN
+                  0x001d7a                  _OLEDC_COLOR_SEAGREEN
+                  0x001d7c                  _OLEDC_COLOR_SEASHELL
+                  0x001d7e                  _OLEDC_COLOR_SIENNA
+                  0x001d80                  _OLEDC_COLOR_SILVER
+                  0x001d82                  _OLEDC_COLOR_SKYBLUE
+                  0x001d84                  _OLEDC_COLOR_SLATEBLUE
+                  0x001d86                  _OLEDC_COLOR_SLATEGRAY
+                  0x001d88                  _OLEDC_COLOR_SLATEGREY
+                  0x001d8a                  _OLEDC_COLOR_SNOW
+                  0x001d8c                  _OLEDC_COLOR_SPRINGGREEN
+                  0x001d8e                  _OLEDC_COLOR_STEELBLUE
+                  0x001d90                  _OLEDC_COLOR_TAN
+                  0x001d92                  _OLEDC_COLOR_TEAL
+                  0x001d94                  _OLEDC_COLOR_THISTLE
+                  0x001d96                  _OLEDC_COLOR_TOMATO
+                  0x001d98                  _OLEDC_COLOR_TURQUOISE
+                  0x001d9a                  _OLEDC_COLOR_VIOLET
+                  0x001d9c                  _OLEDC_COLOR_WHEAT
+                  0x001d9e                  _OLEDC_COLOR_WHITE
+                  0x001da0                  _OLEDC_COLOR_WHITESMOKE
+                  0x001da2                  _OLEDC_COLOR_YELLOW
+                  0x001da4                  _OLEDC_COLOR_YELLOWGREEN
+                  0x004292                  _PIN_MANAGER_Initialize
+                  0x0043da                  _SYSTEM_Initialize
+                  0x003098                  _Timer1_Interrupt_Initialize
+                  0x00307e                  _Timer_Initialize
+                  0x0030ae                  _User_Initialize
+                  0x000276                  __AddressError
+                  0x000390                  __DefaultInterrupt
                   0x02af00                  __FSEC.sec
-                  0x00029a                  __MathError
-                  0x0002ba                  __NVMError
-                  0x000238                  __OscillatorFail
-                  0x000258                  __StackError
-                  0x0002da                  __T1Interrupt
-                  0x0004b4                  ___addsf3
-                  0x0004b4                  ___addsf3x
-                  0x000cfe                  ___cvt_u
-                  0x0043ac                  ___delay32
-                  0x001bc8                  ___divdi3
-                  0x0017b6                  ___divsf3
-                  0x0017b6                  ___divsf3x
-                  0x000430                  ___eqsf2
-                  0x00176c                  ___extendsfdf2
-                  0x000438                  ___fixunssfsi
-                  0x0008b8                  ___floatdisf
-                  0x00046e                  ___floatsisf
-                  0x0008d8                  ___floatundisf
-                  0x000474                  ___floatunsisf
-                  0x000b8e                  ___fmt_d
-                  0x000c40                  ___fmt_o
-                  0x000caa                  ___fmt_s
-                  0x001156                  ___fmt_state
-                  0x000da4                  ___fmt_u
-                  0x000df6                  ___fmt_x
-                  0x000434                  ___gesf2
-                  0x000434                  ___gtsf2
-                  0x0016d6                  ___init_stdio
-                  0x000b1e                  ___init_stdout
-                  0x000430                  ___lesf2
-                  0x001590                  ___lseek
-                  0x000430                  ___ltsf2
-                  0x001c28                  ___moddi3
-                  0x0017aa                  ___mulp32eds3
-                  0x0017aa                  ___mulp32peds3
-                  0x00067e                  ___mulsf3
-                  0x00067e                  ___mulsf3x
-                  0x0017aa                  ___mulsi3
-                  0x000f8e                  ___out
-                  0x0010dc                  ___pad
-                  0x001726                  ___pop_float
-                  0x000f9e                  ___pop_int
-                  0x001046                  ___pop_ptr
-                  0x00145a                  ___printf_core
-                  0x000ab6                  ___sio_printf_dosux
-                  0x000ad4                  ___sio_printf_s
-                  0x000ae2                  ___sio_sprintf_dosux
-                  0x000afc                  ___sio_sprintf_doux
-                  0x00149a                  ___stdio_close
-                  0x0014d8                  ___stdio_close_rw
-                  0x001664                  ___stpcpy
-                  0x0004a2                  ___subsf3
-                  0x0004a2                  ___subsf3x
-                  0x0016a4                  ___syscall_ret
-                  0x0016c4                  ___tolower_l
-                  0x0016d2                  ___toupper_l
-                  0x001bb2                  ___udivdi3
-                  0x001acc                  ___udivmoddi3
-                  0x001bc0                  ___umoddi3
-                  0x000f40                  ___vfprintf
-                  0x0016dc                  ___vsnprintf
-                  0x000f5c                  ___vsprintf
+                  0x000296                  __MathError
+                  0x0002b6                  __NVMError
+                  0x000234                  __OscillatorFail
+                  0x000254                  __StackError
+                  0x0002d6                  __T1Interrupt
+                  0x0004b0                  ___addsf3
+                  0x0004b0                  ___addsf3x
+                  0x000cfa                  ___cvt_u
+                  0x0043a6                  ___delay32
+                  0x001bc4                  ___divdi3
+                  0x0017b2                  ___divsf3
+                  0x0017b2                  ___divsf3x
+                  0x00042c                  ___eqsf2
+                  0x001768                  ___extendsfdf2
+                  0x000434                  ___fixunssfsi
+                  0x0008b4                  ___floatdisf
+                  0x00046a                  ___floatsisf
+                  0x0008d4                  ___floatundisf
+                  0x000470                  ___floatunsisf
+                  0x000b8a                  ___fmt_d
+                  0x000c3c                  ___fmt_o
+                  0x000ca6                  ___fmt_s
+                  0x001152                  ___fmt_state
+                  0x000da0                  ___fmt_u
+                  0x000df2                  ___fmt_x
+                  0x000430                  ___gesf2
+                  0x000430                  ___gtsf2
+                  0x0016d2                  ___init_stdio
+                  0x000b1a                  ___init_stdout
+                  0x00042c                  ___lesf2
+                  0x00158c                  ___lseek
+                  0x00042c                  ___ltsf2
+                  0x001c24                  ___moddi3
+                  0x0017a6                  ___mulp32eds3
+                  0x0017a6                  ___mulp32peds3
+                  0x00067a                  ___mulsf3
+                  0x00067a                  ___mulsf3x
+                  0x0017a6                  ___mulsi3
+                  0x000f8a                  ___out
+                  0x0010d8                  ___pad
+                  0x001722                  ___pop_float
+                  0x000f9a                  ___pop_int
+                  0x001042                  ___pop_ptr
+                  0x001456                  ___printf_core
+                  0x000ab2                  ___sio_printf_dosux
+                  0x000ad0                  ___sio_printf_s
+                  0x000ade                  ___sio_sprintf_dosux
+                  0x000af8                  ___sio_sprintf_doux
+                  0x001496                  ___stdio_close
+                  0x0014d4                  ___stdio_close_rw
+                  0x001660                  ___stpcpy
+                  0x00049e                  ___subsf3
+                  0x00049e                  ___subsf3x
+                  0x0016a0                  ___syscall_ret
+                  0x0016c0                  ___tolower_l
+                  0x0016ce                  ___toupper_l
+                  0x001bae                  ___udivdi3
+                  0x001ac8                  ___udivmoddi3
+                  0x001bbc                  ___umoddi3
+                  0x000f3c                  ___vfprintf
+                  0x0016d8                  ___vsnprintf
+                  0x000f58                  ___vsprintf
                   0x000152                  __data_init
                   0x000152                  __data_init_da
-                  0x00078a                  __dnrmpackf
-                  0x000882                  __fcompare
-                  0x000936                  __fpack
-                  0x000478                  __funpack
-                  0x000982                  __funpack2
-                  0x000870                  __propnanf
+                  0x000786                  __dnrmpackf
+                  0x00087e                  __fcompare
+                  0x000932                  __fpack
+                  0x000474                  __funpack
+                  0x00097e                  __funpack2
+                  0x00086c                  __propnanf
                   0x00013c                  __psv_init
                   0x000100                  __resetPRI
-                  0x001948                  __sdivf
-                  0x001974                  __spackf
-                  0x00083c                  __typef
-                  0x0007de                  __unpackdnrmf
-                  0x001a1a                  __unpackf
-                  0x001544                  _atoi
-                  0x001daa                  _baselineGravity
-                  0x00226c                  _detectStep
-                  0x002af4                  _detectTiltForSave
-                  0x0025c6                  _drawClock
-                  0x00274e                  _drawFootIcon
-                  0x002eec                  _drawMenu
-                  0x002c02                  _drawSetDateMenuBase
-                  0x002ca6                  _drawSetDateStatus
-                  0x0028dc                  _drawSetTimeMenuBase
-                  0x00297e                  _drawSetTimeStatus
-                  0x002346                  _drawSteps
-                  0x00284e                  _drawTimeFormatSubpage
-                  0x00211a                  _errorStop
-                  0x003030                  _executeMenuAction
-                  0x002d10                  _handleSetDateInput
-                  0x002e7c                  _handleSetDatePage
-                  0x0029e8                  _handleSetTimeInput
-                  0x002b8c                  _handleSetTimePage
-                  0x0027b0                  _handleTimeFormatSelection
-                  0x004114                  _i2c1_driver_TXData
-                  0x00414a                  _i2c1_driver_clearBusCollision
-                  0x00407c                  _i2c1_driver_close
-                  0x00410a                  _i2c1_driver_getRXData
-                  0x0040da                  _i2c1_driver_isNACK
-                  0x004084                  _i2c1_driver_open
-                  0x0040b6                  _i2c1_driver_restart
-                  0x00412c                  _i2c1_driver_sendACK
-                  0x004140                  _i2c1_driver_sendNACK
-                  0x0040a4                  _i2c1_driver_start
-                  0x0040f2                  _i2c1_driver_startRX
-                  0x0040c8                  _i2c1_driver_stop
-                  0x0040fa                  _i2c1_driver_waitRX
-                  0x004212                  _i2c1_open
-                  0x00421a                  _i2cReadSlaveRegister
-                  0x004262                  _i2cWriteSlave
-                  0x00256e                  _incrementTime
-                  0x0021c2                  _initAccelerometer
-                  0x003dac                  _initShapesMem
-                  0x0030ec                  _main
-                  0x000b0a                  _memcpy
-                  0x00159c                  _memset
-                  0x0038f2                  _oledC_DrawBitmap
-                  0x0037ee                  _oledC_DrawCharacter
-                  0x0034f2                  _oledC_DrawCircle
-                  0x003700                  _oledC_DrawLine
-                  0x0033b2                  _oledC_DrawPoint
-                  0x0037a0                  _oledC_DrawRectangle
-                  0x003604                  _oledC_DrawRing
-                  0x0038ac                  _oledC_DrawString
-                  0x0033ea                  _oledC_DrawThickPoint
-                  0x003382                  _oledC_ReadPoint
-                  0x003e2a                  _oledC_addShape
-                  0x003d5c                  _oledC_clearScreen
-                  0x003252                  _oledC_createShape
-                  0x003f34                  _oledC_eraseAll
-                  0x003f0a                  _oledC_eraseShape
-                  0x003e0e                  _oledC_getShape
-                  0x003d20                  _oledC_open
-                  0x003abe                  _oledC_parseIntToRGB
-                  0x003b0c                  _oledC_parseRGBToInt
-                  0x003ca8                  _oledC_readColor
-                  0x003f60                  _oledC_redrawAll
-                  0x003eb0                  _oledC_redrawFrom
-                  0x003e84                  _oledC_redrawIndex
-                  0x003ebe                  _oledC_redrawSome
-                  0x003ea2                  _oledC_redrawTo
-                  0x003dd8                  _oledC_removeShape
-                  0x003ce4                  _oledC_sendColor
-                  0x003cfa                  _oledC_sendColorInt
-                  0x003bb8                  _oledC_sendCommand
-                  0x003d96                  _oledC_setBackground
-                  0x003c20                  _oledC_setColumnAddressBounds
-                  0x003c70                  _oledC_setDisplayOrientation
-                  0x003bf6                  _oledC_setRowAddressBounds
-                  0x003c56                  _oledC_setSleepMode
-                  0x003d28                  _oledC_setup
-                  0x003c8e                  _oledC_startReadingDisplay
-                  0x003cc6                  _oledC_startWritingDisplay
-                  0x003ca0                  _oledC_stopReadingDisplay
-                  0x003cd8                  _oledC_stopWritingDisplay
-                  0x00213c                  _readAxis
-                  0x003f6c                  _spi1_close
-                  0x003fae                  _spi1_exchangeBlock
-                  0x003f94                  _spi1_exchangeByte
-                  0x004054                  _spi1_isr
-                  0x003f74                  _spi1_open
-                  0x00400e                  _spi1_readBlock
-                  0x00404a                  _spi1_readByte
-                  0x004070                  _spi1_setSpiISR
-                  0x003fe0                  _spi1_writeBlock
-                  0x00403e                  _spi1_writeByte
-                  0x000992                  _sqrtf
-                  0x000b26                  _strcat
-                  0x000b3a                  _strcmp
-                  0x000b50                  _strcpy
-                  0x000b5e                  _strlen
-                  0x0016b8                  _tolower
-                  0x0016c6                  _toupper
-                  0x00252a                  _updateDate
-                  0x002f64                  _updateMenuClock
-                  0x003da4                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
-                  0x003a98                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
-                  0x003a54                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
-                  0x0039dc                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
-                  0x003a32                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
-                  0x0039c6                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
-                  0x003a14                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
-                  0x0039f6                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
-                  0x003a76                  build/default/production/oledDriver/oledC_shapes.o:_drawString
+                  0x001944                  __sdivf
+                  0x001970                  __spackf
+                  0x000838                  __typef
+                  0x0007da                  __unpackdnrmf
+                  0x001a16                  __unpackf
+                  0x001540                  _atoi
+                  0x001da6                  _baselineGravity
+                  0x002268                  _detectStep
+                  0x002af0                  _detectTiltForSave
+                  0x0025c2                  _drawClock
+                  0x00274a                  _drawFootIcon
+                  0x002ee6                  _drawMenu
+                  0x002bfe                  _drawSetDateMenuBase
+                  0x002ca0                  _drawSetDateStatus
+                  0x0028d8                  _drawSetTimeMenuBase
+                  0x00297a                  _drawSetTimeStatus
+                  0x002342                  _drawSteps
+                  0x00284a                  _drawTimeFormatSubpage
+                  0x002116                  _errorStop
+                  0x00302a                  _executeMenuAction
+                  0x002d0a                  _handleSetDateInput
+                  0x002e76                  _handleSetDatePage
+                  0x0029e4                  _handleSetTimeInput
+                  0x002b88                  _handleSetTimePage
+                  0x0027ac                  _handleTimeFormatSelection
+                  0x00410e                  _i2c1_driver_TXData
+                  0x004144                  _i2c1_driver_clearBusCollision
+                  0x004076                  _i2c1_driver_close
+                  0x004104                  _i2c1_driver_getRXData
+                  0x0040d4                  _i2c1_driver_isNACK
+                  0x00407e                  _i2c1_driver_open
+                  0x0040b0                  _i2c1_driver_restart
+                  0x004126                  _i2c1_driver_sendACK
+                  0x00413a                  _i2c1_driver_sendNACK
+                  0x00409e                  _i2c1_driver_start
+                  0x0040ec                  _i2c1_driver_startRX
+                  0x0040c2                  _i2c1_driver_stop
+                  0x0040f4                  _i2c1_driver_waitRX
+                  0x00420c                  _i2c1_open
+                  0x004214                  _i2cReadSlaveRegister
+                  0x00425c                  _i2cWriteSlave
+                  0x00256a                  _incrementTime
+                  0x0021be                  _initAccelerometer
+                  0x003da6                  _initShapesMem
+                  0x0030e6                  _main
+                  0x000b06                  _memcpy
+                  0x001598                  _memset
+                  0x0038ec                  _oledC_DrawBitmap
+                  0x0037e8                  _oledC_DrawCharacter
+                  0x0034ec                  _oledC_DrawCircle
+                  0x0036fa                  _oledC_DrawLine
+                  0x0033ac                  _oledC_DrawPoint
+                  0x00379a                  _oledC_DrawRectangle
+                  0x0035fe                  _oledC_DrawRing
+                  0x0038a6                  _oledC_DrawString
+                  0x0033e4                  _oledC_DrawThickPoint
+                  0x00337c                  _oledC_ReadPoint
+                  0x003e24                  _oledC_addShape
+                  0x003d56                  _oledC_clearScreen
+                  0x00324c                  _oledC_createShape
+                  0x003f2e                  _oledC_eraseAll
+                  0x003f04                  _oledC_eraseShape
+                  0x003e08                  _oledC_getShape
+                  0x003d1a                  _oledC_open
+                  0x003ab8                  _oledC_parseIntToRGB
+                  0x003b06                  _oledC_parseRGBToInt
+                  0x003ca2                  _oledC_readColor
+                  0x003f5a                  _oledC_redrawAll
+                  0x003eaa                  _oledC_redrawFrom
+                  0x003e7e                  _oledC_redrawIndex
+                  0x003eb8                  _oledC_redrawSome
+                  0x003e9c                  _oledC_redrawTo
+                  0x003dd2                  _oledC_removeShape
+                  0x003cde                  _oledC_sendColor
+                  0x003cf4                  _oledC_sendColorInt
+                  0x003bb2                  _oledC_sendCommand
+                  0x003d90                  _oledC_setBackground
+                  0x003c1a                  _oledC_setColumnAddressBounds
+                  0x003c6a                  _oledC_setDisplayOrientation
+                  0x003bf0                  _oledC_setRowAddressBounds
+                  0x003c50                  _oledC_setSleepMode
+                  0x003d22                  _oledC_setup
+                  0x003c88                  _oledC_startReadingDisplay
+                  0x003cc0                  _oledC_startWritingDisplay
+                  0x003c9a                  _oledC_stopReadingDisplay
+                  0x003cd2                  _oledC_stopWritingDisplay
+                  0x002138                  _readAxis
+                  0x003f66                  _spi1_close
+                  0x003fa8                  _spi1_exchangeBlock
+                  0x003f8e                  _spi1_exchangeByte
+                  0x00404e                  _spi1_isr
+                  0x003f6e                  _spi1_open
+                  0x004008                  _spi1_readBlock
+                  0x004044                  _spi1_readByte
+                  0x00406a                  _spi1_setSpiISR
+                  0x003fda                  _spi1_writeBlock
+                  0x004038                  _spi1_writeByte
+                  0x00098e                  _sqrtf
+                  0x000b22                  _strcat
+                  0x000b36                  _strcmp
+                  0x000b4c                  _strcpy
+                  0x000b5a                  _strlen
+                  0x0016b4                  _tolower
+                  0x0016c2                  _toupper
+                  0x002526                  _updateDate
+                  0x002f5e                  _updateMenuClock
+                  0x003d9e                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
+                  0x003a92                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
+                  0x003a4e                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
+                  0x0039d6                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
+                  0x003a2c                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
+                  0x0039c0                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
+                  0x003a0e                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
+                  0x0039f0                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
+                  0x003a70                  build/default/production/oledDriver/oledC_shapes.o:_drawString
 
 Memory Configuration
 
@@ -1065,7 +1065,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000100       0x1b84
+.text             0x000100       0x1b80
  *(.init)
  .init            0x000100         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extended24.o)
                   0x000100                  __resetPRI
@@ -1076,272 +1076,272 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                   0x000152                  __data_init_da
  *(.user_init)
  *(.handle)
- .handle          0x000204         0x34 jump_table
+ .handle          0x000204         0x30 jump_table
  *(.isr*)
- .isr.text        0x000238         0xa2 build/default/production/System/traps.o
-                  0x000238                  __OscillatorFail
-                  0x000258                  __StackError
-                  0x00027a                  __AddressError
-                  0x00029a                  __MathError
-                  0x0002ba                  __NVMError
- .isr.text        0x0002da         0xba build/default/production/main.o
-                  0x0002da                  __T1Interrupt
- .isr             0x000394          0x4 default_isr
-                  0x000394                  __DefaultInterrupt
+ .isr.text        0x000234         0xa2 build/default/production/System/traps.o
+                  0x000234                  __OscillatorFail
+                  0x000254                  __StackError
+                  0x000276                  __AddressError
+                  0x000296                  __MathError
+                  0x0002b6                  __NVMError
+ .isr.text        0x0002d6         0xba build/default/production/main.o
+                  0x0002d6                  __T1Interrupt
+ .isr             0x000390          0x4 default_isr
+                  0x000390                  __DefaultInterrupt
  *(.libc)
- .libc            0x000398         0x12 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(closeda.Meo)
-                  0x000398                  _close
- .libc            0x0003aa         0x84 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(writeda.Meo)
-                  0x0003aa                  _write
+ .libc            0x000394         0x12 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(closeda.Meo)
+                  0x000394                  _close
+ .libc            0x0003a6         0x84 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(writeda.Meo)
+                  0x0003a6                  _write
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x00042e          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normalda.Meo)
-                  0x00042e                  __crt_start_mode
-                  0x00042e                  __crt_start_mode_normal
- .libm.eqsf2      0x000430          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
-                  0x000430                  ___eqsf2
-                  0x000430                  ___ltsf2
-                  0x000430                  ___lesf2
- .libm.gtsf2      0x000434          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
-                  0x000434                  ___gesf2
-                  0x000434                  ___gtsf2
+                  0x00042a          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normalda.Meo)
+                  0x00042a                  __crt_start_mode
+                  0x00042a                  __crt_start_mode_normal
+ .libm.eqsf2      0x00042c          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
+                  0x00042c                  ___eqsf2
+                  0x00042c                  ___ltsf2
+                  0x00042c                  ___lesf2
+ .libm.gtsf2      0x000430          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
+                  0x000430                  ___gesf2
+                  0x000430                  ___gtsf2
  .libm.fixunssfsi
-                  0x000438         0x36 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
-                  0x000438                  ___fixunssfsi
+                  0x000434         0x36 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
+                  0x000434                  ___fixunssfsi
  .libm.floatsisf
-                  0x00046e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
-                  0x00046e                  ___floatsisf
+                  0x00046a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
+                  0x00046a                  ___floatsisf
  .libm.floatunsisf
-                  0x000474          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
-                  0x000474                  ___floatunsisf
- .libm.funpack    0x000478         0x2a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
-                  0x000478                  __funpack
- .libmx           0x0004a2        0x1dc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
-                  0x0004a2                  ___subsf3x
-                  0x0004a2                  ___subsf3
-                  0x0004b4                  ___addsf3x
-                  0x0004b4                  ___addsf3
- .libmx           0x00067e        0x10c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
-                  0x00067e                  ___mulsf3x
-                  0x00067e                  ___mulsf3
- .libmx           0x00078a         0x54 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
-                  0x00078a                  __dnrmpackf
- .libmx           0x0007de         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
-                  0x0007de                  __unpackdnrmf
- .libmx           0x00083c         0x34 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
-                  0x00083c                  __typef
- .libmx           0x000870         0x12 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
-                  0x000870                  __propnanf
+                  0x000470          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
+                  0x000470                  ___floatunsisf
+ .libm.funpack    0x000474         0x2a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
+                  0x000474                  __funpack
+ .libmx           0x00049e        0x1dc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
+                  0x00049e                  ___subsf3x
+                  0x00049e                  ___subsf3
+                  0x0004b0                  ___addsf3x
+                  0x0004b0                  ___addsf3
+ .libmx           0x00067a        0x10c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
+                  0x00067a                  ___mulsf3x
+                  0x00067a                  ___mulsf3
+ .libmx           0x000786         0x54 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
+                  0x000786                  __dnrmpackf
+ .libmx           0x0007da         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
+                  0x0007da                  __unpackdnrmf
+ .libmx           0x000838         0x34 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
+                  0x000838                  __typef
+ .libmx           0x00086c         0x12 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
+                  0x00086c                  __propnanf
  .libm.fcompare
-                  0x000882         0x36 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
-                  0x000882                  __fcompare
+                  0x00087e         0x36 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
+                  0x00087e                  __fcompare
  .libm.floatdisf
-                  0x0008b8         0x20 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
-                  0x0008b8                  ___floatdisf
+                  0x0008b4         0x20 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
+                  0x0008b4                  ___floatdisf
  .libm.floatundisf
-                  0x0008d8         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
-                  0x0008d8                  ___floatundisf
- .libm.fpack      0x000936         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
-                  0x000936                  __fpack
+                  0x0008d4         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
+                  0x0008d4                  ___floatundisf
+ .libm.fpack      0x000932         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
+                  0x000932                  __fpack
  .libm.funpack2
-                  0x000982         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
-                  0x000982                  __funpack2
- .libc.sqrtf      0x000992        0x114 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a(sqrtf.DA_o)
-                  0x000992                  _sqrtf
+                  0x00097e         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
+                  0x00097e                  __funpack2
+ .libc.sqrtf      0x00098e        0x114 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a(sqrtf.DA_o)
+                  0x00098e                  _sqrtf
  .libc.__wrap_printf
-                  0x000aa6         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dosux.DA_o)
-                  0x000aa6                  __dprintf_cdnopsuxX
-                  0x000aa6                  __printf_cdnopsuxX
+                  0x000aa2         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dosux.DA_o)
+                  0x000aa2                  __dprintf_cdnopsuxX
+                  0x000aa2                  __printf_cdnopsuxX
  .libc.__sio_printf_dosux
-                  0x000ab6          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dosux.DA_o)
-                  0x000ab6                  ___sio_printf_dosux
+                  0x000ab2          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dosux.DA_o)
+                  0x000ab2                  ___sio_printf_dosux
  .libc.__wrap_printf
-                  0x000ac4         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_s.DA_o)
-                  0x000ac4                  __printf_s
-                  0x000ac4                  __dprintf_s
+                  0x000ac0         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_s.DA_o)
+                  0x000ac0                  __printf_s
+                  0x000ac0                  __dprintf_s
  .libc.__sio_printf_s
-                  0x000ad4          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_s.DA_o)
-                  0x000ad4                  ___sio_printf_s
+                  0x000ad0          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_s.DA_o)
+                  0x000ad0                  ___sio_printf_s
  .libc.__wrap_sprintf
-                  0x000ad6          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_dosux.DA_o)
-                  0x000ad6                  __dsprintf_cdnopsuxX
-                  0x000ad6                  __sprintf_cdnopsuxX
+                  0x000ad2          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_dosux.DA_o)
+                  0x000ad2                  __dsprintf_cdnopsuxX
+                  0x000ad2                  __sprintf_cdnopsuxX
  .libc.__sio_sprintf_dosux
-                  0x000ae2          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_dosux.DA_o)
-                  0x000ae2                  ___sio_sprintf_dosux
+                  0x000ade          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_dosux.DA_o)
+                  0x000ade                  ___sio_sprintf_dosux
  .libc.__wrap_sprintf
-                  0x000af0          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_doux.DA_o)
-                  0x000af0                  __sprintf_cdnopuxX
-                  0x000af0                  __dsprintf_cdnopuxX
+                  0x000aec          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_doux.DA_o)
+                  0x000aec                  __sprintf_cdnopuxX
+                  0x000aec                  __dsprintf_cdnopuxX
  .libc.__sio_sprintf_doux
-                  0x000afc          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_doux.DA_o)
-                  0x000afc                  ___sio_sprintf_doux
- .libc.memcpy     0x000b0a          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memcpy.DA_o)
-                  0x000b0a                  _memcpy
+                  0x000af8          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_doux.DA_o)
+                  0x000af8                  ___sio_sprintf_doux
+ .libc.memcpy     0x000b06          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memcpy.DA_o)
+                  0x000b06                  _memcpy
  .libc.__dummy0
-                  0x000b18          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
-                  0x000b18                  ___stdio_seek
- .libc.__dummy    0x000b1a          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
-                  0x000b1a                  ___get_stdout
+                  0x000b14          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
+                  0x000b14                  ___stdio_seek
+ .libc.__dummy    0x000b16          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
+                  0x000b16                  ___get_stdout
  .libc.__init_stdout
-                  0x000b1e          0x8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
-                  0x000b1e                  ___init_stdout
- .libc.strcat     0x000b26         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcat.DA_o)
-                  0x000b26                  _strcat
- .libc.strcmp     0x000b3a         0x16 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcmp.DA_o)
-                  0x000b3a                  _strcmp
- .libc.strcpy     0x000b50          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcpy.DA_o)
-                  0x000b50                  _strcpy
- .libc.strlen     0x000b5e         0x30 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strlen.DA_o)
-                  0x000b5e                  _strlen
- .libc.__fmt_d    0x000b8e         0xb2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_d.DA_o)
-                  0x000b8e                  ___fmt_d
-                  0x000b8e                  ___fmt_d_needed
- .libc.__fmt_o    0x000c40         0x6a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_o.DA_o)
-                  0x000c40                  ___fmt_o
-                  0x000c40                  ___fmt_o_needed
- .libc.__fmt_s    0x000caa         0x54 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_s.DA_o)
-                  0x000caa                  ___fmt_0_needed
-                  0x000caa                  ___fmt_s_needed
-                  0x000caa                  ___fmt_s
- .libc.__cvt_u    0x000cfe         0xa6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_u.DA_o)
-                  0x000cfe                  ___cvt_u
- .libc.__fmt_u    0x000da4         0x52 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_u.DA_o)
-                  0x000da4                  ___fmt_u
-                  0x000da4                  ___fmt_u_needed
- .libc.__fmt_x    0x000df6        0x14a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_x.DA_o)
-                  0x000df6                  ___fmt_x_needed
-                  0x000df6                  ___fmt_x
+                  0x000b1a          0x8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
+                  0x000b1a                  ___init_stdout
+ .libc.strcat     0x000b22         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcat.DA_o)
+                  0x000b22                  _strcat
+ .libc.strcmp     0x000b36         0x16 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcmp.DA_o)
+                  0x000b36                  _strcmp
+ .libc.strcpy     0x000b4c          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcpy.DA_o)
+                  0x000b4c                  _strcpy
+ .libc.strlen     0x000b5a         0x30 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strlen.DA_o)
+                  0x000b5a                  _strlen
+ .libc.__fmt_d    0x000b8a         0xb2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_d.DA_o)
+                  0x000b8a                  ___fmt_d
+                  0x000b8a                  ___fmt_d_needed
+ .libc.__fmt_o    0x000c3c         0x6a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_o.DA_o)
+                  0x000c3c                  ___fmt_o
+                  0x000c3c                  ___fmt_o_needed
+ .libc.__fmt_s    0x000ca6         0x54 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_s.DA_o)
+                  0x000ca6                  ___fmt_0_needed
+                  0x000ca6                  ___fmt_s_needed
+                  0x000ca6                  ___fmt_s
+ .libc.__cvt_u    0x000cfa         0xa6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_u.DA_o)
+                  0x000cfa                  ___cvt_u
+ .libc.__fmt_u    0x000da0         0x52 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_u.DA_o)
+                  0x000da0                  ___fmt_u
+                  0x000da0                  ___fmt_u_needed
+ .libc.__fmt_x    0x000df2        0x14a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_x.DA_o)
+                  0x000df2                  ___fmt_x_needed
+                  0x000df2                  ___fmt_x
  .libc.__vfprintf
-                  0x000f40         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vfprintf.DA_o)
-                  0x000f40                  ___vfprintf
+                  0x000f3c         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vfprintf.DA_o)
+                  0x000f3c                  ___vfprintf
  .libc.__vsprintf
-                  0x000f5c          0x8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsprintf.DA_o)
-                  0x000f5c                  ___vsprintf
+                  0x000f58          0x8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsprintf.DA_o)
+                  0x000f58                  ___vsprintf
  .libc.__string_out
-                  0x000f64         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
+                  0x000f60         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
  .libc.__fwrite_min
-                  0x000f8a          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
-                  0x000f8a                  ___fwrite
-                  0x000f8a                  ___stdio_write
-                  0x000f8a                  ___stdio_write_unbuffered
- .libc.__out      0x000f8e         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
-                  0x000f8e                  ___out_needed
-                  0x000f8e                  ___out
+                  0x000f86          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
+                  0x000f86                  ___fwrite
+                  0x000f86                  ___stdio_write
+                  0x000f86                  ___stdio_write_unbuffered
+ .libc.__out      0x000f8a         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
+                  0x000f8a                  ___out_needed
+                  0x000f8a                  ___out
  .libc.__pop_int
-                  0x000f9e         0xa8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_int.DA_o)
-                  0x000f9e                  ___pop_int
-                  0x000f9e                  ___pop_int_needed
+                  0x000f9a         0xa8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_int.DA_o)
+                  0x000f9a                  ___pop_int
+                  0x000f9a                  ___pop_int_needed
  .libc.__pop_ptr
-                  0x001046         0x70 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_ptr.DA_o)
-                  0x001046                  ___pop_ptr_needed
-                  0x001046                  ___pop_ptr
+                  0x001042         0x70 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_ptr.DA_o)
+                  0x001042                  ___pop_ptr_needed
+                  0x001042                  ___pop_ptr
  .libc.__string_out
-                  0x0010b6         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
- .libc.__pad      0x0010dc         0x74 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
-                  0x0010dc                  ___pad
+                  0x0010b2         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+ .libc.__pad      0x0010d8         0x74 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x0010d8                  ___pad
  .libc.__dummy_fmt3
-                  0x001150          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x00114c          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
  .libc.__dummy_fmt4
-                  0x001152          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
-                  0x001152                  ___fmt_fp
-                  0x001152                  ___fmt_a
+                  0x00114e          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x00114e                  ___fmt_fp
+                  0x00114e                  ___fmt_a
  .libc.__dummy_fmts
-                  0x001154          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x001150          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
  .libc.__fmt_state
-                  0x001156         0x2c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
-                  0x001156                  ___fmt_state
+                  0x001152         0x2c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x001152                  ___fmt_state
  .libc.vfpfcnvrt.clone.0
-                  0x001182        0x2d8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x00117e        0x2d8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
  .libc.__printf_core
-                  0x00145a         0x40 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
-                  0x00145a                  ___printf_core
+                  0x001456         0x40 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x001456                  ___printf_core
  .libc.__stdio_close
-                  0x00149a         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__stdio_close.DA_o)
-                  0x00149a                  ___stdio_close
+                  0x001496         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__stdio_close.DA_o)
+                  0x001496                  ___stdio_close
  .libc.__stdio_close_rw
-                  0x0014d8         0x58 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__stdio_close.DA_o)
-                  0x0014d8                  ___stdio_close_rw
+                  0x0014d4         0x58 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__stdio_close.DA_o)
+                  0x0014d4                  ___stdio_close_rw
  .libc.__isspace
-                  0x001530         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(atoi.DA_o)
- .libc.atoi       0x001544         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(atoi.DA_o)
-                  0x001544                  _atoi
- .libc.__lseek    0x001590          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(lseek.DA_o)
-                  0x001590                  _lseek
-                  0x001590                  ___lseek
- .libc.memset     0x00159c         0xc8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memset.DA_o)
-                  0x00159c                  _memset
+                  0x00152c         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(atoi.DA_o)
+ .libc.atoi       0x001540         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(atoi.DA_o)
+                  0x001540                  _atoi
+ .libc.__lseek    0x00158c          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(lseek.DA_o)
+                  0x00158c                  _lseek
+                  0x00158c                  ___lseek
+ .libc.memset     0x001598         0xc8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memset.DA_o)
+                  0x001598                  _memset
  .libc.__stpcpy
-                  0x001664         0x40 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stpcpy.DA_o)
-                  0x001664                  ___stpcpy
-                  0x001664                  _stpcpy
+                  0x001660         0x40 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stpcpy.DA_o)
+                  0x001660                  ___stpcpy
+                  0x001660                  _stpcpy
  .libc.__syscall_ret
-                  0x0016a4         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(syscall_ret.DA_o)
-                  0x0016a4                  ___syscall_ret
- .libc.tolower    0x0016b8          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(tolower.DA_o)
-                  0x0016b8                  _tolower
+                  0x0016a0         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(syscall_ret.DA_o)
+                  0x0016a0                  ___syscall_ret
+ .libc.tolower    0x0016b4          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(tolower.DA_o)
+                  0x0016b4                  _tolower
  .libc.__tolower_l
-                  0x0016c4          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(tolower.DA_o)
-                  0x0016c4                  ___tolower_l
-                  0x0016c4                  _tolower_l
- .libc.toupper    0x0016c6          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(toupper.DA_o)
-                  0x0016c6                  _toupper
+                  0x0016c0          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(tolower.DA_o)
+                  0x0016c0                  ___tolower_l
+                  0x0016c0                  _tolower_l
+ .libc.toupper    0x0016c2          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(toupper.DA_o)
+                  0x0016c2                  _toupper
  .libc.__toupper_l
-                  0x0016d2          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(toupper.DA_o)
-                  0x0016d2                  ___toupper_l
-                  0x0016d2                  _toupper_l
- .libc.__dummy    0x0016d4          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__init_stdio.DA_o)
-                  0x0016d4                  ___init_stderr
-                  0x0016d4                  ___init_stdin
+                  0x0016ce          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(toupper.DA_o)
+                  0x0016ce                  ___toupper_l
+                  0x0016ce                  _toupper_l
+ .libc.__dummy    0x0016d0          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__init_stdio.DA_o)
+                  0x0016d0                  ___init_stderr
+                  0x0016d0                  ___init_stdin
  .libc.__init_stdio
-                  0x0016d6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__init_stdio.DA_o)
-                  0x0016d6                  ___init_stdio
-                  0x0016d6                  ___init_stdio_needed
+                  0x0016d2          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__init_stdio.DA_o)
+                  0x0016d2                  ___init_stdio
+                  0x0016d2                  ___init_stdio_needed
  .libc.__vsnprintf
-                  0x0016dc         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsnprintf.DA_o)
-                  0x0016dc                  ___vsnprintf
+                  0x0016d8         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsnprintf.DA_o)
+                  0x0016d8                  ___vsnprintf
  .libc.__pop_float
-                  0x001726         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_float.DA_o)
-                  0x001726                  ___pop_float
-                  0x001726                  ___pop_float_needed
- .libc.doclose    0x001764          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(closeda.Meo)
- .libc.dowrite    0x001768          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(writeda.Meo)
+                  0x001722         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_float.DA_o)
+                  0x001722                  ___pop_float
+                  0x001722                  ___pop_float_needed
+ .libc.doclose    0x001760          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(closeda.Meo)
+ .libc.dowrite    0x001764          0x4 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(writeda.Meo)
  .libm.extendsfdf2
-                  0x00176c         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
-                  0x00176c                  ___extendsfdf2
- .libm.mulsi3     0x0017aa          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
-                  0x0017aa                  ___mulp32peds3
-                  0x0017aa                  ___mulsi3
-                  0x0017aa                  ___mulp32eds3
- .libmx           0x0017b6        0x1be c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
-                  0x0017b6                  ___divsf3x
-                  0x0017b6                  ___divsf3
-                  0x001948                  __sdivf
- .libmx           0x001974         0xa6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
-                  0x001974                  __spackf
- .libmx           0x001a1a         0x66 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
-                  0x001a1a                  __unpackf
+                  0x001768         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
+                  0x001768                  ___extendsfdf2
+ .libm.mulsi3     0x0017a6          0xc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
+                  0x0017a6                  ___mulp32peds3
+                  0x0017a6                  ___mulsi3
+                  0x0017a6                  ___mulp32eds3
+ .libmx           0x0017b2        0x1be c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
+                  0x0017b2                  ___divsf3x
+                  0x0017b2                  ___divsf3
+                  0x001944                  __sdivf
+ .libmx           0x001970         0xa6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
+                  0x001970                  __spackf
+ .libmx           0x001a16         0x66 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
+                  0x001a16                  __unpackf
  .libm.__PplusBdi
-                  0x001a80         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x001a7c         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
  .libm.__PminusBdi
-                  0x001aa6         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x001aa2         0x26 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
  .libm.__udivmoddi3
-                  0x001acc         0xe6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
-                  0x001acc                  ___udivmoddi3
+                  0x001ac8         0xe6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x001ac8                  ___udivmoddi3
  .libm.__udivdi3
-                  0x001bb2          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
-                  0x001bb2                  ___udivdi3
+                  0x001bae          0xe c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x001bae                  ___udivdi3
  .libm.__umoddi3
-                  0x001bc0          0x8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
-                  0x001bc0                  ___umoddi3
+                  0x001bbc          0x8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x001bbc                  ___umoddi3
  .libm.__divdi3
-                  0x001bc8         0x60 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
-                  0x001bc8                  ___divdi3
+                  0x001bc4         0x60 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x001bc4                  ___divdi3
  .libm.__moddi3
-                  0x001c28         0x5c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
-                  0x001c28                  ___moddi3
+                  0x001c24         0x5c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x001c24                  ___moddi3
 
 usercode
  *(usercode)
@@ -1378,7 +1378,7 @@ __FDEVOPT1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x86f0
+.debug_info       0x000000       0x86e9
  *(.debug_info)
  .debug_info      0x000000        0xd51 build/default/production/oledDriver/oledC.o
  .debug_info      0x000d51        0x900 build/default/production/oledDriver/oledC_shapeHandler.o
@@ -1389,34 +1389,34 @@ __FDEVOPT1
  .debug_info      0x0037a9        0x1c6 build/default/production/System/delay.o
  .debug_info      0x00396f        0x15c build/default/production/System/system.o
  .debug_info      0x003acb        0x41d build/default/production/System/traps.o
- .debug_info      0x003ee8       0x30ad build/default/production/main.o
- .debug_info      0x006f95        0x81a build/default/production/i2cDriver/i2c1_driver.o
- .debug_info      0x0077af        0x27a build/default/production/Accel_i2c.o
- .debug_info      0x007a29         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
- .debug_info      0x007ab6         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
- .debug_info      0x007b41         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
- .debug_info      0x007bd1         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
- .debug_info      0x007c60         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
- .debug_info      0x007cf1         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
- .debug_info      0x007d7e         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
- .debug_info      0x007e1b         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
- .debug_info      0x007eb8         0xa0 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
- .debug_info      0x007f58         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
- .debug_info      0x007ffa         0x9c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
- .debug_info      0x008096         0x9f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
- .debug_info      0x008135         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
- .debug_info      0x0081c3         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
- .debug_info      0x008252         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
- .debug_info      0x0082e3         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
- .debug_info      0x00836e         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
- .debug_info      0x0083fc         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
- .debug_info      0x00848c         0x8c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
- .debug_info      0x008518         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
- .debug_info      0x0085b5         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
- .debug_info      0x008652         0x9e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
+ .debug_info      0x003ee8       0x30a6 build/default/production/main.o
+ .debug_info      0x006f8e        0x81a build/default/production/i2cDriver/i2c1_driver.o
+ .debug_info      0x0077a8        0x27a build/default/production/Accel_i2c.o
+ .debug_info      0x007a22         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
+ .debug_info      0x007aaf         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
+ .debug_info      0x007b3a         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
+ .debug_info      0x007bca         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
+ .debug_info      0x007c59         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
+ .debug_info      0x007cea         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
+ .debug_info      0x007d77         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
+ .debug_info      0x007e14         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
+ .debug_info      0x007eb1         0xa0 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
+ .debug_info      0x007f51         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
+ .debug_info      0x007ff3         0x9c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
+ .debug_info      0x00808f         0x9f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
+ .debug_info      0x00812e         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
+ .debug_info      0x0081bc         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
+ .debug_info      0x00824b         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
+ .debug_info      0x0082dc         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
+ .debug_info      0x008367         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
+ .debug_info      0x0083f5         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
+ .debug_info      0x008485         0x8c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
+ .debug_info      0x008511         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
+ .debug_info      0x0085ae         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
+ .debug_info      0x00864b         0x9e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0xf7f
+.debug_abbrev     0x000000        0xf52
  *(.debug_abbrev)
  .debug_abbrev    0x000000        0x1aa build/default/production/oledDriver/oledC.o
  .debug_abbrev    0x0001aa        0x166 build/default/production/oledDriver/oledC_shapeHandler.o
@@ -1427,31 +1427,31 @@ __FDEVOPT1
  .debug_abbrev    0x0007a0         0x67 build/default/production/System/delay.o
  .debug_abbrev    0x000807         0x34 build/default/production/System/system.o
  .debug_abbrev    0x00083b        0x100 build/default/production/System/traps.o
- .debug_abbrev    0x00093b        0x2b3 build/default/production/main.o
- .debug_abbrev    0x000bee        0x123 build/default/production/i2cDriver/i2c1_driver.o
- .debug_abbrev    0x000d11         0xb6 build/default/production/Accel_i2c.o
- .debug_abbrev    0x000dc7         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
- .debug_abbrev    0x000ddb         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
- .debug_abbrev    0x000def         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
- .debug_abbrev    0x000e03         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
- .debug_abbrev    0x000e17         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
- .debug_abbrev    0x000e2b         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
- .debug_abbrev    0x000e3f         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
- .debug_abbrev    0x000e53         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
- .debug_abbrev    0x000e67         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
- .debug_abbrev    0x000e7b         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
- .debug_abbrev    0x000e8f         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
- .debug_abbrev    0x000ea3         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
- .debug_abbrev    0x000eb7         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
- .debug_abbrev    0x000ecb         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
- .debug_abbrev    0x000edf         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
- .debug_abbrev    0x000ef3         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
- .debug_abbrev    0x000f07         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
- .debug_abbrev    0x000f1b         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
- .debug_abbrev    0x000f2f         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
- .debug_abbrev    0x000f43         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
- .debug_abbrev    0x000f57         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
- .debug_abbrev    0x000f6b         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
+ .debug_abbrev    0x00093b        0x286 build/default/production/main.o
+ .debug_abbrev    0x000bc1        0x123 build/default/production/i2cDriver/i2c1_driver.o
+ .debug_abbrev    0x000ce4         0xb6 build/default/production/Accel_i2c.o
+ .debug_abbrev    0x000d9a         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
+ .debug_abbrev    0x000dae         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
+ .debug_abbrev    0x000dc2         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
+ .debug_abbrev    0x000dd6         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
+ .debug_abbrev    0x000dea         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
+ .debug_abbrev    0x000dfe         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
+ .debug_abbrev    0x000e12         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
+ .debug_abbrev    0x000e26         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
+ .debug_abbrev    0x000e3a         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
+ .debug_abbrev    0x000e4e         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
+ .debug_abbrev    0x000e62         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
+ .debug_abbrev    0x000e76         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
+ .debug_abbrev    0x000e8a         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
+ .debug_abbrev    0x000e9e         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
+ .debug_abbrev    0x000eb2         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
+ .debug_abbrev    0x000ec6         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
+ .debug_abbrev    0x000eda         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
+ .debug_abbrev    0x000eee         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
+ .debug_abbrev    0x000f02         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
+ .debug_abbrev    0x000f16         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
+ .debug_abbrev    0x000f2a         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
+ .debug_abbrev    0x000f3e         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
 
 .debug_line       0x000000       0x18cc
  *(.debug_line)
@@ -1506,7 +1506,7 @@ __FDEVOPT1
  .debug_frame     0x000cd0        0x166 build/default/production/i2cDriver/i2c1_driver.o
  .debug_frame     0x000e36         0x7c build/default/production/Accel_i2c.o
 
-.debug_str        0x000000        0x30b
+.debug_str        0x000000        0x2f9
  *(.debug_str)
  .debug_str       0x000000         0x28 build/default/production/oledDriver/oledC.o
  .debug_str       0x000028         0x46 build/default/production/oledDriver/oledC_shapeHandler.o
@@ -1515,8 +1515,8 @@ __FDEVOPT1
  .debug_str       0x0000bd         0x6b build/default/production/spiDriver/spi1_driver.o
  .debug_str       0x000128         0x12 build/default/production/System/clock.o
  .debug_str       0x00013a         0x18 build/default/production/System/traps.o
- .debug_str       0x000152        0x18d build/default/production/main.o
- .debug_str       0x0002df         0x2c build/default/production/i2cDriver/i2c1_driver.o
+ .debug_str       0x000152        0x17b build/default/production/main.o
+ .debug_str       0x0002cd         0x2c build/default/production/i2cDriver/i2c1_driver.o
 
 .debug_loc
  *(.debug_loc)
@@ -3338,288 +3338,288 @@ __xc_reference_data
  .ivt._T1Interrupt
                   0x00001a          0x2 build/default/production/main.o
 
-.const              0x9c84        0x496 load address 0x001c84  
- .const             0x9c84        0x2aa build/default/production/main.o
-                    0x9c84                  _OLEDC_COLOR_ALICEBLUE
-                    0x9c86                  _OLEDC_COLOR_ANTIQUEWHITE
-                    0x9c88                  _OLEDC_COLOR_AQUA
-                    0x9c8a                  _OLEDC_COLOR_AQUAMARINE
-                    0x9c8c                  _OLEDC_COLOR_AZURE
-                    0x9c8e                  _OLEDC_COLOR_BEIGE
-                    0x9c90                  _OLEDC_COLOR_BISQUE
-                    0x9c92                  _OLEDC_COLOR_BLACK
-                    0x9c94                  _OLEDC_COLOR_BLANCHEDALMOND
-                    0x9c96                  _OLEDC_COLOR_BLUE
-                    0x9c98                  _OLEDC_COLOR_BLUEVIOLET
-                    0x9c9a                  _OLEDC_COLOR_BROWN
-                    0x9c9c                  _OLEDC_COLOR_BURLYWOOD
-                    0x9c9e                  _OLEDC_COLOR_CADETBLUE
-                    0x9ca0                  _OLEDC_COLOR_CHARTREUSE
-                    0x9ca2                  _OLEDC_COLOR_CHOCOLATE
-                    0x9ca4                  _OLEDC_COLOR_CORAL
-                    0x9ca6                  _OLEDC_COLOR_CORNFLOWERBLUE
-                    0x9ca8                  _OLEDC_COLOR_CORNSILK
-                    0x9caa                  _OLEDC_COLOR_CRIMSON
-                    0x9cac                  _OLEDC_COLOR_CYAN
-                    0x9cae                  _OLEDC_COLOR_DARKBLUE
-                    0x9cb0                  _OLEDC_COLOR_DARKCYAN
-                    0x9cb2                  _OLEDC_COLOR_DARKGOLDENROD
-                    0x9cb4                  _OLEDC_COLOR_DARKGRAY
-                    0x9cb6                  _OLEDC_COLOR_DARKGREEN
-                    0x9cb8                  _OLEDC_COLOR_DARKGREY
-                    0x9cba                  _OLEDC_COLOR_DARKKHAKI
-                    0x9cbc                  _OLEDC_COLOR_DARKMAGENTA
-                    0x9cbe                  _OLEDC_COLOR_DARKOLIVEGREEN
-                    0x9cc0                  _OLEDC_COLOR_DARKORANGE
-                    0x9cc2                  _OLEDC_COLOR_DARKORCHID
-                    0x9cc4                  _OLEDC_COLOR_DARKRED
-                    0x9cc6                  _OLEDC_COLOR_DARKSALMON
-                    0x9cc8                  _OLEDC_COLOR_DARKSEAGREEN
-                    0x9cca                  _OLEDC_COLOR_DARKSLATEBLUE
-                    0x9ccc                  _OLEDC_COLOR_DARKSLATEGRAY
-                    0x9cce                  _OLEDC_COLOR_DARKSLATEGREY
-                    0x9cd0                  _OLEDC_COLOR_DARKTURQUOISE
-                    0x9cd2                  _OLEDC_COLOR_DARKVIOLET
-                    0x9cd4                  _OLEDC_COLOR_DEEPPINK
-                    0x9cd6                  _OLEDC_COLOR_DEEPSKYBLUE
-                    0x9cd8                  _OLEDC_COLOR_DIMGRAY
-                    0x9cda                  _OLEDC_COLOR_DIMGREY
-                    0x9cdc                  _OLEDC_COLOR_DODGERBLUE
-                    0x9cde                  _OLEDC_COLOR_FIREBRICK
-                    0x9ce0                  _OLEDC_COLOR_FLORALWHITE
-                    0x9ce2                  _OLEDC_COLOR_FORESTGREEN
-                    0x9ce4                  _OLEDC_COLOR_FUCHSIA
-                    0x9ce6                  _OLEDC_COLOR_GAINSBORO
-                    0x9ce8                  _OLEDC_COLOR_GHOSTWHITE
-                    0x9cea                  _OLEDC_COLOR_GOLD
-                    0x9cec                  _OLEDC_COLOR_GOLDENROD
-                    0x9cee                  _OLEDC_COLOR_GRAY
-                    0x9cf0                  _OLEDC_COLOR_GREEN
-                    0x9cf2                  _OLEDC_COLOR_GREENYELLOW
-                    0x9cf4                  _OLEDC_COLOR_GREY
-                    0x9cf6                  _OLEDC_COLOR_HONEYDEW
-                    0x9cf8                  _OLEDC_COLOR_HOTPINK
-                    0x9cfa                  _OLEDC_COLOR_INDIANRED
-                    0x9cfc                  _OLEDC_COLOR_INDIGO
-                    0x9cfe                  _OLEDC_COLOR_IVORY
-                    0x9d00                  _OLEDC_COLOR_KHAKI
-                    0x9d02                  _OLEDC_COLOR_LAVENDER
-                    0x9d04                  _OLEDC_COLOR_LAVENDERBLUSH
-                    0x9d06                  _OLEDC_COLOR_LAWNGREEN
-                    0x9d08                  _OLEDC_COLOR_LEMONCHIFFON
-                    0x9d0a                  _OLEDC_COLOR_LIGHTBLUE
-                    0x9d0c                  _OLEDC_COLOR_LIGHTCORAL
-                    0x9d0e                  _OLEDC_COLOR_LIGHTCYAN
-                    0x9d10                  _OLEDC_COLOR_LIGHTGOLDENRODYELLOW
-                    0x9d12                  _OLEDC_COLOR_LIGHTGRAY
-                    0x9d14                  _OLEDC_COLOR_LIGHTGREEN
-                    0x9d16                  _OLEDC_COLOR_LIGHTGREY
-                    0x9d18                  _OLEDC_COLOR_LIGHTPINK
-                    0x9d1a                  _OLEDC_COLOR_LIGHTSALMON
-                    0x9d1c                  _OLEDC_COLOR_LIGHTSEAGREEN
-                    0x9d1e                  _OLEDC_COLOR_LIGHTSKYBLUE
-                    0x9d20                  _OLEDC_COLOR_LIGHTSLATEGRAY
-                    0x9d22                  _OLEDC_COLOR_LIGHTSLATEGREY
-                    0x9d24                  _OLEDC_COLOR_LIGHTSTEELBLUE
-                    0x9d26                  _OLEDC_COLOR_LIGHTYELLOW
-                    0x9d28                  _OLEDC_COLOR_LIME
-                    0x9d2a                  _OLEDC_COLOR_LIMEGREEN
-                    0x9d2c                  _OLEDC_COLOR_LINEN
-                    0x9d2e                  _OLEDC_COLOR_MAGENTA
-                    0x9d30                  _OLEDC_COLOR_MAROON
-                    0x9d32                  _OLEDC_COLOR_MEDIUMAQUAMARINE
-                    0x9d34                  _OLEDC_COLOR_MEDIUMBLUE
-                    0x9d36                  _OLEDC_COLOR_MEDIUMORCHID
-                    0x9d38                  _OLEDC_COLOR_MEDIUMPURPLE
-                    0x9d3a                  _OLEDC_COLOR_MEDIUMSEAGREEN
-                    0x9d3c                  _OLEDC_COLOR_MEDIUMSLATEBLUE
-                    0x9d3e                  _OLEDC_COLOR_MEDIUMSPRINGGREEN
-                    0x9d40                  _OLEDC_COLOR_MEDIUMTURQUOISE
-                    0x9d42                  _OLEDC_COLOR_MEDIUMVIOLETRED
-                    0x9d44                  _OLEDC_COLOR_MIDNIGHTBLUE
-                    0x9d46                  _OLEDC_COLOR_MINTCREAM
-                    0x9d48                  _OLEDC_COLOR_MISTYROSE
-                    0x9d4a                  _OLEDC_COLOR_MOCCASIN
-                    0x9d4c                  _OLEDC_COLOR_NAVAJOWHITE
-                    0x9d4e                  _OLEDC_COLOR_NAVY
-                    0x9d50                  _OLEDC_COLOR_OLDLACE
-                    0x9d52                  _OLEDC_COLOR_OLIVE
-                    0x9d54                  _OLEDC_COLOR_OLIVEDRAB
-                    0x9d56                  _OLEDC_COLOR_ORANGE
-                    0x9d58                  _OLEDC_COLOR_ORANGERED
-                    0x9d5a                  _OLEDC_COLOR_ORCHID
-                    0x9d5c                  _OLEDC_COLOR_PALEGOLDENROD
-                    0x9d5e                  _OLEDC_COLOR_PALEGREEN
-                    0x9d60                  _OLEDC_COLOR_PALETURQUOISE
-                    0x9d62                  _OLEDC_COLOR_PALEVIOLETRED
-                    0x9d64                  _OLEDC_COLOR_PAPAYAWHIP
-                    0x9d66                  _OLEDC_COLOR_PEACHPUFF
-                    0x9d68                  _OLEDC_COLOR_PERU
-                    0x9d6a                  _OLEDC_COLOR_PINK
-                    0x9d6c                  _OLEDC_COLOR_PLUM
-                    0x9d6e                  _OLEDC_COLOR_POWDERBLUE
-                    0x9d70                  _OLEDC_COLOR_PURPLE
-                    0x9d72                  _OLEDC_COLOR_RED
-                    0x9d74                  _OLEDC_COLOR_ROSYBROWN
-                    0x9d76                  _OLEDC_COLOR_ROYALBLUE
-                    0x9d78                  _OLEDC_COLOR_SADDLEBROWN
-                    0x9d7a                  _OLEDC_COLOR_SALMON
-                    0x9d7c                  _OLEDC_COLOR_SANDYBROWN
-                    0x9d7e                  _OLEDC_COLOR_SEAGREEN
-                    0x9d80                  _OLEDC_COLOR_SEASHELL
-                    0x9d82                  _OLEDC_COLOR_SIENNA
-                    0x9d84                  _OLEDC_COLOR_SILVER
-                    0x9d86                  _OLEDC_COLOR_SKYBLUE
-                    0x9d88                  _OLEDC_COLOR_SLATEBLUE
-                    0x9d8a                  _OLEDC_COLOR_SLATEGRAY
-                    0x9d8c                  _OLEDC_COLOR_SLATEGREY
-                    0x9d8e                  _OLEDC_COLOR_SNOW
-                    0x9d90                  _OLEDC_COLOR_SPRINGGREEN
-                    0x9d92                  _OLEDC_COLOR_STEELBLUE
-                    0x9d94                  _OLEDC_COLOR_TAN
-                    0x9d96                  _OLEDC_COLOR_TEAL
-                    0x9d98                  _OLEDC_COLOR_THISTLE
-                    0x9d9a                  _OLEDC_COLOR_TOMATO
-                    0x9d9c                  _OLEDC_COLOR_TURQUOISE
-                    0x9d9e                  _OLEDC_COLOR_VIOLET
-                    0x9da0                  _OLEDC_COLOR_WHEAT
-                    0x9da2                  _OLEDC_COLOR_WHITE
-                    0x9da4                  _OLEDC_COLOR_WHITESMOKE
-                    0x9da6                  _OLEDC_COLOR_YELLOW
-                    0x9da8                  _OLEDC_COLOR_YELLOWGREEN
-                    0x9daa                  _baselineGravity
- .const             0x9f2e        0x1e0 build/default/production/oledDriver/oledC_shapes.o
- .const             0xa10e          0xc build/default/production/spiDriver/spi1_driver.o
+.const              0x9c80        0x496 load address 0x001c80  
+ .const             0x9c80        0x2aa build/default/production/main.o
+                    0x9c80                  _OLEDC_COLOR_ALICEBLUE
+                    0x9c82                  _OLEDC_COLOR_ANTIQUEWHITE
+                    0x9c84                  _OLEDC_COLOR_AQUA
+                    0x9c86                  _OLEDC_COLOR_AQUAMARINE
+                    0x9c88                  _OLEDC_COLOR_AZURE
+                    0x9c8a                  _OLEDC_COLOR_BEIGE
+                    0x9c8c                  _OLEDC_COLOR_BISQUE
+                    0x9c8e                  _OLEDC_COLOR_BLACK
+                    0x9c90                  _OLEDC_COLOR_BLANCHEDALMOND
+                    0x9c92                  _OLEDC_COLOR_BLUE
+                    0x9c94                  _OLEDC_COLOR_BLUEVIOLET
+                    0x9c96                  _OLEDC_COLOR_BROWN
+                    0x9c98                  _OLEDC_COLOR_BURLYWOOD
+                    0x9c9a                  _OLEDC_COLOR_CADETBLUE
+                    0x9c9c                  _OLEDC_COLOR_CHARTREUSE
+                    0x9c9e                  _OLEDC_COLOR_CHOCOLATE
+                    0x9ca0                  _OLEDC_COLOR_CORAL
+                    0x9ca2                  _OLEDC_COLOR_CORNFLOWERBLUE
+                    0x9ca4                  _OLEDC_COLOR_CORNSILK
+                    0x9ca6                  _OLEDC_COLOR_CRIMSON
+                    0x9ca8                  _OLEDC_COLOR_CYAN
+                    0x9caa                  _OLEDC_COLOR_DARKBLUE
+                    0x9cac                  _OLEDC_COLOR_DARKCYAN
+                    0x9cae                  _OLEDC_COLOR_DARKGOLDENROD
+                    0x9cb0                  _OLEDC_COLOR_DARKGRAY
+                    0x9cb2                  _OLEDC_COLOR_DARKGREEN
+                    0x9cb4                  _OLEDC_COLOR_DARKGREY
+                    0x9cb6                  _OLEDC_COLOR_DARKKHAKI
+                    0x9cb8                  _OLEDC_COLOR_DARKMAGENTA
+                    0x9cba                  _OLEDC_COLOR_DARKOLIVEGREEN
+                    0x9cbc                  _OLEDC_COLOR_DARKORANGE
+                    0x9cbe                  _OLEDC_COLOR_DARKORCHID
+                    0x9cc0                  _OLEDC_COLOR_DARKRED
+                    0x9cc2                  _OLEDC_COLOR_DARKSALMON
+                    0x9cc4                  _OLEDC_COLOR_DARKSEAGREEN
+                    0x9cc6                  _OLEDC_COLOR_DARKSLATEBLUE
+                    0x9cc8                  _OLEDC_COLOR_DARKSLATEGRAY
+                    0x9cca                  _OLEDC_COLOR_DARKSLATEGREY
+                    0x9ccc                  _OLEDC_COLOR_DARKTURQUOISE
+                    0x9cce                  _OLEDC_COLOR_DARKVIOLET
+                    0x9cd0                  _OLEDC_COLOR_DEEPPINK
+                    0x9cd2                  _OLEDC_COLOR_DEEPSKYBLUE
+                    0x9cd4                  _OLEDC_COLOR_DIMGRAY
+                    0x9cd6                  _OLEDC_COLOR_DIMGREY
+                    0x9cd8                  _OLEDC_COLOR_DODGERBLUE
+                    0x9cda                  _OLEDC_COLOR_FIREBRICK
+                    0x9cdc                  _OLEDC_COLOR_FLORALWHITE
+                    0x9cde                  _OLEDC_COLOR_FORESTGREEN
+                    0x9ce0                  _OLEDC_COLOR_FUCHSIA
+                    0x9ce2                  _OLEDC_COLOR_GAINSBORO
+                    0x9ce4                  _OLEDC_COLOR_GHOSTWHITE
+                    0x9ce6                  _OLEDC_COLOR_GOLD
+                    0x9ce8                  _OLEDC_COLOR_GOLDENROD
+                    0x9cea                  _OLEDC_COLOR_GRAY
+                    0x9cec                  _OLEDC_COLOR_GREEN
+                    0x9cee                  _OLEDC_COLOR_GREENYELLOW
+                    0x9cf0                  _OLEDC_COLOR_GREY
+                    0x9cf2                  _OLEDC_COLOR_HONEYDEW
+                    0x9cf4                  _OLEDC_COLOR_HOTPINK
+                    0x9cf6                  _OLEDC_COLOR_INDIANRED
+                    0x9cf8                  _OLEDC_COLOR_INDIGO
+                    0x9cfa                  _OLEDC_COLOR_IVORY
+                    0x9cfc                  _OLEDC_COLOR_KHAKI
+                    0x9cfe                  _OLEDC_COLOR_LAVENDER
+                    0x9d00                  _OLEDC_COLOR_LAVENDERBLUSH
+                    0x9d02                  _OLEDC_COLOR_LAWNGREEN
+                    0x9d04                  _OLEDC_COLOR_LEMONCHIFFON
+                    0x9d06                  _OLEDC_COLOR_LIGHTBLUE
+                    0x9d08                  _OLEDC_COLOR_LIGHTCORAL
+                    0x9d0a                  _OLEDC_COLOR_LIGHTCYAN
+                    0x9d0c                  _OLEDC_COLOR_LIGHTGOLDENRODYELLOW
+                    0x9d0e                  _OLEDC_COLOR_LIGHTGRAY
+                    0x9d10                  _OLEDC_COLOR_LIGHTGREEN
+                    0x9d12                  _OLEDC_COLOR_LIGHTGREY
+                    0x9d14                  _OLEDC_COLOR_LIGHTPINK
+                    0x9d16                  _OLEDC_COLOR_LIGHTSALMON
+                    0x9d18                  _OLEDC_COLOR_LIGHTSEAGREEN
+                    0x9d1a                  _OLEDC_COLOR_LIGHTSKYBLUE
+                    0x9d1c                  _OLEDC_COLOR_LIGHTSLATEGRAY
+                    0x9d1e                  _OLEDC_COLOR_LIGHTSLATEGREY
+                    0x9d20                  _OLEDC_COLOR_LIGHTSTEELBLUE
+                    0x9d22                  _OLEDC_COLOR_LIGHTYELLOW
+                    0x9d24                  _OLEDC_COLOR_LIME
+                    0x9d26                  _OLEDC_COLOR_LIMEGREEN
+                    0x9d28                  _OLEDC_COLOR_LINEN
+                    0x9d2a                  _OLEDC_COLOR_MAGENTA
+                    0x9d2c                  _OLEDC_COLOR_MAROON
+                    0x9d2e                  _OLEDC_COLOR_MEDIUMAQUAMARINE
+                    0x9d30                  _OLEDC_COLOR_MEDIUMBLUE
+                    0x9d32                  _OLEDC_COLOR_MEDIUMORCHID
+                    0x9d34                  _OLEDC_COLOR_MEDIUMPURPLE
+                    0x9d36                  _OLEDC_COLOR_MEDIUMSEAGREEN
+                    0x9d38                  _OLEDC_COLOR_MEDIUMSLATEBLUE
+                    0x9d3a                  _OLEDC_COLOR_MEDIUMSPRINGGREEN
+                    0x9d3c                  _OLEDC_COLOR_MEDIUMTURQUOISE
+                    0x9d3e                  _OLEDC_COLOR_MEDIUMVIOLETRED
+                    0x9d40                  _OLEDC_COLOR_MIDNIGHTBLUE
+                    0x9d42                  _OLEDC_COLOR_MINTCREAM
+                    0x9d44                  _OLEDC_COLOR_MISTYROSE
+                    0x9d46                  _OLEDC_COLOR_MOCCASIN
+                    0x9d48                  _OLEDC_COLOR_NAVAJOWHITE
+                    0x9d4a                  _OLEDC_COLOR_NAVY
+                    0x9d4c                  _OLEDC_COLOR_OLDLACE
+                    0x9d4e                  _OLEDC_COLOR_OLIVE
+                    0x9d50                  _OLEDC_COLOR_OLIVEDRAB
+                    0x9d52                  _OLEDC_COLOR_ORANGE
+                    0x9d54                  _OLEDC_COLOR_ORANGERED
+                    0x9d56                  _OLEDC_COLOR_ORCHID
+                    0x9d58                  _OLEDC_COLOR_PALEGOLDENROD
+                    0x9d5a                  _OLEDC_COLOR_PALEGREEN
+                    0x9d5c                  _OLEDC_COLOR_PALETURQUOISE
+                    0x9d5e                  _OLEDC_COLOR_PALEVIOLETRED
+                    0x9d60                  _OLEDC_COLOR_PAPAYAWHIP
+                    0x9d62                  _OLEDC_COLOR_PEACHPUFF
+                    0x9d64                  _OLEDC_COLOR_PERU
+                    0x9d66                  _OLEDC_COLOR_PINK
+                    0x9d68                  _OLEDC_COLOR_PLUM
+                    0x9d6a                  _OLEDC_COLOR_POWDERBLUE
+                    0x9d6c                  _OLEDC_COLOR_PURPLE
+                    0x9d6e                  _OLEDC_COLOR_RED
+                    0x9d70                  _OLEDC_COLOR_ROSYBROWN
+                    0x9d72                  _OLEDC_COLOR_ROYALBLUE
+                    0x9d74                  _OLEDC_COLOR_SADDLEBROWN
+                    0x9d76                  _OLEDC_COLOR_SALMON
+                    0x9d78                  _OLEDC_COLOR_SANDYBROWN
+                    0x9d7a                  _OLEDC_COLOR_SEAGREEN
+                    0x9d7c                  _OLEDC_COLOR_SEASHELL
+                    0x9d7e                  _OLEDC_COLOR_SIENNA
+                    0x9d80                  _OLEDC_COLOR_SILVER
+                    0x9d82                  _OLEDC_COLOR_SKYBLUE
+                    0x9d84                  _OLEDC_COLOR_SLATEBLUE
+                    0x9d86                  _OLEDC_COLOR_SLATEGRAY
+                    0x9d88                  _OLEDC_COLOR_SLATEGREY
+                    0x9d8a                  _OLEDC_COLOR_SNOW
+                    0x9d8c                  _OLEDC_COLOR_SPRINGGREEN
+                    0x9d8e                  _OLEDC_COLOR_STEELBLUE
+                    0x9d90                  _OLEDC_COLOR_TAN
+                    0x9d92                  _OLEDC_COLOR_TEAL
+                    0x9d94                  _OLEDC_COLOR_THISTLE
+                    0x9d96                  _OLEDC_COLOR_TOMATO
+                    0x9d98                  _OLEDC_COLOR_TURQUOISE
+                    0x9d9a                  _OLEDC_COLOR_VIOLET
+                    0x9d9c                  _OLEDC_COLOR_WHEAT
+                    0x9d9e                  _OLEDC_COLOR_WHITE
+                    0x9da0                  _OLEDC_COLOR_WHITESMOKE
+                    0x9da2                  _OLEDC_COLOR_YELLOW
+                    0x9da4                  _OLEDC_COLOR_YELLOWGREEN
+                    0x9da6                  _baselineGravity
+ .const             0x9f2a        0x1e0 build/default/production/oledDriver/oledC_shapes.o
+ .const             0xa10a          0xc build/default/production/spiDriver/spi1_driver.o
 
-.text             0x00211a       0x2038
- .text            0x00211a       0x1138 build/default/production/main.o
-                  0x00211a                  _errorStop
-                  0x00213c                  _readAxis
-                  0x0021c2                  _initAccelerometer
-                  0x00226c                  _detectStep
-                  0x002346                  _drawSteps
-                  0x00252a                  _updateDate
-                  0x00256e                  _incrementTime
-                  0x0025c6                  _drawClock
-                  0x00274e                  _drawFootIcon
-                  0x0027b0                  _handleTimeFormatSelection
-                  0x00284e                  _drawTimeFormatSubpage
-                  0x0028dc                  _drawSetTimeMenuBase
-                  0x00297e                  _drawSetTimeStatus
-                  0x0029e8                  _handleSetTimeInput
-                  0x002af4                  _detectTiltForSave
-                  0x002b8c                  _handleSetTimePage
-                  0x002c02                  _drawSetDateMenuBase
-                  0x002ca6                  _drawSetDateStatus
-                  0x002d10                  _handleSetDateInput
-                  0x002e7c                  _handleSetDatePage
-                  0x002eec                  _drawMenu
-                  0x002f64                  _updateMenuClock
-                  0x003030                  _executeMenuAction
-                  0x003084                  _Timer_Initialize
-                  0x00309e                  _Timer1_Interrupt_Initialize
-                  0x0030b4                  _User_Initialize
-                  0x0030ec                  _main
- .text            0x003252        0x86c build/default/production/oledDriver/oledC_shapes.o
-                  0x003252                  _oledC_createShape
-                  0x003382                  _oledC_ReadPoint
-                  0x0033b2                  _oledC_DrawPoint
-                  0x0033ea                  _oledC_DrawThickPoint
-                  0x0034f2                  _oledC_DrawCircle
-                  0x003604                  _oledC_DrawRing
-                  0x003700                  _oledC_DrawLine
-                  0x0037a0                  _oledC_DrawRectangle
-                  0x0037ee                  _oledC_DrawCharacter
-                  0x0038ac                  _oledC_DrawString
-                  0x0038f2                  _oledC_DrawBitmap
-                  0x0039c6                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
-                  0x0039dc                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
-                  0x0039f6                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
-                  0x003a14                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
-                  0x003a32                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
-                  0x003a54                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
-                  0x003a76                  build/default/production/oledDriver/oledC_shapes.o:_drawString
-                  0x003a98                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
- .text            0x003abe        0x2e6 build/default/production/oledDriver/oledC.o
-                  0x003abe                  _oledC_parseIntToRGB
-                  0x003b0c                  _oledC_parseRGBToInt
-                  0x003bb8                  _oledC_sendCommand
-                  0x003bf6                  _oledC_setRowAddressBounds
-                  0x003c20                  _oledC_setColumnAddressBounds
-                  0x003c56                  _oledC_setSleepMode
-                  0x003c70                  _oledC_setDisplayOrientation
-                  0x003c8e                  _oledC_startReadingDisplay
-                  0x003ca0                  _oledC_stopReadingDisplay
-                  0x003ca8                  _oledC_readColor
-                  0x003cc6                  _oledC_startWritingDisplay
-                  0x003cd8                  _oledC_stopWritingDisplay
-                  0x003ce4                  _oledC_sendColor
-                  0x003cfa                  _oledC_sendColorInt
-                  0x003d20                  _oledC_open
-                  0x003d28                  _oledC_setup
-                  0x003d5c                  _oledC_clearScreen
-                  0x003d96                  _oledC_setBackground
- .text            0x003da4        0x1c8 build/default/production/oledDriver/oledC_shapeHandler.o
-                  0x003da4                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
-                  0x003dac                  _initShapesMem
-                  0x003dd8                  _oledC_removeShape
-                  0x003e0e                  _oledC_getShape
-                  0x003e2a                  _oledC_addShape
-                  0x003e84                  _oledC_redrawIndex
-                  0x003ea2                  _oledC_redrawTo
-                  0x003eb0                  _oledC_redrawFrom
-                  0x003ebe                  _oledC_redrawSome
-                  0x003f0a                  _oledC_eraseShape
-                  0x003f34                  _oledC_eraseAll
-                  0x003f60                  _oledC_redrawAll
- .text            0x003f6c        0x110 build/default/production/spiDriver/spi1_driver.o
-                  0x003f6c                  _spi1_close
-                  0x003f74                  _spi1_open
-                  0x003f94                  _spi1_exchangeByte
-                  0x003fae                  _spi1_exchangeBlock
-                  0x003fe0                  _spi1_writeBlock
-                  0x00400e                  _spi1_readBlock
-                  0x00403e                  _spi1_writeByte
-                  0x00404a                  _spi1_readByte
-                  0x004054                  _spi1_isr
-                  0x004070                  _spi1_setSpiISR
- .text            0x00407c         0xd6 build/default/production/i2cDriver/i2c1_driver.o
-                  0x00407c                  _i2c1_driver_close
-                  0x004084                  _i2c1_driver_open
-                  0x0040a4                  _i2c1_driver_start
-                  0x0040b6                  _i2c1_driver_restart
-                  0x0040c8                  _i2c1_driver_stop
-                  0x0040da                  _i2c1_driver_isNACK
-                  0x0040f2                  _i2c1_driver_startRX
-                  0x0040fa                  _i2c1_driver_waitRX
-                  0x00410a                  _i2c1_driver_getRXData
-                  0x004114                  _i2c1_driver_TXData
-                  0x00412c                  _i2c1_driver_sendACK
-                  0x004140                  _i2c1_driver_sendNACK
-                  0x00414a                  _i2c1_driver_clearBusCollision
+.text             0x002116       0x2036
+ .text            0x002116       0x1136 build/default/production/main.o
+                  0x002116                  _errorStop
+                  0x002138                  _readAxis
+                  0x0021be                  _initAccelerometer
+                  0x002268                  _detectStep
+                  0x002342                  _drawSteps
+                  0x002526                  _updateDate
+                  0x00256a                  _incrementTime
+                  0x0025c2                  _drawClock
+                  0x00274a                  _drawFootIcon
+                  0x0027ac                  _handleTimeFormatSelection
+                  0x00284a                  _drawTimeFormatSubpage
+                  0x0028d8                  _drawSetTimeMenuBase
+                  0x00297a                  _drawSetTimeStatus
+                  0x0029e4                  _handleSetTimeInput
+                  0x002af0                  _detectTiltForSave
+                  0x002b88                  _handleSetTimePage
+                  0x002bfe                  _drawSetDateMenuBase
+                  0x002ca0                  _drawSetDateStatus
+                  0x002d0a                  _handleSetDateInput
+                  0x002e76                  _handleSetDatePage
+                  0x002ee6                  _drawMenu
+                  0x002f5e                  _updateMenuClock
+                  0x00302a                  _executeMenuAction
+                  0x00307e                  _Timer_Initialize
+                  0x003098                  _Timer1_Interrupt_Initialize
+                  0x0030ae                  _User_Initialize
+                  0x0030e6                  _main
+ .text            0x00324c        0x86c build/default/production/oledDriver/oledC_shapes.o
+                  0x00324c                  _oledC_createShape
+                  0x00337c                  _oledC_ReadPoint
+                  0x0033ac                  _oledC_DrawPoint
+                  0x0033e4                  _oledC_DrawThickPoint
+                  0x0034ec                  _oledC_DrawCircle
+                  0x0035fe                  _oledC_DrawRing
+                  0x0036fa                  _oledC_DrawLine
+                  0x00379a                  _oledC_DrawRectangle
+                  0x0037e8                  _oledC_DrawCharacter
+                  0x0038a6                  _oledC_DrawString
+                  0x0038ec                  _oledC_DrawBitmap
+                  0x0039c0                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
+                  0x0039d6                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
+                  0x0039f0                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
+                  0x003a0e                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
+                  0x003a2c                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
+                  0x003a4e                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
+                  0x003a70                  build/default/production/oledDriver/oledC_shapes.o:_drawString
+                  0x003a92                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
+ .text            0x003ab8        0x2e6 build/default/production/oledDriver/oledC.o
+                  0x003ab8                  _oledC_parseIntToRGB
+                  0x003b06                  _oledC_parseRGBToInt
+                  0x003bb2                  _oledC_sendCommand
+                  0x003bf0                  _oledC_setRowAddressBounds
+                  0x003c1a                  _oledC_setColumnAddressBounds
+                  0x003c50                  _oledC_setSleepMode
+                  0x003c6a                  _oledC_setDisplayOrientation
+                  0x003c88                  _oledC_startReadingDisplay
+                  0x003c9a                  _oledC_stopReadingDisplay
+                  0x003ca2                  _oledC_readColor
+                  0x003cc0                  _oledC_startWritingDisplay
+                  0x003cd2                  _oledC_stopWritingDisplay
+                  0x003cde                  _oledC_sendColor
+                  0x003cf4                  _oledC_sendColorInt
+                  0x003d1a                  _oledC_open
+                  0x003d22                  _oledC_setup
+                  0x003d56                  _oledC_clearScreen
+                  0x003d90                  _oledC_setBackground
+ .text            0x003d9e        0x1c8 build/default/production/oledDriver/oledC_shapeHandler.o
+                  0x003d9e                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
+                  0x003da6                  _initShapesMem
+                  0x003dd2                  _oledC_removeShape
+                  0x003e08                  _oledC_getShape
+                  0x003e24                  _oledC_addShape
+                  0x003e7e                  _oledC_redrawIndex
+                  0x003e9c                  _oledC_redrawTo
+                  0x003eaa                  _oledC_redrawFrom
+                  0x003eb8                  _oledC_redrawSome
+                  0x003f04                  _oledC_eraseShape
+                  0x003f2e                  _oledC_eraseAll
+                  0x003f5a                  _oledC_redrawAll
+ .text            0x003f66        0x110 build/default/production/spiDriver/spi1_driver.o
+                  0x003f66                  _spi1_close
+                  0x003f6e                  _spi1_open
+                  0x003f8e                  _spi1_exchangeByte
+                  0x003fa8                  _spi1_exchangeBlock
+                  0x003fda                  _spi1_writeBlock
+                  0x004008                  _spi1_readBlock
+                  0x004038                  _spi1_writeByte
+                  0x004044                  _spi1_readByte
+                  0x00404e                  _spi1_isr
+                  0x00406a                  _spi1_setSpiISR
+ .text            0x004076         0xd6 build/default/production/i2cDriver/i2c1_driver.o
+                  0x004076                  _i2c1_driver_close
+                  0x00407e                  _i2c1_driver_open
+                  0x00409e                  _i2c1_driver_start
+                  0x0040b0                  _i2c1_driver_restart
+                  0x0040c2                  _i2c1_driver_stop
+                  0x0040d4                  _i2c1_driver_isNACK
+                  0x0040ec                  _i2c1_driver_startRX
+                  0x0040f4                  _i2c1_driver_waitRX
+                  0x004104                  _i2c1_driver_getRXData
+                  0x00410e                  _i2c1_driver_TXData
+                  0x004126                  _i2c1_driver_sendACK
+                  0x00413a                  _i2c1_driver_sendNACK
+                  0x004144                  _i2c1_driver_clearBusCollision
 
-.dinit            0x004152         0xa8
- .dinit           0x004152         0xa8 data_init
+.dinit            0x00414c         0xa8
+ .dinit           0x00414c         0xa8 data_init
 
-.text             0x0041fa        0x1b2
- .text            0x0041fa         0x9e build/default/production/Accel_i2c.o
-                  0x004212                  _i2c1_open
-                  0x00421a                  _i2cReadSlaveRegister
-                  0x004262                  _i2cWriteSlave
- .text            0x004298         0x78 build/default/production/oledDriver/pin_manager.o
-                  0x004298                  _PIN_MANAGER_Initialize
- .text            0x004310         0x56 build/default/production/System/delay.o
-                  0x004310                  _DELAY_milliseconds
-                  0x004332                  _DELAY_microseconds
- .text            0x004366         0x46 build/default/production/System/clock.o
-                  0x004366                  _CLOCK_Initialize
+.text             0x0041f4        0x1b2
+ .text            0x0041f4         0x9e build/default/production/Accel_i2c.o
+                  0x00420c                  _i2c1_open
+                  0x004214                  _i2cReadSlaveRegister
+                  0x00425c                  _i2cWriteSlave
+ .text            0x004292         0x78 build/default/production/oledDriver/pin_manager.o
+                  0x004292                  _PIN_MANAGER_Initialize
+ .text            0x00430a         0x56 build/default/production/System/delay.o
+                  0x00430a                  _DELAY_milliseconds
+                  0x00432c                  _DELAY_microseconds
+ .text            0x004360         0x46 build/default/production/System/clock.o
+                  0x004360                  _CLOCK_Initialize
 
-.init.delay32     0x0043ac         0x1c
- .init.delay32    0x0043ac         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32da.Meo)
-                  0x0043ac                  ___delay32
+.init.delay32     0x0043a6         0x1c
+ .init.delay32    0x0043a6         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32da.Meo)
+                  0x0043a6                  ___delay32
 
-.text             0x0043c8         0x24
- .text            0x0043c8         0x18 build/default/production/System/traps.o
-                  0x0043c8                  _TRAPS_halt_on_error
- .text            0x0043e0          0xc build/default/production/System/system.o
-                  0x0043e0                  _SYSTEM_Initialize
+.text             0x0043c2         0x24
+ .text            0x0043c2         0x18 build/default/production/System/traps.o
+                  0x0043c2                  _TRAPS_halt_on_error
+ .text            0x0043da          0xc build/default/production/System/system.o
+                  0x0043da                  _SYSTEM_Initialize

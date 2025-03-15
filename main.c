@@ -88,6 +88,7 @@ void drawSetTimeMenuBase(void);
 void drawSetTimeStatus(void);
 void handleSetTimeInput(void);
 bool detectTiltForSave(void);
+void drawSetDateStatus(void);
 
 // ---------------- Foot Bitmaps (16×16) ----------------
 static const uint16_t foot1Bitmap[16] = {
