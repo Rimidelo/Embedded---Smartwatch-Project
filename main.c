@@ -14,7 +14,6 @@
 #include <xc.h>
 
 // ---------------- Button Pin Defines ----------------
-// Adjust these to match your hardware (active-low assumed)
 #define S1_PORT PORTAbits.RA0
 #define S2_PORT PORTAbits.RA1
 #define S1_TRIS TRISAbits.TRISA0
@@ -29,6 +28,17 @@
 #define MEASURE_MODE 0x08
 #define HISTORY_SIZE 60
 #define STEP_THRESHOLD 500.0f
+
+// ---------------- New Type and Globals for Set Time ----------------
+typedef struct
+{
+    uint8_t hours;
+    uint8_t minutes;
+} TimeSetting;
+
+TimeSetting setClock = {8, 24};
+// 0 means hours selected; 1 means minutes selected.
+uint8_t timeSelection = 0;
 
 typedef struct
 {
@@ -47,8 +57,9 @@ static uint8_t currentSecondIndex = 0;
 static float displayedPace = 0.0f;
 // Global seconds counter (updated every Timer1 interrupt)
 static uint32_t globalSeconds = 0;
-bool is12HourFormat = false;      // Tracks if we are in 12H mode (true) or 24H (false)
-bool inTimeFormatSubpage = false; // Are we currently in the “12H/24H” sub-page?
+bool is12HourFormat = false;
+bool inTimeFormatSubpage = false;
+bool inTimeSetSubpage = false;
 // For the sub-page selection: 0 => “12H”, 1 => “24H”
 uint8_t timeFormatSelectedIndex = 0;
 static bool footToggle = false;
@@ -62,6 +73,10 @@ ClockTime currentTime = {8, 24, 35, 24, 1};
 // ---------------- Function declaration to avoid implicit warnings ----------------
 void updateMenuClock(void);
 void drawTimeFormatSubpage(void);
+void drawSetTimeMenuBase(void);
+void drawSetTimeStatus(void);
+void handleSetTimeInput(void);
+bool detectTiltForSave(void);
 
 // ---------------- Foot Bitmaps (16×16) ----------------
 static const uint16_t foot1Bitmap[16] = {
@@ -417,6 +432,121 @@ void drawTimeFormatSubpage(void)
     }
 }
 
+// ---------------- SET TIME SYSTEM ---------------- //
+void drawSetTimeMenuBase(void)
+{
+    oledC_clearScreen();
+
+    // Clear any mini clock area.
+    oledC_DrawRectangle(30, 2, 115, 10, OLEDC_COLOR_BLACK);
+
+    // Display header.
+    oledC_DrawString(6, 10, 2, 2, (uint8_t *)"Set Time", OLEDC_COLOR_WHITE);
+
+    if (timeSelection == 0)
+    {
+        // Hours selected: draw hours box with white border and black fill.
+        oledC_DrawRectangle(8, 40, 44, 64, OLEDC_COLOR_WHITE);
+        oledC_DrawRectangle(10, 42, 42, 62, OLEDC_COLOR_BLACK);
+
+        // Draw minute box completely black (shifted left).
+        oledC_DrawRectangle(50, 40, 86, 64, OLEDC_COLOR_BLACK);
+        oledC_DrawRectangle(52, 42, 84, 62, OLEDC_COLOR_BLACK);
+    }
+    else
+    {
+        // Minutes selected: draw minute box with white border and black fill.
+        oledC_DrawRectangle(8, 40, 44, 64, OLEDC_COLOR_BLACK);
+        oledC_DrawRectangle(10, 42, 42, 62, OLEDC_COLOR_BLACK);
+
+        oledC_DrawRectangle(50, 40, 86, 64, OLEDC_COLOR_WHITE);
+        oledC_DrawRectangle(52, 42, 84, 62, OLEDC_COLOR_BLACK);
+    }
+
+    drawSetTimeStatus();
+}
+
+// Update the displayed numbers (hours and minutes).
+void drawSetTimeStatus(void)
+{
+    char buf[3];
+
+    // Clear the region where the hour value is drawn.
+    oledC_DrawRectangle(15, 46, 43, 62, OLEDC_COLOR_BLACK);
+    sprintf(buf, "%02d", setClock.hours);
+    oledC_DrawString(15, 46, 2, 2, (uint8_t *)buf, OLEDC_COLOR_WHITE);
+
+    // Clear the region where the minute value is drawn.
+    oledC_DrawRectangle(55, 46, 83, 62, OLEDC_COLOR_BLACK);
+    sprintf(buf, "%02d", setClock.minutes);
+    oledC_DrawString(55, 46, 2, 2, (uint8_t *)buf, OLEDC_COLOR_WHITE);
+}
+
+// Handle input for the Set Time page using RA11 (S1) and RA12 (S2).
+void handleSetTimeInput(void)
+{
+    // Using the same structure as in your 12H/24H page.
+    static bool s1WasPressed = false;
+    static bool s2WasPressed = false;
+
+    // Read buttons using RA11 and RA12.
+    bool s1State = (PORTAbits.RA11 == 0);
+    bool s2State = (PORTAbits.RA12 == 0);
+
+    // If both buttons are pressed (new press), toggle the selected field.
+    if (s1State && s2State && !s1WasPressed && !s2WasPressed)
+    {
+        timeSelection = !timeSelection;
+        drawSetTimeMenuBase();
+    }
+    // If S1 is pressed alone, increase the selected value.
+    else if (s1State && !s1WasPressed && !(s1State && s2State))
+    {
+        if (timeSelection == 0)
+            setClock.hours = (setClock.hours + 1) % 24;
+        else
+            setClock.minutes = (setClock.minutes + 1) % 60;
+        drawSetTimeStatus();
+    }
+    // If S2 is pressed alone, decrease the selected value.
+    else if (s2State && !s2WasPressed && !(s1State && s2State))
+    {
+        if (timeSelection == 0)
+            setClock.hours = (setClock.hours == 0) ? 23 : setClock.hours - 1;
+        else
+            setClock.minutes = (setClock.minutes == 0) ? 59 : setClock.minutes - 1;
+        drawSetTimeStatus();
+    }
+
+    s1WasPressed = s1State;
+    s2WasPressed = s2State;
+}
+
+void handleSetTimePage(void)
+{
+    inTimeSetSubpage = true; // Enter Set Time page.
+
+    // Initialize temporary time values from currentTime.
+    setClock.hours = currentTime.hours;
+    setClock.minutes = currentTime.minutes;
+    timeSelection = 0; // Start with hours selected.
+
+    drawSetTimeMenuBase();
+
+    // Wait until both buttons are released to clear any prior presses.
+    while ((PORTAbits.RA11 == 0) || (PORTAbits.RA12 == 0))
+    {
+        DELAY_milliseconds(10);
+    }
+
+    // Blocking loop: poll S1 and S2.
+    while (inTimeSetSubpage)
+    {
+        handleSetTimeInput();
+        DELAY_milliseconds(100);
+    }
+}
+
 // ---------------- MENU SYSTEM (Integrated in main.c) ----------------
 #define MENU_ITEMS_COUNT 5
 const char *menuItems[MENU_ITEMS_COUNT] = {
@@ -514,7 +644,9 @@ void executeMenuAction(void)
         drawMenu();
         break;
     case 2:
-        // TODO: Set Time
+        // inMenu = false;
+        handleSetTimePage();
+        drawMenu();
         break;
     case 3:
         // TODO: Set Date

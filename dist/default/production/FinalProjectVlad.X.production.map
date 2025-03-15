@@ -226,31 +226,31 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100              0x1b80          0x2940  (10560)
-.const                      0x1c80               0x47e           0x6bd  (1725)
-.text                       0x20fe              0x1a24          0x2736  (10038)
-.dinit                      0x3b22                0xa6            0xf9  (249)
-.text                       0x3bc8               0x1b2           0x28b  (651)
-.init.delay32               0x3d7a                0x1c            0x2a  (42)
-.text                       0x3d96                0x24            0x36  (54)
+.const                      0x1c80               0x48c           0x6d2  (1746)
+.text                       0x210c              0x1c84          0x2ac6  (10950)
+.dinit                      0x3d90                0xa6            0xf9  (249)
+.text                       0x3e36               0x1b2           0x28b  (651)
+.init.delay32               0x3fe8                0x1c            0x2a  (42)
+.text                       0x4004                0x24            0x36  (54)
 
-                 Total "program" memory used (bytes):         0x5b17  (23319) 8%
+                 Total "program" memory used (bytes):         0x5ebc  (24252) 9%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0            0x2c  (44)
-.ndata                       0x82c                   0             0x2  (2)
-.nbss                        0x82e                   0             0x2  (2)
-.bss                         0x830                   0           0x252  (594)
-.data                        0xa82                   0            0x42  (66)
-.bss                         0xac4                   0            0x20  (32)
-.data                        0xae4                   0            0x2e  (46)
-.bss                         0xb12                   0             0x2  (2)
-.data                        0xb14                   0             0x2  (2)
+.nbss                        0x800                   0            0x32  (50)
+.ndata                       0x832                   0             0x2  (2)
+.nbss                        0x834                   0             0x2  (2)
+.bss                         0x836                   0           0x252  (594)
+.data                        0xa88                   0            0x42  (66)
+.bss                         0xaca                   0            0x20  (32)
+.data                        0xaea                   0            0x30  (48)
+.bss                         0xb1a                   0             0x2  (2)
+.data                        0xb1c                   0             0x2  (2)
 
-                 Total "data" memory used (bytes):          0x316  (790) 4%
+                 Total "data" memory used (bytes):          0x31e  (798) 4%
 
 
 Dynamic Memory Usage
@@ -258,50 +258,56 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0xb16                              0x3cea  (15594)
+stack                        0xb1e                              0x3ce2  (15586)
 
-                 Maximum dynamic memory (bytes):         0x3cea  (15594)
+                 Maximum dynamic memory (bytes):         0x3ce2  (15586)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x080e                  _is12HourFormat
-                    0x080f                  _inTimeFormatSubpage
-                    0x0810                  _timeFormatSelectedIndex
-                    0x0812                  _forceClockRedraw
-                    0x0813                  _inMenu
-                    0x0814                  _selectedMenuItem
-                    0x0820                  _i2c1_driver_busCollisionISR
-                    0x0822                  _i2c1_driver_Masteri2cISR
-                    0x0824                  _i2c1_driver_Slavei2cISR
-                    0x082a                  _spi1_interruptHandler
-                    0x0a82                  __stdout
-                    0x0a84                  ___stdout_used
-                    0x0b02                  _currentTime
-                    0x0b08                  _menuItems
-                    0x0b12                  ___errno_val
-                    0x0b14                  ___C30_UART
+                    0x0800                  _timeSelection
+                    0x0810                  _is12HourFormat
+                    0x0811                  _inTimeFormatSubpage
+                    0x0812                  _inTimeSetSubpage
+                    0x0813                  _timeFormatSelectedIndex
+                    0x0815                  _forceClockRedraw
+                    0x0816                  _inMenu
+                    0x0817                  _selectedMenuItem
+                    0x0826                  _i2c1_driver_busCollisionISR
+                    0x0828                  _i2c1_driver_Masteri2cISR
+                    0x082a                  _i2c1_driver_Slavei2cISR
+                    0x0830                  _spi1_interruptHandler
+                    0x0a88                  __stdout
+                    0x0a8a                  ___stdout_used
+                    0x0b08                  _setClock
+                    0x0b0a                  _currentTime
+                    0x0b10                  _menuItems
+                    0x0b1a                  ___errno_val
+                    0x0b1c                  ___C30_UART
 
 External Symbols in Data Memory (by name):
 
-                    0x0b14                  ___C30_UART
-                    0x0b12                  ___errno_val
-                    0x0a84                  ___stdout_used
-                    0x0a82                  __stdout
-                    0x0b02                  _currentTime
-                    0x0812                  _forceClockRedraw
-                    0x0822                  _i2c1_driver_Masteri2cISR
-                    0x0824                  _i2c1_driver_Slavei2cISR
-                    0x0820                  _i2c1_driver_busCollisionISR
-                    0x0813                  _inMenu
-                    0x080f                  _inTimeFormatSubpage
-                    0x080e                  _is12HourFormat
-                    0x0b08                  _menuItems
-                    0x0814                  _selectedMenuItem
-                    0x082a                  _spi1_interruptHandler
-                    0x0810                  _timeFormatSelectedIndex
+                    0x0b1c                  ___C30_UART
+                    0x0b1a                  ___errno_val
+                    0x0a8a                  ___stdout_used
+                    0x0a88                  __stdout
+                    0x0b0a                  _currentTime
+                    0x0815                  _forceClockRedraw
+                    0x0828                  _i2c1_driver_Masteri2cISR
+                    0x082a                  _i2c1_driver_Slavei2cISR
+                    0x0826                  _i2c1_driver_busCollisionISR
+                    0x0816                  _inMenu
+                    0x0811                  _inTimeFormatSubpage
+                    0x0812                  _inTimeSetSubpage
+                    0x0810                  _is12HourFormat
+                    0x0b10                  _menuItems
+                    0x0817                  _selectedMenuItem
+                    0x0b08                  _setClock
+                    0x0830                  _spi1_interruptHandler
+                    0x0813                  _timeFormatSelectedIndex
+                    0x0800                  _timeSelection
 
 External Symbols in Program Memory (by address):
 
@@ -317,18 +323,18 @@ External Symbols in Program Memory (by address):
                   0x0002d6                  __T1Interrupt
                   0x000390                  __DefaultInterrupt
                   0x00042c                  ___eqsf2
-                  0x00042c                  ___lesf2
                   0x00042c                  ___ltsf2
+                  0x00042c                  ___lesf2
                   0x000430                  ___gesf2
                   0x000430                  ___gtsf2
                   0x000434                  ___fixunssfsi
                   0x00046a                  ___floatsisf
                   0x000470                  ___floatunsisf
                   0x000474                  __funpack
-                  0x00049e                  ___subsf3
                   0x00049e                  ___subsf3x
-                  0x0004b0                  ___addsf3x
+                  0x00049e                  ___subsf3
                   0x0004b0                  ___addsf3
+                  0x0004b0                  ___addsf3x
                   0x00067a                  ___mulsf3
                   0x00067a                  ___mulsf3x
                   0x000786                  __dnrmpackf
@@ -381,10 +387,10 @@ External Symbols in Program Memory (by address):
                   0x001722                  ___pop_float
                   0x001768                  ___extendsfdf2
                   0x0017a6                  ___mulp32peds3
-                  0x0017a6                  ___mulsi3
                   0x0017a6                  ___mulp32eds3
-                  0x0017b2                  ___divsf3
+                  0x0017a6                  ___mulsi3
                   0x0017b2                  ___divsf3x
+                  0x0017b2                  ___divsf3
                   0x001944                  __sdivf
                   0x001970                  __spackf
                   0x001a16                  __unpackf
@@ -541,112 +547,116 @@ External Symbols in Program Memory (by address):
                   0x001da2                  _OLEDC_COLOR_YELLOW
                   0x001da4                  _OLEDC_COLOR_YELLOWGREEN
                   0x001da6                  _baselineGravity
-                  0x0020fe                  _errorStop
-                  0x002120                  _readAxis
-                  0x0021a6                  _initAccelerometer
-                  0x002250                  _detectStep
-                  0x00232a                  _drawSteps
-                  0x00250e                  _updateDate
-                  0x002552                  _incrementTime
-                  0x0025aa                  _drawClock
-                  0x002732                  _drawFootIcon
-                  0x002794                  _handleTimeFormatSelection
-                  0x002832                  _drawTimeFormatSubpage
-                  0x0028c0                  _drawMenu
-                  0x002938                  _updateMenuClock
-                  0x002a04                  _executeMenuAction
-                  0x002a54                  _Timer_Initialize
-                  0x002a6e                  _Timer1_Interrupt_Initialize
-                  0x002a84                  _User_Initialize
-                  0x002abc                  _main
-                  0x002c22                  _oledC_createShape
-                  0x002d52                  _oledC_ReadPoint
-                  0x002d82                  _oledC_DrawPoint
-                  0x002dba                  _oledC_DrawThickPoint
-                  0x002ec2                  _oledC_DrawCircle
-                  0x002fd4                  _oledC_DrawRing
-                  0x0030d0                  _oledC_DrawLine
-                  0x003170                  _oledC_DrawRectangle
-                  0x0031be                  _oledC_DrawCharacter
-                  0x00327c                  _oledC_DrawString
-                  0x0032c2                  _oledC_DrawBitmap
-                  0x003396                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
-                  0x0033ac                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
-                  0x0033c6                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
-                  0x0033e4                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
-                  0x003402                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
-                  0x003424                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
-                  0x003446                  build/default/production/oledDriver/oledC_shapes.o:_drawString
-                  0x003468                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
-                  0x00348e                  _oledC_parseIntToRGB
-                  0x0034dc                  _oledC_parseRGBToInt
-                  0x003588                  _oledC_sendCommand
-                  0x0035c6                  _oledC_setRowAddressBounds
-                  0x0035f0                  _oledC_setColumnAddressBounds
-                  0x003626                  _oledC_setSleepMode
-                  0x003640                  _oledC_setDisplayOrientation
-                  0x00365e                  _oledC_startReadingDisplay
-                  0x003670                  _oledC_stopReadingDisplay
-                  0x003678                  _oledC_readColor
-                  0x003696                  _oledC_startWritingDisplay
-                  0x0036a8                  _oledC_stopWritingDisplay
-                  0x0036b4                  _oledC_sendColor
-                  0x0036ca                  _oledC_sendColorInt
-                  0x0036f0                  _oledC_open
-                  0x0036f8                  _oledC_setup
-                  0x00372c                  _oledC_clearScreen
-                  0x003766                  _oledC_setBackground
-                  0x003774                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
-                  0x00377c                  _initShapesMem
-                  0x0037a8                  _oledC_removeShape
-                  0x0037de                  _oledC_getShape
-                  0x0037fa                  _oledC_addShape
-                  0x003854                  _oledC_redrawIndex
-                  0x003872                  _oledC_redrawTo
-                  0x003880                  _oledC_redrawFrom
-                  0x00388e                  _oledC_redrawSome
-                  0x0038da                  _oledC_eraseShape
-                  0x003904                  _oledC_eraseAll
-                  0x003930                  _oledC_redrawAll
-                  0x00393c                  _spi1_close
-                  0x003944                  _spi1_open
-                  0x003964                  _spi1_exchangeByte
-                  0x00397e                  _spi1_exchangeBlock
-                  0x0039b0                  _spi1_writeBlock
-                  0x0039de                  _spi1_readBlock
-                  0x003a0e                  _spi1_writeByte
-                  0x003a1a                  _spi1_readByte
-                  0x003a24                  _spi1_isr
-                  0x003a40                  _spi1_setSpiISR
-                  0x003a4c                  _i2c1_driver_close
-                  0x003a54                  _i2c1_driver_open
-                  0x003a74                  _i2c1_driver_start
-                  0x003a86                  _i2c1_driver_restart
-                  0x003a98                  _i2c1_driver_stop
-                  0x003aaa                  _i2c1_driver_isNACK
-                  0x003ac2                  _i2c1_driver_startRX
-                  0x003aca                  _i2c1_driver_waitRX
-                  0x003ada                  _i2c1_driver_getRXData
-                  0x003ae4                  _i2c1_driver_TXData
-                  0x003afc                  _i2c1_driver_sendACK
-                  0x003b10                  _i2c1_driver_sendNACK
-                  0x003b1a                  _i2c1_driver_clearBusCollision
-                  0x003be0                  _i2c1_open
-                  0x003be8                  _i2cReadSlaveRegister
-                  0x003c30                  _i2cWriteSlave
-                  0x003c66                  _PIN_MANAGER_Initialize
-                  0x003cde                  _DELAY_milliseconds
-                  0x003d00                  _DELAY_microseconds
-                  0x003d34                  _CLOCK_Initialize
-                  0x003d7a                  ___delay32
-                  0x003dae                  _SYSTEM_Initialize
+                  0x00210c                  _errorStop
+                  0x00212e                  _readAxis
+                  0x0021b4                  _initAccelerometer
+                  0x00225e                  _detectStep
+                  0x002338                  _drawSteps
+                  0x00251c                  _updateDate
+                  0x002560                  _incrementTime
+                  0x0025b8                  _drawClock
+                  0x002740                  _drawFootIcon
+                  0x0027a2                  _handleTimeFormatSelection
+                  0x002840                  _drawTimeFormatSubpage
+                  0x0028ce                  _drawSetTimeMenuBase
+                  0x002970                  _drawSetTimeStatus
+                  0x0029da                  _handleSetTimeInput
+                  0x002ae6                  _handleSetTimePage
+                  0x002b2c                  _drawMenu
+                  0x002ba4                  _updateMenuClock
+                  0x002c70                  _executeMenuAction
+                  0x002cc2                  _Timer_Initialize
+                  0x002cdc                  _Timer1_Interrupt_Initialize
+                  0x002cf2                  _User_Initialize
+                  0x002d2a                  _main
+                  0x002e90                  _oledC_createShape
+                  0x002fc0                  _oledC_ReadPoint
+                  0x002ff0                  _oledC_DrawPoint
+                  0x003028                  _oledC_DrawThickPoint
+                  0x003130                  _oledC_DrawCircle
+                  0x003242                  _oledC_DrawRing
+                  0x00333e                  _oledC_DrawLine
+                  0x0033de                  _oledC_DrawRectangle
+                  0x00342c                  _oledC_DrawCharacter
+                  0x0034ea                  _oledC_DrawString
+                  0x003530                  _oledC_DrawBitmap
+                  0x003604                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
+                  0x00361a                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
+                  0x003634                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
+                  0x003652                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
+                  0x003670                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
+                  0x003692                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
+                  0x0036b4                  build/default/production/oledDriver/oledC_shapes.o:_drawString
+                  0x0036d6                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
+                  0x0036fc                  _oledC_parseIntToRGB
+                  0x00374a                  _oledC_parseRGBToInt
+                  0x0037f6                  _oledC_sendCommand
+                  0x003834                  _oledC_setRowAddressBounds
+                  0x00385e                  _oledC_setColumnAddressBounds
+                  0x003894                  _oledC_setSleepMode
+                  0x0038ae                  _oledC_setDisplayOrientation
+                  0x0038cc                  _oledC_startReadingDisplay
+                  0x0038de                  _oledC_stopReadingDisplay
+                  0x0038e6                  _oledC_readColor
+                  0x003904                  _oledC_startWritingDisplay
+                  0x003916                  _oledC_stopWritingDisplay
+                  0x003922                  _oledC_sendColor
+                  0x003938                  _oledC_sendColorInt
+                  0x00395e                  _oledC_open
+                  0x003966                  _oledC_setup
+                  0x00399a                  _oledC_clearScreen
+                  0x0039d4                  _oledC_setBackground
+                  0x0039e2                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
+                  0x0039ea                  _initShapesMem
+                  0x003a16                  _oledC_removeShape
+                  0x003a4c                  _oledC_getShape
+                  0x003a68                  _oledC_addShape
+                  0x003ac2                  _oledC_redrawIndex
+                  0x003ae0                  _oledC_redrawTo
+                  0x003aee                  _oledC_redrawFrom
+                  0x003afc                  _oledC_redrawSome
+                  0x003b48                  _oledC_eraseShape
+                  0x003b72                  _oledC_eraseAll
+                  0x003b9e                  _oledC_redrawAll
+                  0x003baa                  _spi1_close
+                  0x003bb2                  _spi1_open
+                  0x003bd2                  _spi1_exchangeByte
+                  0x003bec                  _spi1_exchangeBlock
+                  0x003c1e                  _spi1_writeBlock
+                  0x003c4c                  _spi1_readBlock
+                  0x003c7c                  _spi1_writeByte
+                  0x003c88                  _spi1_readByte
+                  0x003c92                  _spi1_isr
+                  0x003cae                  _spi1_setSpiISR
+                  0x003cba                  _i2c1_driver_close
+                  0x003cc2                  _i2c1_driver_open
+                  0x003ce2                  _i2c1_driver_start
+                  0x003cf4                  _i2c1_driver_restart
+                  0x003d06                  _i2c1_driver_stop
+                  0x003d18                  _i2c1_driver_isNACK
+                  0x003d30                  _i2c1_driver_startRX
+                  0x003d38                  _i2c1_driver_waitRX
+                  0x003d48                  _i2c1_driver_getRXData
+                  0x003d52                  _i2c1_driver_TXData
+                  0x003d6a                  _i2c1_driver_sendACK
+                  0x003d7e                  _i2c1_driver_sendNACK
+                  0x003d88                  _i2c1_driver_clearBusCollision
+                  0x003e4e                  _i2c1_open
+                  0x003e56                  _i2cReadSlaveRegister
+                  0x003e9e                  _i2cWriteSlave
+                  0x003ed4                  _PIN_MANAGER_Initialize
+                  0x003f4c                  _DELAY_milliseconds
+                  0x003f6e                  _DELAY_microseconds
+                  0x003fa2                  _CLOCK_Initialize
+                  0x003fe8                  ___delay32
+                  0x00401c                  _SYSTEM_Initialize
                   0x02af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x003d34                  _CLOCK_Initialize
-                  0x003d00                  _DELAY_microseconds
-                  0x003cde                  _DELAY_milliseconds
+                  0x003fa2                  _CLOCK_Initialize
+                  0x003f6e                  _DELAY_microseconds
+                  0x003f4c                  _DELAY_milliseconds
                   0x001c80                  _OLEDC_COLOR_ALICEBLUE
                   0x001c82                  _OLEDC_COLOR_ANTIQUEWHITE
                   0x001c84                  _OLEDC_COLOR_AQUA
@@ -794,11 +804,11 @@ External Symbols in Program Memory (by name):
                   0x001da0                  _OLEDC_COLOR_WHITESMOKE
                   0x001da2                  _OLEDC_COLOR_YELLOW
                   0x001da4                  _OLEDC_COLOR_YELLOWGREEN
-                  0x003c66                  _PIN_MANAGER_Initialize
-                  0x003dae                  _SYSTEM_Initialize
-                  0x002a6e                  _Timer1_Interrupt_Initialize
-                  0x002a54                  _Timer_Initialize
-                  0x002a84                  _User_Initialize
+                  0x003ed4                  _PIN_MANAGER_Initialize
+                  0x00401c                  _SYSTEM_Initialize
+                  0x002cdc                  _Timer1_Interrupt_Initialize
+                  0x002cc2                  _Timer_Initialize
+                  0x002cf2                  _User_Initialize
                   0x000276                  __AddressError
                   0x000390                  __DefaultInterrupt
                   0x02af00                  __FSEC.sec
@@ -810,7 +820,7 @@ External Symbols in Program Memory (by name):
                   0x0004b0                  ___addsf3
                   0x0004b0                  ___addsf3x
                   0x000cfa                  ___cvt_u
-                  0x003d7a                  ___delay32
+                  0x003fe8                  ___delay32
                   0x001bc4                  ___divdi3
                   0x0017b2                  ___divsf3
                   0x0017b2                  ___divsf3x
@@ -881,87 +891,91 @@ External Symbols in Program Memory (by name):
                   0x001a16                  __unpackf
                   0x001540                  _atoi
                   0x001da6                  _baselineGravity
-                  0x002250                  _detectStep
-                  0x0025aa                  _drawClock
-                  0x002732                  _drawFootIcon
-                  0x0028c0                  _drawMenu
-                  0x00232a                  _drawSteps
-                  0x002832                  _drawTimeFormatSubpage
-                  0x0020fe                  _errorStop
-                  0x002a04                  _executeMenuAction
-                  0x002794                  _handleTimeFormatSelection
-                  0x003ae4                  _i2c1_driver_TXData
-                  0x003b1a                  _i2c1_driver_clearBusCollision
-                  0x003a4c                  _i2c1_driver_close
-                  0x003ada                  _i2c1_driver_getRXData
-                  0x003aaa                  _i2c1_driver_isNACK
-                  0x003a54                  _i2c1_driver_open
-                  0x003a86                  _i2c1_driver_restart
-                  0x003afc                  _i2c1_driver_sendACK
-                  0x003b10                  _i2c1_driver_sendNACK
-                  0x003a74                  _i2c1_driver_start
-                  0x003ac2                  _i2c1_driver_startRX
-                  0x003a98                  _i2c1_driver_stop
-                  0x003aca                  _i2c1_driver_waitRX
-                  0x003be0                  _i2c1_open
-                  0x003be8                  _i2cReadSlaveRegister
-                  0x003c30                  _i2cWriteSlave
-                  0x002552                  _incrementTime
-                  0x0021a6                  _initAccelerometer
-                  0x00377c                  _initShapesMem
-                  0x002abc                  _main
+                  0x00225e                  _detectStep
+                  0x0025b8                  _drawClock
+                  0x002740                  _drawFootIcon
+                  0x002b2c                  _drawMenu
+                  0x0028ce                  _drawSetTimeMenuBase
+                  0x002970                  _drawSetTimeStatus
+                  0x002338                  _drawSteps
+                  0x002840                  _drawTimeFormatSubpage
+                  0x00210c                  _errorStop
+                  0x002c70                  _executeMenuAction
+                  0x0029da                  _handleSetTimeInput
+                  0x002ae6                  _handleSetTimePage
+                  0x0027a2                  _handleTimeFormatSelection
+                  0x003d52                  _i2c1_driver_TXData
+                  0x003d88                  _i2c1_driver_clearBusCollision
+                  0x003cba                  _i2c1_driver_close
+                  0x003d48                  _i2c1_driver_getRXData
+                  0x003d18                  _i2c1_driver_isNACK
+                  0x003cc2                  _i2c1_driver_open
+                  0x003cf4                  _i2c1_driver_restart
+                  0x003d6a                  _i2c1_driver_sendACK
+                  0x003d7e                  _i2c1_driver_sendNACK
+                  0x003ce2                  _i2c1_driver_start
+                  0x003d30                  _i2c1_driver_startRX
+                  0x003d06                  _i2c1_driver_stop
+                  0x003d38                  _i2c1_driver_waitRX
+                  0x003e4e                  _i2c1_open
+                  0x003e56                  _i2cReadSlaveRegister
+                  0x003e9e                  _i2cWriteSlave
+                  0x002560                  _incrementTime
+                  0x0021b4                  _initAccelerometer
+                  0x0039ea                  _initShapesMem
+                  0x002d2a                  _main
                   0x000b06                  _memcpy
                   0x001598                  _memset
-                  0x0032c2                  _oledC_DrawBitmap
-                  0x0031be                  _oledC_DrawCharacter
-                  0x002ec2                  _oledC_DrawCircle
-                  0x0030d0                  _oledC_DrawLine
-                  0x002d82                  _oledC_DrawPoint
-                  0x003170                  _oledC_DrawRectangle
-                  0x002fd4                  _oledC_DrawRing
-                  0x00327c                  _oledC_DrawString
-                  0x002dba                  _oledC_DrawThickPoint
-                  0x002d52                  _oledC_ReadPoint
-                  0x0037fa                  _oledC_addShape
-                  0x00372c                  _oledC_clearScreen
-                  0x002c22                  _oledC_createShape
-                  0x003904                  _oledC_eraseAll
-                  0x0038da                  _oledC_eraseShape
-                  0x0037de                  _oledC_getShape
-                  0x0036f0                  _oledC_open
-                  0x00348e                  _oledC_parseIntToRGB
-                  0x0034dc                  _oledC_parseRGBToInt
-                  0x003678                  _oledC_readColor
-                  0x003930                  _oledC_redrawAll
-                  0x003880                  _oledC_redrawFrom
-                  0x003854                  _oledC_redrawIndex
-                  0x00388e                  _oledC_redrawSome
-                  0x003872                  _oledC_redrawTo
-                  0x0037a8                  _oledC_removeShape
-                  0x0036b4                  _oledC_sendColor
-                  0x0036ca                  _oledC_sendColorInt
-                  0x003588                  _oledC_sendCommand
-                  0x003766                  _oledC_setBackground
-                  0x0035f0                  _oledC_setColumnAddressBounds
-                  0x003640                  _oledC_setDisplayOrientation
-                  0x0035c6                  _oledC_setRowAddressBounds
-                  0x003626                  _oledC_setSleepMode
-                  0x0036f8                  _oledC_setup
-                  0x00365e                  _oledC_startReadingDisplay
-                  0x003696                  _oledC_startWritingDisplay
-                  0x003670                  _oledC_stopReadingDisplay
-                  0x0036a8                  _oledC_stopWritingDisplay
-                  0x002120                  _readAxis
-                  0x00393c                  _spi1_close
-                  0x00397e                  _spi1_exchangeBlock
-                  0x003964                  _spi1_exchangeByte
-                  0x003a24                  _spi1_isr
-                  0x003944                  _spi1_open
-                  0x0039de                  _spi1_readBlock
-                  0x003a1a                  _spi1_readByte
-                  0x003a40                  _spi1_setSpiISR
-                  0x0039b0                  _spi1_writeBlock
-                  0x003a0e                  _spi1_writeByte
+                  0x003530                  _oledC_DrawBitmap
+                  0x00342c                  _oledC_DrawCharacter
+                  0x003130                  _oledC_DrawCircle
+                  0x00333e                  _oledC_DrawLine
+                  0x002ff0                  _oledC_DrawPoint
+                  0x0033de                  _oledC_DrawRectangle
+                  0x003242                  _oledC_DrawRing
+                  0x0034ea                  _oledC_DrawString
+                  0x003028                  _oledC_DrawThickPoint
+                  0x002fc0                  _oledC_ReadPoint
+                  0x003a68                  _oledC_addShape
+                  0x00399a                  _oledC_clearScreen
+                  0x002e90                  _oledC_createShape
+                  0x003b72                  _oledC_eraseAll
+                  0x003b48                  _oledC_eraseShape
+                  0x003a4c                  _oledC_getShape
+                  0x00395e                  _oledC_open
+                  0x0036fc                  _oledC_parseIntToRGB
+                  0x00374a                  _oledC_parseRGBToInt
+                  0x0038e6                  _oledC_readColor
+                  0x003b9e                  _oledC_redrawAll
+                  0x003aee                  _oledC_redrawFrom
+                  0x003ac2                  _oledC_redrawIndex
+                  0x003afc                  _oledC_redrawSome
+                  0x003ae0                  _oledC_redrawTo
+                  0x003a16                  _oledC_removeShape
+                  0x003922                  _oledC_sendColor
+                  0x003938                  _oledC_sendColorInt
+                  0x0037f6                  _oledC_sendCommand
+                  0x0039d4                  _oledC_setBackground
+                  0x00385e                  _oledC_setColumnAddressBounds
+                  0x0038ae                  _oledC_setDisplayOrientation
+                  0x003834                  _oledC_setRowAddressBounds
+                  0x003894                  _oledC_setSleepMode
+                  0x003966                  _oledC_setup
+                  0x0038cc                  _oledC_startReadingDisplay
+                  0x003904                  _oledC_startWritingDisplay
+                  0x0038de                  _oledC_stopReadingDisplay
+                  0x003916                  _oledC_stopWritingDisplay
+                  0x00212e                  _readAxis
+                  0x003baa                  _spi1_close
+                  0x003bec                  _spi1_exchangeBlock
+                  0x003bd2                  _spi1_exchangeByte
+                  0x003c92                  _spi1_isr
+                  0x003bb2                  _spi1_open
+                  0x003c4c                  _spi1_readBlock
+                  0x003c88                  _spi1_readByte
+                  0x003cae                  _spi1_setSpiISR
+                  0x003c1e                  _spi1_writeBlock
+                  0x003c7c                  _spi1_writeByte
                   0x00098e                  _sqrtf
                   0x000b22                  _strcat
                   0x000b36                  _strcmp
@@ -969,17 +983,17 @@ External Symbols in Program Memory (by name):
                   0x000b5a                  _strlen
                   0x0016b4                  _tolower
                   0x0016c2                  _toupper
-                  0x00250e                  _updateDate
-                  0x002938                  _updateMenuClock
-                  0x003774                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
-                  0x003468                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
-                  0x003424                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
-                  0x0033ac                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
-                  0x003402                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
-                  0x003396                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
-                  0x0033e4                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
-                  0x0033c6                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
-                  0x003446                  build/default/production/oledDriver/oledC_shapes.o:_drawString
+                  0x00251c                  _updateDate
+                  0x002ba4                  _updateMenuClock
+                  0x0039e2                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
+                  0x0036d6                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
+                  0x003692                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
+                  0x00361a                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
+                  0x003670                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
+                  0x003604                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
+                  0x003652                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
+                  0x003634                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
+                  0x0036b4                  build/default/production/oledDriver/oledC_shapes.o:_drawString
 
 Memory Configuration
 
@@ -1350,7 +1364,7 @@ __FDEVOPT1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x82ee
+.debug_info       0x000000       0x8471
  *(.debug_info)
  .debug_info      0x000000        0xd51 build/default/production/oledDriver/oledC.o
  .debug_info      0x000d51        0x900 build/default/production/oledDriver/oledC_shapeHandler.o
@@ -1361,31 +1375,31 @@ __FDEVOPT1
  .debug_info      0x0037a9        0x1c6 build/default/production/System/delay.o
  .debug_info      0x00396f        0x15c build/default/production/System/system.o
  .debug_info      0x003acb        0x41d build/default/production/System/traps.o
- .debug_info      0x003ee8       0x2cab build/default/production/main.o
- .debug_info      0x006b93        0x81a build/default/production/i2cDriver/i2c1_driver.o
- .debug_info      0x0073ad        0x27a build/default/production/Accel_i2c.o
- .debug_info      0x007627         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
- .debug_info      0x0076b4         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
- .debug_info      0x00773f         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
- .debug_info      0x0077cf         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
- .debug_info      0x00785e         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
- .debug_info      0x0078ef         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
- .debug_info      0x00797c         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
- .debug_info      0x007a19         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
- .debug_info      0x007ab6         0xa0 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
- .debug_info      0x007b56         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
- .debug_info      0x007bf8         0x9c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
- .debug_info      0x007c94         0x9f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
- .debug_info      0x007d33         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
- .debug_info      0x007dc1         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
- .debug_info      0x007e50         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
- .debug_info      0x007ee1         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
- .debug_info      0x007f6c         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
- .debug_info      0x007ffa         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
- .debug_info      0x00808a         0x8c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
- .debug_info      0x008116         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
- .debug_info      0x0081b3         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
- .debug_info      0x008250         0x9e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
+ .debug_info      0x003ee8       0x2e2e build/default/production/main.o
+ .debug_info      0x006d16        0x81a build/default/production/i2cDriver/i2c1_driver.o
+ .debug_info      0x007530        0x27a build/default/production/Accel_i2c.o
+ .debug_info      0x0077aa         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
+ .debug_info      0x007837         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
+ .debug_info      0x0078c2         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
+ .debug_info      0x007952         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
+ .debug_info      0x0079e1         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
+ .debug_info      0x007a72         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
+ .debug_info      0x007aff         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
+ .debug_info      0x007b9c         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
+ .debug_info      0x007c39         0xa0 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
+ .debug_info      0x007cd9         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
+ .debug_info      0x007d7b         0x9c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
+ .debug_info      0x007e17         0x9f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
+ .debug_info      0x007eb6         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
+ .debug_info      0x007f44         0x8f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
+ .debug_info      0x007fd3         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
+ .debug_info      0x008064         0x8b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
+ .debug_info      0x0080ef         0x8e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
+ .debug_info      0x00817d         0x90 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
+ .debug_info      0x00820d         0x8c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
+ .debug_info      0x008299         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
+ .debug_info      0x008336         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
+ .debug_info      0x0083d3         0x9e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0xf41
@@ -1425,7 +1439,7 @@ __FDEVOPT1
  .debug_abbrev    0x000f19         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
  .debug_abbrev    0x000f2d         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
 
-.debug_line       0x000000       0x180f
+.debug_line       0x000000       0x1854
  *(.debug_line)
  .debug_line      0x000000        0x195 build/default/production/oledDriver/oledC.o
  .debug_line      0x000195         0xea build/default/production/oledDriver/oledC_shapeHandler.o
@@ -1436,34 +1450,34 @@ __FDEVOPT1
  .debug_line      0x0007e2         0x99 build/default/production/System/delay.o
  .debug_line      0x00087b         0x41 build/default/production/System/system.o
  .debug_line      0x0008bc        0x130 build/default/production/System/traps.o
- .debug_line      0x0009ec        0x2ec build/default/production/main.o
- .debug_line      0x000cd8        0x134 build/default/production/i2cDriver/i2c1_driver.o
- .debug_line      0x000e0c         0x68 build/default/production/Accel_i2c.o
- .debug_line      0x000e74         0x37 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
- .debug_line      0x000eab         0x35 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
- .debug_line      0x000ee0         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
- .debug_line      0x000f33         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
- .debug_line      0x000f6d         0x3b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
- .debug_line      0x000fa8         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
- .debug_line      0x000ff2        0x136 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
- .debug_line      0x001128         0xcc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
- .debug_line      0x0011f4         0x72 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
- .debug_line      0x001266         0x7a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
- .debug_line      0x0012e0         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
- .debug_line      0x00133e         0x51 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
- .debug_line      0x00138f         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
- .debug_line      0x0013e2         0x47 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
- .debug_line      0x001429         0x6c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
- .debug_line      0x001495         0x5a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
- .debug_line      0x0014ef         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
- .debug_line      0x00152d         0x59 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
- .debug_line      0x001586         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
- .debug_line      0x0015c0        0x124 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
- .debug_line      0x0016e4         0x98 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
- .debug_line      0x00177c         0x79 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
- .debug_line      0x0017f5         0x1a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.DA_o)
+ .debug_line      0x0009ec        0x331 build/default/production/main.o
+ .debug_line      0x000d1d        0x134 build/default/production/i2cDriver/i2c1_driver.o
+ .debug_line      0x000e51         0x68 build/default/production/Accel_i2c.o
+ .debug_line      0x000eb9         0x37 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
+ .debug_line      0x000ef0         0x35 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
+ .debug_line      0x000f25         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
+ .debug_line      0x000f78         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
+ .debug_line      0x000fb2         0x3b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
+ .debug_line      0x000fed         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
+ .debug_line      0x001037        0x136 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.DA_o)
+ .debug_line      0x00116d         0xcc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.DA_o)
+ .debug_line      0x001239         0x72 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.DA_o)
+ .debug_line      0x0012ab         0x7a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.DA_o)
+ .debug_line      0x001325         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.DA_o)
+ .debug_line      0x001383         0x51 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.DA_o)
+ .debug_line      0x0013d4         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
+ .debug_line      0x001427         0x47 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
+ .debug_line      0x00146e         0x6c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
+ .debug_line      0x0014da         0x5a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
+ .debug_line      0x001534         0x3e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
+ .debug_line      0x001572         0x59 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
+ .debug_line      0x0015cb         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
+ .debug_line      0x001605        0x124 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.DA_o)
+ .debug_line      0x001729         0x98 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.DA_o)
+ .debug_line      0x0017c1         0x79 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.DA_o)
+ .debug_line      0x00183a         0x1a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.DA_o)
 
-.debug_frame      0x000000        0xd88
+.debug_frame      0x000000        0xe0c
  *(.debug_frame)
  .debug_frame     0x000000        0x236 build/default/production/oledDriver/oledC.o
  .debug_frame     0x000236        0x14c build/default/production/oledDriver/oledC_shapeHandler.o
@@ -1474,11 +1488,11 @@ __FDEVOPT1
  .debug_frame     0x00071a         0x48 build/default/production/System/delay.o
  .debug_frame     0x000762         0x2e build/default/production/System/system.o
  .debug_frame     0x000790        0x17e build/default/production/System/traps.o
- .debug_frame     0x00090e        0x298 build/default/production/main.o
- .debug_frame     0x000ba6        0x166 build/default/production/i2cDriver/i2c1_driver.o
- .debug_frame     0x000d0c         0x7c build/default/production/Accel_i2c.o
+ .debug_frame     0x00090e        0x31c build/default/production/main.o
+ .debug_frame     0x000c2a        0x166 build/default/production/i2cDriver/i2c1_driver.o
+ .debug_frame     0x000d90         0x7c build/default/production/Accel_i2c.o
 
-.debug_str        0x000000        0x2b0
+.debug_str        0x000000        0x2d8
  *(.debug_str)
  .debug_str       0x000000         0x28 build/default/production/oledDriver/oledC.o
  .debug_str       0x000028         0x46 build/default/production/oledDriver/oledC_shapeHandler.o
@@ -1487,8 +1501,8 @@ __FDEVOPT1
  .debug_str       0x0000bd         0x6b build/default/production/spiDriver/spi1_driver.o
  .debug_str       0x000128         0x12 build/default/production/System/clock.o
  .debug_str       0x00013a         0x18 build/default/production/System/traps.o
- .debug_str       0x000152        0x132 build/default/production/main.o
- .debug_str       0x000284         0x2c build/default/production/i2cDriver/i2c1_driver.o
+ .debug_str       0x000152        0x15a build/default/production/main.o
+ .debug_str       0x0002ac         0x2c build/default/production/i2cDriver/i2c1_driver.o
 
 .debug_loc
  *(.debug_loc)
@@ -1497,7 +1511,7 @@ __FDEVOPT1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000       0x18c6
+                  0x000000       0x1955
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000        0x1d0 build/default/production/oledDriver/oledC.o
@@ -1518,11 +1532,11 @@ __FDEVOPT1
  .debug_pubnames
                   0x00055b         0x7d build/default/production/System/traps.o
  .debug_pubnames
-                  0x0005d8       0x1100 build/default/production/main.o
+                  0x0005d8       0x118f build/default/production/main.o
  .debug_pubnames
-                  0x0016d8        0x1a3 build/default/production/i2cDriver/i2c1_driver.o
+                  0x001767        0x1a3 build/default/production/i2cDriver/i2c1_driver.o
  .debug_pubnames
-                  0x00187b         0x4b build/default/production/Accel_i2c.o
+                  0x00190a         0x4b build/default/production/Accel_i2c.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -3032,7 +3046,7 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x0003e0        0x59c
+                  0x0003e0        0x5ac
  .debug_pubtypes
                   0x0003e0         0xbe build/default/production/oledDriver/oledC.o
  .debug_pubtypes
@@ -3052,203 +3066,206 @@ LOAD data_init
  .debug_pubtypes
                   0x000753         0x71 build/default/production/System/traps.o
  .debug_pubtypes
-                  0x0007c4        0x124 build/default/production/main.o
+                  0x0007c4        0x134 build/default/production/main.o
  .debug_pubtypes
-                  0x0008e8         0x75 build/default/production/i2cDriver/i2c1_driver.o
+                  0x0008f8         0x75 build/default/production/i2cDriver/i2c1_driver.o
  .debug_pubtypes
-                  0x00095d         0x1f build/default/production/Accel_i2c.o
+                  0x00096d         0x1f build/default/production/Accel_i2c.o
 
 __c30_signature
-                  0x00097c        0x19e
+                  0x00098c        0x19e
  __c30_signature
-                  0x00097c          0x6 build/default/production/oledDriver/oledC.o
+                  0x00098c          0x6 build/default/production/oledDriver/oledC.o
  __c30_signature
-                  0x000982          0x6 build/default/production/oledDriver/oledC_shapeHandler.o
+                  0x000992          0x6 build/default/production/oledDriver/oledC_shapeHandler.o
  __c30_signature
-                  0x000988          0x6 build/default/production/oledDriver/oledC_shapes.o
+                  0x000998          0x6 build/default/production/oledDriver/oledC_shapes.o
  __c30_signature
-                  0x00098e          0x6 build/default/production/oledDriver/pin_manager.o
+                  0x00099e          0x6 build/default/production/oledDriver/pin_manager.o
  __c30_signature
-                  0x000994          0x6 build/default/production/spiDriver/spi1_driver.o
+                  0x0009a4          0x6 build/default/production/spiDriver/spi1_driver.o
  __c30_signature
-                  0x00099a          0x6 build/default/production/System/clock.o
+                  0x0009aa          0x6 build/default/production/System/clock.o
  __c30_signature
-                  0x0009a0          0x6 build/default/production/System/delay.o
+                  0x0009b0          0x6 build/default/production/System/delay.o
  __c30_signature
-                  0x0009a6          0x6 build/default/production/System/system.o
+                  0x0009b6          0x6 build/default/production/System/system.o
  __c30_signature
-                  0x0009ac          0x6 build/default/production/System/traps.o
+                  0x0009bc          0x6 build/default/production/System/traps.o
  __c30_signature
-                  0x0009b2          0x6 build/default/production/main.o
+                  0x0009c2          0x6 build/default/production/main.o
  __c30_signature
-                  0x0009b8          0x6 build/default/production/i2cDriver/i2c1_driver.o
+                  0x0009c8          0x6 build/default/production/i2cDriver/i2c1_driver.o
  __c30_signature
-                  0x0009be          0x6 build/default/production/Accel_i2c.o
+                  0x0009ce          0x6 build/default/production/Accel_i2c.o
  __c30_signature
-                  0x0009c4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extended24.o)
+                  0x0009d4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_extended24.o)
  __c30_signature
-                  0x0009ca          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_24.o)
+                  0x0009da          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_24.o)
  __c30_signature
-                  0x0009d0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32da.Meo)
+                  0x0009e0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32da.Meo)
  __c30_signature
-                  0x0009d6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
+                  0x0009e6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(feqltle.DA_o)
  __c30_signature
-                  0x0009dc          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
+                  0x0009ec          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.DA_o)
  __c30_signature
-                  0x0009e2          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
+                  0x0009f2          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.DA_o)
  __c30_signature
-                  0x0009e8          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
+                  0x0009f8          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.DA_o)
  __c30_signature
-                  0x0009ee          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
+                  0x0009fe          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.DA_o)
  __c30_signature
-                  0x0009f4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
+                  0x000a04          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.DA_o)
  __c30_signature
-                  0x0009fa          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
+                  0x000a0a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.DA_o)
  __c30_signature
-                  0x000a00          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
+                  0x000a10          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.DA_o)
  __c30_signature
-                  0x000a06          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
+                  0x000a16          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.DA_o)
  __c30_signature
-                  0x000a0c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
+                  0x000a1c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.DA_o)
  __c30_signature
-                  0x000a12          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
+                  0x000a22          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.DA_o)
  __c30_signature
-                  0x000a18          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a(sqrtf.DA_o)
+                  0x000a28          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a(sqrtf.DA_o)
  __c30_signature
-                  0x000a1e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.DA_o)
+                  0x000a2e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.DA_o)
  __c30_signature
-                  0x000a24          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dosux.DA_o)
+                  0x000a34          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dosux.DA_o)
  __c30_signature
-                  0x000a2a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_s.DA_o)
+                  0x000a3a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_s.DA_o)
  __c30_signature
-                  0x000a30          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_dosux.DA_o)
+                  0x000a40          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_dosux.DA_o)
  __c30_signature
-                  0x000a36          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_doux.DA_o)
+                  0x000a46          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_sprintf_doux.DA_o)
  __c30_signature
-                  0x000a3c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memcpy.DA_o)
+                  0x000a4c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memcpy.DA_o)
  __c30_signature
-                  0x000a42          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
+                  0x000a52          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
  __c30_signature
-                  0x000a48          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcat.DA_o)
+                  0x000a58          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcat.DA_o)
  __c30_signature
-                  0x000a4e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcmp.DA_o)
+                  0x000a5e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcmp.DA_o)
  __c30_signature
-                  0x000a54          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcpy.DA_o)
+                  0x000a64          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strcpy.DA_o)
  __c30_signature
-                  0x000a5a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strlen.DA_o)
+                  0x000a6a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(strlen.DA_o)
  __c30_signature
-                  0x000a60          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_d.DA_o)
+                  0x000a70          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_d.DA_o)
  __c30_signature
-                  0x000a66          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_o.DA_o)
+                  0x000a76          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_o.DA_o)
  __c30_signature
-                  0x000a6c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_s.DA_o)
+                  0x000a7c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_s.DA_o)
  __c30_signature
-                  0x000a72          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_u.DA_o)
+                  0x000a82          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_u.DA_o)
  __c30_signature
-                  0x000a78          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_x.DA_o)
+                  0x000a88          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_x.DA_o)
  __c30_signature
-                  0x000a7e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vfprintf.DA_o)
+                  0x000a8e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vfprintf.DA_o)
  __c30_signature
-                  0x000a84          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsprintf.DA_o)
+                  0x000a94          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsprintf.DA_o)
  __c30_signature
-                  0x000a8a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__io_init_needed.DA_o)
+                  0x000a9a          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__io_init_needed.DA_o)
  __c30_signature
-                  0x000a90          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
+                  0x000aa0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__out.DA_o)
  __c30_signature
-                  0x000a96          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_int.DA_o)
+                  0x000aa6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_int.DA_o)
  __c30_signature
-                  0x000a9c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_ptr.DA_o)
+                  0x000aac          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_ptr.DA_o)
  __c30_signature
-                  0x000aa2          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+                  0x000ab2          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
  __c30_signature
-                  0x000aa8          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__stdio_close.DA_o)
+                  0x000ab8          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__stdio_close.DA_o)
  __c30_signature
-                  0x000aae          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(atoi.DA_o)
+                  0x000abe          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(atoi.DA_o)
  __c30_signature
-                  0x000ab4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(lseek.DA_o)
+                  0x000ac4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(lseek.DA_o)
  __c30_signature
-                  0x000aba          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memset.DA_o)
+                  0x000aca          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(memset.DA_o)
  __c30_signature
-                  0x000ac0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stpcpy.DA_o)
+                  0x000ad0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stpcpy.DA_o)
  __c30_signature
-                  0x000ac6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(syscall_ret.DA_o)
+                  0x000ad6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(syscall_ret.DA_o)
  __c30_signature
-                  0x000acc          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(tolower.DA_o)
+                  0x000adc          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(tolower.DA_o)
  __c30_signature
-                  0x000ad2          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(toupper.DA_o)
+                  0x000ae2          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(toupper.DA_o)
  __c30_signature
-                  0x000ad8          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__init_stdio.DA_o)
+                  0x000ae8          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__init_stdio.DA_o)
  __c30_signature
-                  0x000ade          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsnprintf.DA_o)
+                  0x000aee          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__int_vsnprintf.DA_o)
  __c30_signature
-                  0x000ae4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__io_file_needed.DA_o)
+                  0x000af4          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__io_file_needed.DA_o)
  __c30_signature
-                  0x000aea          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_float.DA_o)
+                  0x000afa          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__pop_float.DA_o)
  __c30_signature
-                  0x000af0          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(closeda.Meo)
+                  0x000b00          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(closeda.Meo)
  __c30_signature
-                  0x000af6          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(writeda.Meo)
+                  0x000b06          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(writeda.Meo)
  __c30_signature
-                  0x000afc          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(c30_uartda.Meo)
+                  0x000b0c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(c30_uartda.Meo)
  __c30_signature
-                  0x000b02          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
+                  0x000b12          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.DA_o)
  __c30_signature
-                  0x000b08          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
+                  0x000b18          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.DA_o)
  __c30_signature
-                  0x000b0e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
+                  0x000b1e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.DA_o)
  __c30_signature
-                  0x000b14          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.DA_o)
+                  0x000b24          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.DA_o)
 
 __xc_reference_data
 
-.nbss               0x0800         0x2c
- .nbss              0x0800         0x20 build/default/production/main.o
-                    0x080e                  _is12HourFormat
-                    0x080f                  _inTimeFormatSubpage
-                    0x0810                  _timeFormatSelectedIndex
-                    0x0812                  _forceClockRedraw
-                    0x0813                  _inMenu
-                    0x0814                  _selectedMenuItem
- .nbss              0x0820          0x6 build/default/production/i2cDriver/i2c1_driver.o
-                    0x0820                  _i2c1_driver_busCollisionISR
-                    0x0822                  _i2c1_driver_Masteri2cISR
-                    0x0824                  _i2c1_driver_Slavei2cISR
- .nbss              0x0826          0x4 build/default/production/oledDriver/oledC.o
- .nbss              0x082a          0x2 build/default/production/spiDriver/spi1_driver.o
-                    0x082a                  _spi1_interruptHandler
+.nbss               0x0800         0x32
+ .nbss              0x0800         0x26 build/default/production/main.o
+                    0x0800                  _timeSelection
+                    0x0810                  _is12HourFormat
+                    0x0811                  _inTimeFormatSubpage
+                    0x0812                  _inTimeSetSubpage
+                    0x0813                  _timeFormatSelectedIndex
+                    0x0815                  _forceClockRedraw
+                    0x0816                  _inMenu
+                    0x0817                  _selectedMenuItem
+ .nbss              0x0826          0x6 build/default/production/i2cDriver/i2c1_driver.o
+                    0x0826                  _i2c1_driver_busCollisionISR
+                    0x0828                  _i2c1_driver_Masteri2cISR
+                    0x082a                  _i2c1_driver_Slavei2cISR
+ .nbss              0x082c          0x4 build/default/production/oledDriver/oledC.o
+ .nbss              0x0830          0x2 build/default/production/spiDriver/spi1_driver.o
+                    0x0830                  _spi1_interruptHandler
 
-.ndata              0x082c          0x2
- .ndata             0x082c          0x2 build/default/production/System/traps.o
+.ndata              0x0832          0x2
+ .ndata             0x0832          0x2 build/default/production/System/traps.o
 
-.nbss               0x082e          0x2
- .nbss              0x082e          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.DA_o)
-                    0x082e                  _errno
+.nbss               0x0834          0x2
+ .nbss              0x0834          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.DA_o)
+                    0x0834                  _errno
 
-.bss                0x0830        0x252
- .bss               0x0830        0x200 build/default/production/oledDriver/oledC_shapeHandler.o
- .bss               0x0a30         0x52 build/default/production/main.o
+.bss                0x0836        0x252
+ .bss               0x0836        0x200 build/default/production/oledDriver/oledC_shapeHandler.o
+ .bss               0x0a36         0x52 build/default/production/main.o
 
-.data               0x0a82         0x42
- .data              0x0a82         0x42 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
-                    0x0a82                  __stdout
-                    0x0a84                  ___stdout_used
+.data               0x0a88         0x42
+ .data              0x0a88         0x42 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.DA_o)
+                    0x0a88                  __stdout
+                    0x0a8a                  ___stdout_used
 
-.bss                0x0ac4         0x20
- .bss               0x0ac4         0x20 build/default/production/System/traps.o
+.bss                0x0aca         0x20
+ .bss               0x0aca         0x20 build/default/production/System/traps.o
 
-.data               0x0ae4         0x2e
- .data              0x0ae4         0x1e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
- .data              0x0b02         0x10 build/default/production/main.o
-                    0x0b02                  _currentTime
-                    0x0b08                  _menuItems
+.data               0x0aea         0x30
+ .data              0x0aea         0x1e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.DA_o)
+ .data              0x0b08         0x12 build/default/production/main.o
+                    0x0b08                  _setClock
+                    0x0b0a                  _currentTime
+                    0x0b10                  _menuItems
 
-.bss                0x0b12          0x2
- .bss               0x0b12          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.DA_o)
-                    0x0b12                  ___errno_val
+.bss                0x0b1a          0x2
+ .bss               0x0b1a          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.DA_o)
+                    0x0b1a                  ___errno_val
 
-.data               0x0b14          0x2
- .data              0x0b14          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(c30_uartda.Meo)
-                    0x0b14                  ___C30_UART
+.data               0x0b1c          0x2
+ .data              0x0b1c          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(c30_uartda.Meo)
+                    0x0b1c                  ___C30_UART
 
 .config_ALTI2C1
                   0x02af2c          0x2
@@ -3305,8 +3322,8 @@ __xc_reference_data
  .ivt._T1Interrupt
                   0x00001a          0x2 build/default/production/main.o
 
-.const              0x9c80        0x47e load address 0x001c80  
- .const             0x9c80        0x292 build/default/production/main.o
+.const              0x9c80        0x48c load address 0x001c80  
+ .const             0x9c80        0x2a0 build/default/production/main.o
                     0x9c80                  _OLEDC_COLOR_ALICEBLUE
                     0x9c82                  _OLEDC_COLOR_ANTIQUEWHITE
                     0x9c84                  _OLEDC_COLOR_AQUA
@@ -3455,129 +3472,133 @@ __xc_reference_data
                     0x9da2                  _OLEDC_COLOR_YELLOW
                     0x9da4                  _OLEDC_COLOR_YELLOWGREEN
                     0x9da6                  _baselineGravity
- .const             0x9f12        0x1e0 build/default/production/oledDriver/oledC_shapes.o
- .const             0xa0f2          0xc build/default/production/spiDriver/spi1_driver.o
+ .const             0x9f20        0x1e0 build/default/production/oledDriver/oledC_shapes.o
+ .const             0xa100          0xc build/default/production/spiDriver/spi1_driver.o
 
-.text             0x0020fe       0x1a24
- .text            0x0020fe        0xb24 build/default/production/main.o
-                  0x0020fe                  _errorStop
-                  0x002120                  _readAxis
-                  0x0021a6                  _initAccelerometer
-                  0x002250                  _detectStep
-                  0x00232a                  _drawSteps
-                  0x00250e                  _updateDate
-                  0x002552                  _incrementTime
-                  0x0025aa                  _drawClock
-                  0x002732                  _drawFootIcon
-                  0x002794                  _handleTimeFormatSelection
-                  0x002832                  _drawTimeFormatSubpage
-                  0x0028c0                  _drawMenu
-                  0x002938                  _updateMenuClock
-                  0x002a04                  _executeMenuAction
-                  0x002a54                  _Timer_Initialize
-                  0x002a6e                  _Timer1_Interrupt_Initialize
-                  0x002a84                  _User_Initialize
-                  0x002abc                  _main
- .text            0x002c22        0x86c build/default/production/oledDriver/oledC_shapes.o
-                  0x002c22                  _oledC_createShape
-                  0x002d52                  _oledC_ReadPoint
-                  0x002d82                  _oledC_DrawPoint
-                  0x002dba                  _oledC_DrawThickPoint
-                  0x002ec2                  _oledC_DrawCircle
-                  0x002fd4                  _oledC_DrawRing
-                  0x0030d0                  _oledC_DrawLine
-                  0x003170                  _oledC_DrawRectangle
-                  0x0031be                  _oledC_DrawCharacter
-                  0x00327c                  _oledC_DrawString
-                  0x0032c2                  _oledC_DrawBitmap
-                  0x003396                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
-                  0x0033ac                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
-                  0x0033c6                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
-                  0x0033e4                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
-                  0x003402                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
-                  0x003424                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
-                  0x003446                  build/default/production/oledDriver/oledC_shapes.o:_drawString
-                  0x003468                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
- .text            0x00348e        0x2e6 build/default/production/oledDriver/oledC.o
-                  0x00348e                  _oledC_parseIntToRGB
-                  0x0034dc                  _oledC_parseRGBToInt
-                  0x003588                  _oledC_sendCommand
-                  0x0035c6                  _oledC_setRowAddressBounds
-                  0x0035f0                  _oledC_setColumnAddressBounds
-                  0x003626                  _oledC_setSleepMode
-                  0x003640                  _oledC_setDisplayOrientation
-                  0x00365e                  _oledC_startReadingDisplay
-                  0x003670                  _oledC_stopReadingDisplay
-                  0x003678                  _oledC_readColor
-                  0x003696                  _oledC_startWritingDisplay
-                  0x0036a8                  _oledC_stopWritingDisplay
-                  0x0036b4                  _oledC_sendColor
-                  0x0036ca                  _oledC_sendColorInt
-                  0x0036f0                  _oledC_open
-                  0x0036f8                  _oledC_setup
-                  0x00372c                  _oledC_clearScreen
-                  0x003766                  _oledC_setBackground
- .text            0x003774        0x1c8 build/default/production/oledDriver/oledC_shapeHandler.o
-                  0x003774                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
-                  0x00377c                  _initShapesMem
-                  0x0037a8                  _oledC_removeShape
-                  0x0037de                  _oledC_getShape
-                  0x0037fa                  _oledC_addShape
-                  0x003854                  _oledC_redrawIndex
-                  0x003872                  _oledC_redrawTo
-                  0x003880                  _oledC_redrawFrom
-                  0x00388e                  _oledC_redrawSome
-                  0x0038da                  _oledC_eraseShape
-                  0x003904                  _oledC_eraseAll
-                  0x003930                  _oledC_redrawAll
- .text            0x00393c        0x110 build/default/production/spiDriver/spi1_driver.o
-                  0x00393c                  _spi1_close
-                  0x003944                  _spi1_open
-                  0x003964                  _spi1_exchangeByte
-                  0x00397e                  _spi1_exchangeBlock
-                  0x0039b0                  _spi1_writeBlock
-                  0x0039de                  _spi1_readBlock
-                  0x003a0e                  _spi1_writeByte
-                  0x003a1a                  _spi1_readByte
-                  0x003a24                  _spi1_isr
-                  0x003a40                  _spi1_setSpiISR
- .text            0x003a4c         0xd6 build/default/production/i2cDriver/i2c1_driver.o
-                  0x003a4c                  _i2c1_driver_close
-                  0x003a54                  _i2c1_driver_open
-                  0x003a74                  _i2c1_driver_start
-                  0x003a86                  _i2c1_driver_restart
-                  0x003a98                  _i2c1_driver_stop
-                  0x003aaa                  _i2c1_driver_isNACK
-                  0x003ac2                  _i2c1_driver_startRX
-                  0x003aca                  _i2c1_driver_waitRX
-                  0x003ada                  _i2c1_driver_getRXData
-                  0x003ae4                  _i2c1_driver_TXData
-                  0x003afc                  _i2c1_driver_sendACK
-                  0x003b10                  _i2c1_driver_sendNACK
-                  0x003b1a                  _i2c1_driver_clearBusCollision
+.text             0x00210c       0x1c84
+ .text            0x00210c        0xd84 build/default/production/main.o
+                  0x00210c                  _errorStop
+                  0x00212e                  _readAxis
+                  0x0021b4                  _initAccelerometer
+                  0x00225e                  _detectStep
+                  0x002338                  _drawSteps
+                  0x00251c                  _updateDate
+                  0x002560                  _incrementTime
+                  0x0025b8                  _drawClock
+                  0x002740                  _drawFootIcon
+                  0x0027a2                  _handleTimeFormatSelection
+                  0x002840                  _drawTimeFormatSubpage
+                  0x0028ce                  _drawSetTimeMenuBase
+                  0x002970                  _drawSetTimeStatus
+                  0x0029da                  _handleSetTimeInput
+                  0x002ae6                  _handleSetTimePage
+                  0x002b2c                  _drawMenu
+                  0x002ba4                  _updateMenuClock
+                  0x002c70                  _executeMenuAction
+                  0x002cc2                  _Timer_Initialize
+                  0x002cdc                  _Timer1_Interrupt_Initialize
+                  0x002cf2                  _User_Initialize
+                  0x002d2a                  _main
+ .text            0x002e90        0x86c build/default/production/oledDriver/oledC_shapes.o
+                  0x002e90                  _oledC_createShape
+                  0x002fc0                  _oledC_ReadPoint
+                  0x002ff0                  _oledC_DrawPoint
+                  0x003028                  _oledC_DrawThickPoint
+                  0x003130                  _oledC_DrawCircle
+                  0x003242                  _oledC_DrawRing
+                  0x00333e                  _oledC_DrawLine
+                  0x0033de                  _oledC_DrawRectangle
+                  0x00342c                  _oledC_DrawCharacter
+                  0x0034ea                  _oledC_DrawString
+                  0x003530                  _oledC_DrawBitmap
+                  0x003604                  build/default/production/oledDriver/oledC_shapes.o:_drawPoint
+                  0x00361a                  build/default/production/oledDriver/oledC_shapes.o:_drawCircle
+                  0x003634                  build/default/production/oledDriver/oledC_shapes.o:_drawRing
+                  0x003652                  build/default/production/oledDriver/oledC_shapes.o:_drawRectangle
+                  0x003670                  build/default/production/oledDriver/oledC_shapes.o:_drawLine
+                  0x003692                  build/default/production/oledDriver/oledC_shapes.o:_drawCharacter
+                  0x0036b4                  build/default/production/oledDriver/oledC_shapes.o:_drawString
+                  0x0036d6                  build/default/production/oledDriver/oledC_shapes.o:_drawBitmap
+ .text            0x0036fc        0x2e6 build/default/production/oledDriver/oledC.o
+                  0x0036fc                  _oledC_parseIntToRGB
+                  0x00374a                  _oledC_parseRGBToInt
+                  0x0037f6                  _oledC_sendCommand
+                  0x003834                  _oledC_setRowAddressBounds
+                  0x00385e                  _oledC_setColumnAddressBounds
+                  0x003894                  _oledC_setSleepMode
+                  0x0038ae                  _oledC_setDisplayOrientation
+                  0x0038cc                  _oledC_startReadingDisplay
+                  0x0038de                  _oledC_stopReadingDisplay
+                  0x0038e6                  _oledC_readColor
+                  0x003904                  _oledC_startWritingDisplay
+                  0x003916                  _oledC_stopWritingDisplay
+                  0x003922                  _oledC_sendColor
+                  0x003938                  _oledC_sendColorInt
+                  0x00395e                  _oledC_open
+                  0x003966                  _oledC_setup
+                  0x00399a                  _oledC_clearScreen
+                  0x0039d4                  _oledC_setBackground
+ .text            0x0039e2        0x1c8 build/default/production/oledDriver/oledC_shapeHandler.o
+                  0x0039e2                  build/default/production/oledDriver/oledC_shapeHandler.o:_dummyshape
+                  0x0039ea                  _initShapesMem
+                  0x003a16                  _oledC_removeShape
+                  0x003a4c                  _oledC_getShape
+                  0x003a68                  _oledC_addShape
+                  0x003ac2                  _oledC_redrawIndex
+                  0x003ae0                  _oledC_redrawTo
+                  0x003aee                  _oledC_redrawFrom
+                  0x003afc                  _oledC_redrawSome
+                  0x003b48                  _oledC_eraseShape
+                  0x003b72                  _oledC_eraseAll
+                  0x003b9e                  _oledC_redrawAll
+ .text            0x003baa        0x110 build/default/production/spiDriver/spi1_driver.o
+                  0x003baa                  _spi1_close
+                  0x003bb2                  _spi1_open
+                  0x003bd2                  _spi1_exchangeByte
+                  0x003bec                  _spi1_exchangeBlock
+                  0x003c1e                  _spi1_writeBlock
+                  0x003c4c                  _spi1_readBlock
+                  0x003c7c                  _spi1_writeByte
+                  0x003c88                  _spi1_readByte
+                  0x003c92                  _spi1_isr
+                  0x003cae                  _spi1_setSpiISR
+ .text            0x003cba         0xd6 build/default/production/i2cDriver/i2c1_driver.o
+                  0x003cba                  _i2c1_driver_close
+                  0x003cc2                  _i2c1_driver_open
+                  0x003ce2                  _i2c1_driver_start
+                  0x003cf4                  _i2c1_driver_restart
+                  0x003d06                  _i2c1_driver_stop
+                  0x003d18                  _i2c1_driver_isNACK
+                  0x003d30                  _i2c1_driver_startRX
+                  0x003d38                  _i2c1_driver_waitRX
+                  0x003d48                  _i2c1_driver_getRXData
+                  0x003d52                  _i2c1_driver_TXData
+                  0x003d6a                  _i2c1_driver_sendACK
+                  0x003d7e                  _i2c1_driver_sendNACK
+                  0x003d88                  _i2c1_driver_clearBusCollision
 
-.dinit            0x003b22         0xa6
- .dinit           0x003b22         0xa6 data_init
+.dinit            0x003d90         0xa6
+ .dinit           0x003d90         0xa6 data_init
 
-.text             0x003bc8        0x1b2
- .text            0x003bc8         0x9e build/default/production/Accel_i2c.o
-                  0x003be0                  _i2c1_open
-                  0x003be8                  _i2cReadSlaveRegister
-                  0x003c30                  _i2cWriteSlave
- .text            0x003c66         0x78 build/default/production/oledDriver/pin_manager.o
-                  0x003c66                  _PIN_MANAGER_Initialize
- .text            0x003cde         0x56 build/default/production/System/delay.o
-                  0x003cde                  _DELAY_milliseconds
-                  0x003d00                  _DELAY_microseconds
- .text            0x003d34         0x46 build/default/production/System/clock.o
-                  0x003d34                  _CLOCK_Initialize
+.text             0x003e36        0x1b2
+ .text            0x003e36         0x9e build/default/production/Accel_i2c.o
+                  0x003e4e                  _i2c1_open
+                  0x003e56                  _i2cReadSlaveRegister
+                  0x003e9e                  _i2cWriteSlave
+ .text            0x003ed4         0x78 build/default/production/oledDriver/pin_manager.o
+                  0x003ed4                  _PIN_MANAGER_Initialize
+ .text            0x003f4c         0x56 build/default/production/System/delay.o
+                  0x003f4c                  _DELAY_milliseconds
+                  0x003f6e                  _DELAY_microseconds
+ .text            0x003fa2         0x46 build/default/production/System/clock.o
+                  0x003fa2                  _CLOCK_Initialize
 
-.init.delay32     0x003d7a         0x1c
- .init.delay32    0x003d7a         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32da.Meo)
-                  0x003d7a                  ___delay32
+.init.delay32     0x003fe8         0x1c
+ .init.delay32    0x003fe8         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32da.Meo)
+                  0x003fe8                  ___delay32
 
-.text             0x003d96         0x24
- .text            0x003d96         0x18 build/default/production/System/traps.o
-                  0x003d96                  _TRAPS_halt_on_error
- .text            0x003dae          0xc build/default/production/System/system.o
-                  0x003dae                  _SYSTEM_Initialize
+.text             0x004004         0x24
+ .text            0x004004         0x18 build/default/production/System/traps.o
+                  0x004004                  _TRAPS_halt_on_error
+ .text            0x00401c          0xc build/default/production/System/system.o
+                  0x00401c                  _SYSTEM_Initialize
