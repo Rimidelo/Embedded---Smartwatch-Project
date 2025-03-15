@@ -28,6 +28,12 @@
 #define MEASURE_MODE 0x08
 #define HISTORY_SIZE 60
 #define STEP_THRESHOLD 500.0f
+#define GRAPH_WIDTH 90
+#define GRAPH_HEIGHT 100
+
+// ---------------- Type and Globals for Steps Graph ----------------
+uint8_t instantStepRate[GRAPH_WIDTH] = {0}; // Holds instantaneous step rates (steps per minute)
+uint32_t lastStepTime = 0;                  // Time (in seconds) when the last step occurred
 
 // ---------------- Type and Globals for Set Time ----------------
 typedef struct
@@ -89,6 +95,9 @@ void drawSetTimeStatus(void);
 void handleSetTimeInput(void);
 bool detectTiltForSave(void);
 void drawSetDateStatus(void);
+extern bool inMenu;
+extern void drawMenu(void);
+bool graphActive = false; // Indicates if we are currently in the graph screen
 
 // ---------------- Foot Bitmaps (16×16) ----------------
 static const uint16_t foot1Bitmap[16] = {
@@ -187,6 +196,20 @@ void detectStep(void)
         stepCount++;
         stepsHistory[currentSecondIndex]++;
         printf("Step detected! Count=%u\n", stepCount);
+
+        // Compute instantaneous rate if this isn’t the very first step.
+        if (lastStepTime != 0 && globalSeconds > lastStepTime)
+        {
+            uint32_t delta = globalSeconds - lastStepTime; // in seconds
+            if (delta > 0)
+            {
+                // Calculate rate in steps per minute (e.g. if delta==2 then 60/2==30)
+                uint8_t rate = 60 / delta;
+                // Store it in the circular buffer (using globalSeconds mod GRAPH_WIDTH)
+                instantStepRate[globalSeconds % GRAPH_WIDTH] = rate;
+            }
+        }
+        lastStepTime = globalSeconds;
     }
     wasAboveThreshold = above;
 }
@@ -750,6 +773,138 @@ void handleSetDatePage(void)
     }
 }
 
+// ---------------- STEPS GRAPH SYSTEM ---------------- //
+void stepsGraph(void)
+{
+    graphActive = true;         // Indicate we are in the graph screen
+    bool localGraphMode = true; // We'll exit this loop when user presses S2 or holds S1
+
+    oledC_clearScreen(); // Clear display
+
+    // ----------------------------------------------------------------
+    // 1) Generate or load 90 seconds of step-rate data
+    // ----------------------------------------------------------------
+    int step_rate_history[90];
+    int current_step_rate = 50; // Start at 50 steps/min
+    for (int i = 0; i < 90; i++)
+    {
+        int change = (rand() % 11) - 5; // random change between -5 and +5
+        current_step_rate += change;
+        if (current_step_rate < 0)
+            current_step_rate = 0;
+        if (current_step_rate > 100)
+            current_step_rate = 100;
+        step_rate_history[i] = current_step_rate;
+    }
+
+    // ----------------------------------------------------------------
+    // 2) Define graph geometry
+    // ----------------------------------------------------------------
+    // Full-width graph: x from 0 to GRAPH_WIDTH
+    int x_left = 0;            // Left edge at 0
+    int x_right = GRAPH_WIDTH; // Right edge at full width (e.g., 90)
+    // Vertical mapping:
+    //  - Baseline (0 steps) is at y = GRAPH_HEIGHT - 10 (e.g., 90)
+    //  - Top (100 steps) is at y = 10
+    int baseline = GRAPH_HEIGHT - 10; // e.g., 100 - 10 = 90
+    int top = 10;                     // y = 10
+
+    // ----------------------------------------------------------------
+    // 3) Draw the x-axis (horizontal line) across full width
+    // ----------------------------------------------------------------
+    oledC_DrawLine(x_left, baseline, x_right, baseline, 1, OLEDC_COLOR_WHITE);
+
+    // ----------------------------------------------------------------
+    // 4) Draw dotted horizontal grid lines and labels at 30, 60, and 100 steps
+    // ----------------------------------------------------------------
+    int step_values[] = {30, 60, 100};
+    for (int i = 0; i < 3; i++)
+    {
+        int val = step_values[i];
+        // Map the step value (0-100) to a y-position between baseline and top
+        int y_pos = baseline - ((val * (baseline - top)) / 100);
+
+        // 4a) Draw a dotted line across the full width (from x_left to x_right)
+        for (int x = x_left; x <= x_right; x += 3)
+        {
+            oledC_DrawPoint(x, y_pos, OLEDC_COLOR_GRAY);
+        }
+
+        // 4b) Draw the numeric label above the dotted line (e.g., 8 pixels above)
+        char label[4]; // Enough for "100" and a null terminator
+        sprintf(label, "%d", val);
+        oledC_DrawString(0, y_pos - 10, 1, 1, (uint8_t *)label, OLEDC_COLOR_WHITE);
+    }
+
+    // ----------------------------------------------------------------
+    // 5) Draw x-axis ticks representing 10-second intervals
+    // ----------------------------------------------------------------
+    for (int i = 0; i <= 9; i++)
+    {
+        int x_tick = x_left + (i * (x_right - x_left) / 9);
+        oledC_DrawRectangle(x_tick, baseline - 2, x_tick + 2, baseline, OLEDC_COLOR_WHITE);
+    }
+
+    // ----------------------------------------------------------------
+    // 6) Connect the step-rate data points with a continuous line
+    // ----------------------------------------------------------------
+    int prevX = x_left;
+    int prevY = baseline - (step_rate_history[0] * (baseline - top) / 100);
+    for (int i = 1; i < 90; i++)
+    {
+        int curX = x_left + (i * (x_right - x_left) / 89);
+        int curY = baseline - (step_rate_history[i] * (baseline - top) / 100);
+        oledC_DrawLine(prevX, prevY, curX, curY, 1, OLEDC_COLOR_WHITE);
+        prevX = curX;
+        prevY = curY;
+    }
+
+    // ----------------------------------------------------------------
+    // 7) Exit Logic
+    //    S2 => menu
+    //    Long S1 => main clock (clear screen before exiting)
+    // ----------------------------------------------------------------
+    static uint8_t s1HoldCounter = 0;
+
+    while (localGraphMode)
+    {
+        bool s1State = (PORTAbits.RA11 == 0);
+        bool s2State = (PORTAbits.RA12 == 0);
+
+        // S2 => back to menu
+        if (s2State)
+        {
+            localGraphMode = false;
+            inMenu = true;
+            drawMenu();
+            break;
+        }
+
+        // Long S1 => main clock
+        if (s1State)
+        {
+            s1HoldCounter++;
+            // ~2 seconds with a 100ms loop
+            if (s1HoldCounter >= 20)
+            {
+                oledC_clearScreen(); // *** Added: Clear the screen before leaving graph mode ***
+                localGraphMode = false;
+                inMenu = false; // Return to main clock screen
+                forceClockRedraw = true;
+                break;
+            }
+        }
+        else
+        {
+            s1HoldCounter = 0;
+        }
+
+        DELAY_milliseconds(100);
+    }
+
+    graphActive = false; // We’re leaving the graph
+}
+
 // ---------------- MENU SYSTEM (Integrated in main.c) ----------------
 #define MENU_ITEMS_COUNT 5
 const char *menuItems[MENU_ITEMS_COUNT] = {
@@ -840,7 +995,8 @@ void executeMenuAction(void)
     switch (selectedMenuItem)
     {
     case 0:
-        // TODO: Show pedometer graph
+        stepsGraph();
+        // drawMenu();
         break;
     case 1: // "12H/24H Interval"
         handleTimeFormatSelection();
@@ -914,25 +1070,28 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
     footToggle = !footToggle;
     globalSeconds++; // Update global seconds counter
 
-    // Long press detection for S1
-    static uint8_t s1HoldCounter = 0;
-    bool s1State = (PORTAbits.RA11 == 0); // active-low
-    if (s1State)
+    // Only do the "long-press to enter menu" logic if we're not in the graph
+    if (!graphActive)
     {
-        s1HoldCounter++;
-        // For example, 4 ticks = ~2 seconds if each interrupt ~500ms
-        if (s1HoldCounter >= 2 && !inMenu)
+        static uint8_t s1HoldCounter = 0;
+        bool s1State = (PORTAbits.RA11 == 0); // active-low
+        if (s1State)
         {
-            inMenu = true;
-            selectedMenuItem = 0;
-            drawMenu();
-            justEnteredMenu = true; // <--- set this flag
+            s1HoldCounter++;
+            // For example, 4 ticks = ~2 seconds if each interrupt ~500ms
+            if (s1HoldCounter >= 2 && !inMenu)
+            {
+                inMenu = true;
+                selectedMenuItem = 0;
+                drawMenu();
+                justEnteredMenu = true; // <--- set this flag
+                s1HoldCounter = 0;
+            }
+        }
+        else
+        {
             s1HoldCounter = 0;
         }
-    }
-    else
-    {
-        s1HoldCounter = 0;
     }
 
     // If not in menu, do pedometer stuff
