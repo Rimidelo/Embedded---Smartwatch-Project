@@ -29,7 +29,7 @@
 #define HISTORY_SIZE 60
 #define STEP_THRESHOLD 500.0f
 
-// ---------------- New Type and Globals for Set Time ----------------
+// ---------------- Type and Globals for Set Time ----------------
 typedef struct
 {
     uint8_t hours;
@@ -39,6 +39,17 @@ typedef struct
 TimeSetting setClock = {8, 24};
 // 0 means hours selected; 1 means minutes selected.
 uint8_t timeSelection = 0;
+
+// ---------------- Type and Globals for Set Date ----------------
+typedef struct
+{
+    uint8_t day;
+    uint8_t month;
+} DateSetting;
+
+DateSetting setDate = {24, 1}; // initialize with currentTime.day and currentTime.month
+// 0 means day is selected; 1 means month is selected.
+uint8_t dateSelection = 0;
 
 typedef struct
 {
@@ -365,7 +376,6 @@ void drawFootIcon(uint8_t x, uint8_t y, const uint16_t *bitmap, uint8_t width, u
 }
 
 // ---------------- 12H/24H SYSTEM ---------------- //
-// New function to handle the 12H/24H subpage logic
 void handleTimeFormatSelection(void)
 {
     inTimeFormatSubpage = true;
@@ -587,6 +597,158 @@ void handleSetTimePage(void)
     }
 }
 
+// ---------------- SET DATE SYSTEM ---------------- //
+void drawSetDateMenuBase(void)
+{
+    oledC_clearScreen();
+
+    // Clear any mini clock area.
+    oledC_DrawRectangle(30, 2, 115, 10, OLEDC_COLOR_BLACK);
+
+    // Display header.
+    oledC_DrawString(6, 10, 2, 2, (uint8_t *)"Set Date", OLEDC_COLOR_WHITE);
+
+    if (dateSelection == 0)
+    {
+        // Day selected: draw day box with white border and black fill.
+        oledC_DrawRectangle(8, 40, 44, 64, OLEDC_COLOR_WHITE);
+        oledC_DrawRectangle(10, 42, 42, 62, OLEDC_COLOR_BLACK);
+
+        // Draw month box completely black.
+        oledC_DrawRectangle(50, 40, 86, 64, OLEDC_COLOR_BLACK);
+        oledC_DrawRectangle(52, 42, 84, 62, OLEDC_COLOR_BLACK);
+    }
+    else
+    {
+        // Month selected: draw month box with white border and black fill.
+        oledC_DrawRectangle(8, 40, 44, 64, OLEDC_COLOR_BLACK);
+        oledC_DrawRectangle(10, 42, 42, 62, OLEDC_COLOR_BLACK);
+
+        oledC_DrawRectangle(50, 40, 86, 64, OLEDC_COLOR_WHITE);
+        oledC_DrawRectangle(52, 42, 84, 62, OLEDC_COLOR_BLACK);
+    }
+
+    drawSetDateStatus();
+}
+
+void drawSetDateStatus(void)
+{
+    char buf[3];
+
+    // Clear and draw the day value.
+    oledC_DrawRectangle(15, 46, 43, 62, OLEDC_COLOR_BLACK);
+    sprintf(buf, "%02d", setDate.day);
+    oledC_DrawString(15, 46, 2, 2, (uint8_t *)buf, OLEDC_COLOR_WHITE);
+
+    // Clear and draw the month value.
+    oledC_DrawRectangle(55, 46, 83, 62, OLEDC_COLOR_BLACK);
+    sprintf(buf, "%02d", setDate.month);
+    oledC_DrawString(55, 46, 2, 2, (uint8_t *)buf, OLEDC_COLOR_WHITE);
+}
+
+void handleSetDateInput(void)
+{
+    static bool s1WasPressed = false;
+    static bool s2WasPressed = false;
+
+    bool s1State = (PORTAbits.RA11 == 0);
+    bool s2State = (PORTAbits.RA12 == 0);
+
+    // If both buttons are pressed (new press), toggle the selected field.
+    if (s1State && s2State && !s1WasPressed && !s2WasPressed)
+    {
+        dateSelection = !dateSelection;
+        drawSetDateMenuBase();
+    }
+    // If S1 is pressed alone, increase the selected value.
+    else if (s1State && !s1WasPressed && !(s1State && s2State))
+    {
+        if (dateSelection == 0) // adjust day
+        {
+            uint8_t maxDay = daysInMonth[setDate.month - 1];
+            setDate.day = (setDate.day % maxDay) + 1;
+        }
+        else // adjust month
+        {
+            setDate.month = (setDate.month % 12) + 1;
+            // Ensure day does not exceed the new month's max.
+            uint8_t maxDay = daysInMonth[setDate.month - 1];
+            if (setDate.day > maxDay)
+                setDate.day = maxDay;
+        }
+        drawSetDateStatus();
+    }
+    // If S2 is pressed alone, decrease the selected value.
+    else if (s2State && !s2WasPressed && !(s1State && s2State))
+    {
+        if (dateSelection == 0) // adjust day
+        {
+            if (setDate.day == 1)
+                setDate.day = daysInMonth[setDate.month - 1];
+            else
+                setDate.day--;
+        }
+        else // adjust month
+        {
+            if (setDate.month == 1)
+                setDate.month = 12;
+            else
+                setDate.month--;
+            uint8_t maxDay = daysInMonth[setDate.month - 1];
+            if (setDate.day > maxDay)
+                setDate.day = maxDay;
+        }
+        drawSetDateStatus();
+    }
+
+    s1WasPressed = s1State;
+    s2WasPressed = s2State;
+}
+
+void handleSetDatePage(void)
+{
+    inTimeSetSubpage = true; // Reuse the same flag for a subpage.
+
+    // Initialize temporary date values from currentTime.
+    setDate.day = currentTime.day;
+    setDate.month = currentTime.month;
+    dateSelection = 0; // Start with day selected.
+
+    drawSetDateMenuBase();
+
+    // Wait until both buttons are released.
+    while ((PORTAbits.RA11 == 0) || (PORTAbits.RA12 == 0))
+    {
+        DELAY_milliseconds(10);
+    }
+
+    int tiltCounter = 0; // Debounce counter.
+    while (inTimeSetSubpage)
+    {
+        handleSetDateInput();
+
+        if (detectTiltForSave())
+        {
+            tiltCounter++;
+            // Save if a tilt is detected (using your chosen sensitivity).
+            if (tiltCounter >= 1)
+            {
+                currentTime.day = setDate.day;
+                currentTime.month = setDate.month;
+                // Exit the set date page.
+                inTimeSetSubpage = false;
+                break;
+            }
+        }
+        else
+        {
+            tiltCounter = 0;
+        }
+
+        DELAY_milliseconds(50);
+    }
+}
+
 // ---------------- MENU SYSTEM (Integrated in main.c) ----------------
 #define MENU_ITEMS_COUNT 5
 const char *menuItems[MENU_ITEMS_COUNT] = {
@@ -683,13 +845,14 @@ void executeMenuAction(void)
         handleTimeFormatSelection();
         drawMenu();
         break;
-    case 2:
+    case 2: // "Set Time"
         // inMenu = false;
         handleSetTimePage();
         drawMenu();
         break;
-    case 3:
-        // TODO: Set Date
+    case 3: // "Set Date"
+        handleSetDatePage();
+        drawMenu();
         break;
     case 4: // "Exit"
         inMenu = false;
