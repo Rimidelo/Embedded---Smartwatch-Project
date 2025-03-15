@@ -975,9 +975,6 @@ int main(void)
     initAccelerometer();
     Timer_Initialize();
     Timer1_Interrupt_Initialize();
-
-    // Declare all static variables used for button debouncing and state tracking at the beginning.
-
     static bool wasInMenu = false;
 
     while (1)
@@ -999,28 +996,32 @@ int main(void)
             }
             else
             {
-                // Poll the button states for short presses.
+                // Poll the button states.
                 bool s1State = (PORTAbits.RA11 == 0);
                 bool s2State = (PORTAbits.RA12 == 0);
 
-                // If S1 is newly pressed, move selection UP.
-                if (s1State && !s1WasPressed)
-                {
-                    if (selectedMenuItem > 0)
-                        selectedMenuItem--;
-                    drawMenu();
-                }
-                // If S2 is newly pressed, move selection DOWN.
-                if (s2State && !s2WasPressed)
-                {
-                    if (selectedMenuItem < MENU_ITEMS_COUNT - 1)
-                        selectedMenuItem++;
-                    drawMenu();
-                }
-                // If both buttons are pressed, execute the selected action.
+                // If both buttons are pressed, execute the selected action and delay.
                 if (s1State && s2State)
                 {
                     executeMenuAction();
+                    DELAY_milliseconds(200); // Wait 200ms to allow for debouncing.
+                }
+                else
+                {
+                    // If S1 is newly pressed, move selection UP.
+                    if (s1State && !s1WasPressed)
+                    {
+                        if (selectedMenuItem > 0)
+                            selectedMenuItem--;
+                        drawMenu();
+                    }
+                    // If S2 is newly pressed, move selection DOWN.
+                    if (s2State && !s2WasPressed)
+                    {
+                        if (selectedMenuItem < MENU_ITEMS_COUNT - 1)
+                            selectedMenuItem++;
+                        drawMenu();
+                    }
                 }
                 s1WasPressed = s1State;
                 s2WasPressed = s2State;
@@ -1032,8 +1033,7 @@ int main(void)
         }
         else
         {
-            // When not in menu: If we were in menu in the previous loop,
-            // clear the mini clock area.
+            // When not in menu: If we were in menu in the previous loop, clear the mini clock area.
             if (wasInMenu)
             {
                 oledC_DrawRectangle(30, 2, 115, 10, OLEDC_COLOR_BLACK);
