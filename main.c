@@ -189,75 +189,42 @@ void detectStep(void)
     float mag = sqrtf(ax * ax + ay * ay + az * az);
     float dynamic = fabsf(mag - baselineGravity);
     bool above = (dynamic > STEP_THRESHOLD);
+
     movementDetected = above;
 
+    // If crossing threshold from below => new step
     if (above && !wasAboveThreshold)
     {
         stepCount++;
         stepsHistory[currentSecondIndex]++;
         printf("Step detected! Count=%u\n", stepCount);
-
-        // Compute instantaneous rate if this isn’t the very first step.
-        if (lastStepTime != 0 && globalSeconds > lastStepTime)
-        {
-            uint32_t delta = globalSeconds - lastStepTime; // in seconds
-            if (delta > 0)
-            {
-                // Calculate rate in steps per minute (e.g. if delta==2 then 60/2==30)
-                uint8_t rate = 60 / delta;
-                // Store it in the circular buffer (using globalSeconds mod GRAPH_WIDTH)
-                instantStepRate[globalSeconds % GRAPH_WIDTH] = rate;
-            }
-        }
-        lastStepTime = globalSeconds;
     }
+
     wasAboveThreshold = above;
 }
 
 void drawSteps(void)
 {
-    uint16_t sum = 0;
-    for (int i = 0; i < HISTORY_SIZE; i++)
-    {
-        sum += stepsHistory[i];
-    }
-    uint16_t rawPace = sum;
-
     static uint32_t lastUpdateSecond = 0;
+
     if (globalSeconds != lastUpdateSecond)
     {
-        if (movementDetected)
+        if (!movementDetected)
         {
-            if (rawPace > displayedPace)
+            if (inactivityCounter >= 1) // Drop faster after 1 second of no movement
             {
-                displayedPace += 1.0f;
-                if (displayedPace > rawPace)
-                    displayedPace = rawPace;
-            }
-            else if (rawPace < displayedPace)
-            {
-                displayedPace -= 1.0f;
-                if (displayedPace < rawPace)
-                    displayedPace = rawPace;
-            }
-        }
-        else
-        {
-            if (inactivityCounter >= 1)
-            {
-                displayedPace -= 1.0f;
-                if (displayedPace < 0)
+                displayedPace -= 25.0f; // 🔥 Even faster drop
+                if (displayedPace < 0)  // Ensure it reaches 0
                     displayedPace = 0.0f;
             }
         }
         lastUpdateSecond = globalSeconds;
     }
 
-    uint16_t pace = (uint16_t)(displayedPace + 0.5f);
-
     static char oldStr[6] = "";
     char newStr[6];
-    if (pace == 0)
+
+    if (displayedPace == 0)
     {
         if (oldStr[0] != '\0')
         {
@@ -266,7 +233,9 @@ void drawSteps(void)
         }
         return;
     }
-    sprintf(newStr, "%u", pace);
+
+    sprintf(newStr, "%u", (uint16_t)(displayedPace + 0.5f));
+
     if (strcmp(oldStr, newStr) != 0)
     {
         oledC_DrawString(80, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
@@ -776,69 +745,34 @@ void handleSetDatePage(void)
 // ---------------- STEPS GRAPH SYSTEM ---------------- //
 void stepsGraph(void)
 {
-    graphActive = true;         // Indicate we are in the graph screen
-    bool localGraphMode = true; // We'll exit this loop when user presses S2 or holds S1
+    graphActive = true;
+    bool localGraphMode = true;
 
-    oledC_clearScreen(); // Clear display
+    oledC_clearScreen(); // Only clear the screen once to avoid flickering
 
-    // ----------------------------------------------------------------
-    // 1) Generate or load 90 seconds of step-rate data
-    // ----------------------------------------------------------------
-    int step_rate_history[90];
-    int current_step_rate = 50; // Start at 50 steps/min
-    for (int i = 0; i < 90; i++)
-    {
-        int change = (rand() % 11) - 5; // random change between -5 and +5
-        current_step_rate += change;
-        if (current_step_rate < 0)
-            current_step_rate = 0;
-        if (current_step_rate > 100)
-            current_step_rate = 100;
-        step_rate_history[i] = current_step_rate;
-    }
+    int x_left = 5;
+    int x_right = GRAPH_WIDTH;
+    int baseline = GRAPH_HEIGHT - 10;
+    int top = 10;
 
-    // ----------------------------------------------------------------
-    // 2) Define graph geometry
-    // ----------------------------------------------------------------
-    // Full-width graph: x from 0 to GRAPH_WIDTH
-    int x_left = 0;            // Left edge at 0
-    int x_right = GRAPH_WIDTH; // Right edge at full width (e.g., 90)
-    // Vertical mapping:
-    //  - Baseline (0 steps) is at y = GRAPH_HEIGHT - 10 (e.g., 90)
-    //  - Top (100 steps) is at y = 10
-    int baseline = GRAPH_HEIGHT - 10; // e.g., 100 - 10 = 90
-    int top = 10;                     // y = 10
-
-    // ----------------------------------------------------------------
-    // 3) Draw the x-axis (horizontal line) across full width
-    // ----------------------------------------------------------------
-    oledC_DrawLine(x_left, baseline, x_right, baseline, 1, OLEDC_COLOR_WHITE);
-
-    // ----------------------------------------------------------------
-    // 4) Draw dotted horizontal grid lines and labels at 30, 60, and 100 steps
-    // ----------------------------------------------------------------
+    // Draw static gridlines
     int step_values[] = {30, 60, 100};
     for (int i = 0; i < 3; i++)
     {
         int val = step_values[i];
-        // Map the step value (0-100) to a y-position between baseline and top
         int y_pos = baseline - ((val * (baseline - top)) / 100);
 
-        // 4a) Draw a dotted line across the full width (from x_left to x_right)
         for (int x = x_left; x <= x_right; x += 3)
         {
             oledC_DrawPoint(x, y_pos, OLEDC_COLOR_GRAY);
         }
 
-        // 4b) Draw the numeric label above the dotted line (e.g., 8 pixels above)
-        char label[4]; // Enough for "100" and a null terminator
+        char label[4];
         sprintf(label, "%d", val);
         oledC_DrawString(0, y_pos - 10, 1, 1, (uint8_t *)label, OLEDC_COLOR_WHITE);
     }
 
-    // ----------------------------------------------------------------
-    // 5) Draw x-axis ticks representing 10-second intervals
-    // ----------------------------------------------------------------
+    // Draw x-axis ticks (every 10 seconds)
     for (int i = 0; i <= 9; i++)
     {
         int x_tick = x_left + (i * (x_right - x_left) / 9);
@@ -846,24 +780,25 @@ void stepsGraph(void)
     }
 
     // ----------------------------------------------------------------
-    // 6) Connect the step-rate data points with a continuous line
+    // 4) Plot the stored step rates as a continuous line
     // ----------------------------------------------------------------
     int prevX = x_left;
-    int prevY = baseline - (step_rate_history[0] * (baseline - top) / 100);
-    for (int i = 1; i < 90; i++)
+    int prevY = baseline - ((instantStepRate[0] * (baseline - top)) / 100);
+
+    for (int i = 1; i < GRAPH_WIDTH; i++)
     {
-        int curX = x_left + (i * (x_right - x_left) / 89);
-        int curY = baseline - (step_rate_history[i] * (baseline - top) / 100);
-        oledC_DrawLine(prevX, prevY, curX, curY, 1, OLEDC_COLOR_WHITE);
+        int curX = x_left + (i * (x_right - x_left) / (GRAPH_WIDTH - 1));
+        int curY = baseline - ((instantStepRate[i] * (baseline - top)) / 100);
+
+        if (instantStepRate[i] > 0 || instantStepRate[i - 1] > 0)
+        {
+            oledC_DrawLine(prevX, prevY, curX, curY, 1, OLEDC_COLOR_WHITE);
+        }
+
         prevX = curX;
         prevY = curY;
     }
 
-    // ----------------------------------------------------------------
-    // 7) Exit Logic
-    //    S2 => menu
-    //    Long S1 => main clock (clear screen before exiting)
-    // ----------------------------------------------------------------
     static uint8_t s1HoldCounter = 0;
 
     while (localGraphMode)
@@ -905,7 +840,7 @@ void stepsGraph(void)
     graphActive = false; // We’re leaving the graph
 }
 
-// ---------------- MENU SYSTEM (Integrated in main.c) ----------------
+// ---------------- MENU SYSTEM  ----------------
 #define MENU_ITEMS_COUNT 5
 const char *menuItems[MENU_ITEMS_COUNT] = {
     "Pedometer Graph",
@@ -1060,31 +995,34 @@ void User_Initialize(void)
     S2_TRIS = 1;
 }
 
-// ---------------- TIMER1 INTERRUPT (Integrated Menu Handling) ----------------
+// ---------------- TIMER1 INTERRUPT  ----------------
 // Global or file-scope variable to indicate we just entered the menu
 static bool justEnteredMenu = false;
 
 void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
 {
+    // 1) Your existing clock increments
     incrementTime(&currentTime);
-    footToggle = !footToggle;
-    globalSeconds++; // Update global seconds counter
+    globalSeconds++;
 
-    // Only do the "long-press to enter menu" logic if we're not in the graph
-    if (!graphActive)
+    // 2) Your existing foot toggling (if you do it here)
+    footToggle = !footToggle;
+
+    // 3) Your existing code that checks S1 hold to enter menu
+    //    (We do NOT remove or rewrite it)
+    if (!graphActive)  // or whatever your condition is
     {
         static uint8_t s1HoldCounter = 0;
-        bool s1State = (PORTAbits.RA11 == 0); // active-low
+        bool s1State = (PORTAbits.RA11 == 0);
         if (s1State)
         {
             s1HoldCounter++;
-            // For example, 4 ticks = ~2 seconds if each interrupt ~500ms
             if (s1HoldCounter >= 2 && !inMenu)
             {
                 inMenu = true;
                 selectedMenuItem = 0;
                 drawMenu();
-                justEnteredMenu = true; // <--- set this flag
+                justEnteredMenu = true;
                 s1HoldCounter = 0;
             }
         }
@@ -1094,19 +1032,56 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
         }
     }
 
-    // If not in menu, do pedometer stuff
+    // 4) If not in the menu, do your normal second-based housekeeping
     if (!inMenu)
     {
-        if (!movementDetected)
-            inactivityCounter++;
-        else
-            inactivityCounter = 0;
-
+        // Advance your ring buffer index
         currentSecondIndex = (currentSecondIndex + 1) % HISTORY_SIZE;
         stepsHistory[currentSecondIndex] = 0;
+
+        // ---------- Insert friend’s approach below ----------
+        static uint16_t oldSteps = 0;      
+        static uint8_t inactivity = 0;     
+
+        uint16_t totalSteps = stepCount;          
+        uint16_t stepsInLastSecond = totalSteps - oldSteps;  
+        oldSteps = totalSteps;                    
+
+        // Convert to steps/min
+        float newPace = (float)(stepsInLastSecond) * 60.0f;
+
+        // Smooth up/down
+        if (newPace > displayedPace)
+            displayedPace += (newPace - displayedPace) * 0.5f; 
+        else
+            displayedPace += (newPace - displayedPace) * 0.2f; 
+
+        // If no new steps, gradually reduce displayedPace
+        if (stepsInLastSecond == 0)
+        {
+            inactivity++;
+            if (inactivity >= 2) // e.g. 2 consecutive seconds no steps
+            {
+                displayedPace *= 0.8f;
+                if (displayedPace < 1.0f)
+                    displayedPace = 0.0f;
+            }
+        }
+        else
+        {
+            inactivity = 0;
+        }
+
+        // Enforce maximum pace (if you want)
+        if (displayedPace > 100.0f)
+            displayedPace = 100.0f;
+
+        // Optionally store displayedPace for your graph
+        instantStepRate[globalSeconds % GRAPH_WIDTH] = (uint8_t)displayedPace;
     }
 
-    IFS0bits.T1IF = 0; // Clear interrupt flag
+    // 5) Clear the Timer1 interrupt flag
+    IFS0bits.T1IF = 0;
 }
 
 // ---------------- MAIN ----------------
