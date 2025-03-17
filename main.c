@@ -1,3 +1,8 @@
+/*
+ * File:   Final Project - Smart Watch
+ * Author: Vladimir Lihatchov - 322017252 - lichvladimr@gmail.com
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -205,26 +210,11 @@ void detectStep(void)
 
 void drawSteps(void)
 {
-    static uint32_t lastUpdateSecond = 0;
-
-    if (globalSeconds != lastUpdateSecond)
-    {
-        if (!movementDetected)
-        {
-            if (inactivityCounter >= 1) // Drop faster after 1 second of no movement
-            {
-                displayedPace -= 25.0f; // 🔥 Even faster drop
-                if (displayedPace < 0)  // Ensure it reaches 0
-                    displayedPace = 0.0f;
-            }
-        }
-        lastUpdateSecond = globalSeconds;
-    }
-
     static char oldStr[6] = "";
     char newStr[6];
 
-    if (displayedPace == 0)
+    // If displayedPace is effectively zero, erase the old text and return.
+    if (displayedPace <= 0.5f)
     {
         if (oldStr[0] != '\0')
         {
@@ -234,12 +224,19 @@ void drawSteps(void)
         return;
     }
 
+    // Convert the current float pace to an integer string (e.g. "12", "45", etc.)
     sprintf(newStr, "%u", (uint16_t)(displayedPace + 0.5f));
 
+    // Only redraw if the displayed string actually changed
     if (strcmp(oldStr, newStr) != 0)
     {
+        // Erase the old text
         oledC_DrawString(80, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
+
+        // Draw the new text
         oledC_DrawString(80, 2, 1, 1, (uint8_t *)newStr, OLEDC_COLOR_WHITE);
+
+        // Save the newStr for next comparison
         strcpy(oldStr, newStr);
     }
 }
@@ -879,8 +876,7 @@ void drawMenu(void)
     }
 }
 
-void updateMenuClock(void)
-{
+void updateMenuClock(void){
     char timeStr[9], buff[3];
     // If 12H, subtract 12 if hours >= 12, etc.
     // Then append AM/PM if is12HourFormat is true.
@@ -1001,22 +997,22 @@ static bool justEnteredMenu = false;
 
 void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
 {
-    // 1) Your existing clock increments
+    // 1) Existing clock increments
     incrementTime(&currentTime);
     globalSeconds++;
 
-    // 2) Your existing foot toggling (if you do it here)
+    // 2) Toggle foot icon (if you still use that)
     footToggle = !footToggle;
 
-    // 3) Your existing code that checks S1 hold to enter menu
-    //    (We do NOT remove or rewrite it)
-    if (!graphActive)  // or whatever your condition is
+    // 3) Check if S1 is held to enter the menu (only if not in the graph)
+    if (!graphActive)
     {
         static uint8_t s1HoldCounter = 0;
         bool s1State = (PORTAbits.RA11 == 0);
         if (s1State)
         {
             s1HoldCounter++;
+            // If held for ~2 seconds, open menu
             if (s1HoldCounter >= 2 && !inMenu)
             {
                 inMenu = true;
@@ -1032,37 +1028,36 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
         }
     }
 
-    // 4) If not in the menu, do your normal second-based housekeeping
+    // 4) If not in the menu, do normal second-based housekeeping
     if (!inMenu)
     {
-        // Advance your ring buffer index
+        // Advance your ring buffer index for stepsHistory (if you still use it)
         currentSecondIndex = (currentSecondIndex + 1) % HISTORY_SIZE;
         stepsHistory[currentSecondIndex] = 0;
 
-        // ---------- Insert friend’s approach below ----------
-        static uint16_t oldSteps = 0;      
-        static uint8_t inactivity = 0;     
+        // ---- NEW SMOOTHING LOGIC ----
+        static uint16_t oldSteps = 0;
+        static uint8_t inactivity = 0;
 
-        uint16_t totalSteps = stepCount;          
-        uint16_t stepsInLastSecond = totalSteps - oldSteps;  
-        oldSteps = totalSteps;                    
+        // How many steps happened since last second?
+        uint16_t totalSteps = stepCount;
+        uint16_t stepsInLastSecond = totalSteps - oldSteps;
+        oldSteps = totalSteps;
 
-        // Convert to steps/min
-        float newPace = (float)(stepsInLastSecond) * 60.0f;
+        // Convert that to steps/min (steps * 60)
+        float newPace = (float)stepsInLastSecond * 60.0f;
 
-        // Smooth up/down
-        if (newPace > displayedPace)
-            displayedPace += (newPace - displayedPace) * 0.5f; 
-        else
-            displayedPace += (newPace - displayedPace) * 0.2f; 
+        // Exponential smoothing:
+        float alpha = 0.15f; // lower = smoother, but slower
+        displayedPace = (1.0f - alpha) * displayedPace + alpha * newPace;
 
-        // If no new steps, gradually reduce displayedPace
+        // If no steps for a while, gradually decay displayedPace to zero
         if (stepsInLastSecond == 0)
         {
             inactivity++;
-            if (inactivity >= 2) // e.g. 2 consecutive seconds no steps
+            if (inactivity >= 3) // e.g. after 3 consecutive seconds of no steps
             {
-                displayedPace *= 0.8f;
+                displayedPace *= 0.90f; // decay 10% per second
                 if (displayedPace < 1.0f)
                     displayedPace = 0.0f;
             }
@@ -1072,11 +1067,13 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
             inactivity = 0;
         }
 
-        // Enforce maximum pace (if you want)
+        // Optional: clamp to max 100 steps/min if you want
         if (displayedPace > 100.0f)
+        {
             displayedPace = 100.0f;
+        }
 
-        // Optionally store displayedPace for your graph
+        // Store the smoothed pace into your graph buffer (for the line plot)
         instantStepRate[globalSeconds % GRAPH_WIDTH] = (uint8_t)displayedPace;
     }
 
