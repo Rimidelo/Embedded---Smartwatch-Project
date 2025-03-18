@@ -32,7 +32,7 @@
 #define REG_DATAZ0 0x36
 #define MEASURE_MODE 0x08
 #define HISTORY_SIZE 60
-#define STEP_THRESHOLD 500.0f
+#define STEP_THRESHOLD 900.0f
 #define GRAPH_WIDTH 90
 #define GRAPH_HEIGHT 100
 
@@ -71,7 +71,6 @@ typedef struct
 static bool wasAboveThreshold = false;
 static bool movementDetected = false;
 static uint16_t stepCount = 0;
-static uint8_t inactivityCounter = 0;
 const float baselineGravity = 1024.0f;
 static uint8_t stepsHistory[HISTORY_SIZE] = {0};
 static uint8_t currentSecondIndex = 0;
@@ -528,16 +527,18 @@ bool detectTiltForSave(void)
     accel.y = readAxis(REG_DATAY0);
     accel.z = readAxis(REG_DATAZ0);
 
-    // Adjust the threshold as needed for your device sensitivity.
-    const float tiltThreshold = 700.0f;
+    // Lower threshold => requires a more extreme tilt to return true.
+    // (Example: 600.0 is stricter than 700.0.)
+    const float tiltThreshold = 600.0f;
 
-    // Convert raw values to a magnitude.
+    // Convert raw values to a magnitude in 'mg' (if baseline is 1024 = 1G).
     float ax = accel.x * 4.0f;
     float ay = accel.y * 4.0f;
     float az = accel.z * 4.0f;
     float magnitude = sqrtf(ax * ax + ay * ay + az * az);
 
-    // If the magnitude is below the threshold, we consider that a tilt save gesture.
+    // We say “tilt” = “magnitude is below tiltThreshold.”
+    // e.g. if normal ~1024 mg is upright, then <600 mg is an extreme orientation.
     return (magnitude < tiltThreshold);
 }
 
@@ -876,7 +877,8 @@ void drawMenu(void)
     }
 }
 
-void updateMenuClock(void){
+void updateMenuClock(void)
+{
     char timeStr[9], buff[3];
     // If 12H, subtract 12 if hours >= 12, etc.
     // Then append AM/PM if is12HourFormat is true.
