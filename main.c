@@ -35,10 +35,13 @@
 #define STEP_THRESHOLD 900.0f
 #define GRAPH_WIDTH 90
 #define GRAPH_HEIGHT 100
+#define MENU_ITEMS_COUNT 5
 
 // ---------------- Type and Globals for Steps Graph ----------------
-uint8_t instantStepRate[GRAPH_WIDTH] = {0}; // Holds instantaneous step rates (steps per minute)
-uint32_t lastStepTime = 0;                  // Time (in seconds) when the last step occurred
+uint8_t instantStepRate[GRAPH_WIDTH] = {0}; // Holds instantaneous step rates
+uint32_t lastStepTime = 0;                  // Time in seconds when the last step occurred
+static float newPaceRaw = 0.0f;
+bool graphActive = false;
 
 // ---------------- Type and Globals for Set Time ----------------
 typedef struct
@@ -81,10 +84,11 @@ static uint32_t globalSeconds = 0;
 bool is12HourFormat = false;
 bool inTimeFormatSubpage = false;
 bool inTimeSetSubpage = false;
-// For the sub-page selection: 0 => “12H”, 1 => “24H”
 uint8_t timeFormatSelectedIndex = 0;
 static bool footToggle = false;
 bool forceClockRedraw = false;
+static bool justEnteredMenu = false;
+extern bool inMenu;
 typedef struct
 {
     uint8_t hours, minutes, seconds, day, month;
@@ -99,9 +103,8 @@ void drawSetTimeStatus(void);
 void handleSetTimeInput(void);
 bool detectTiltForSave(void);
 void drawSetDateStatus(void);
-extern bool inMenu;
 extern void drawMenu(void);
-bool graphActive = false; // Indicates if we are currently in the graph screen
+
 
 // ---------------- Foot Bitmaps (16×16) ----------------
 static const uint16_t foot1Bitmap[16] = {
@@ -217,7 +220,7 @@ void drawSteps(void)
     {
         if (oldStr[0] != '\0')
         {
-            oledC_DrawString(80, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
+            oledC_DrawString(25, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
             oldStr[0] = '\0';
         }
         return;
@@ -229,13 +232,8 @@ void drawSteps(void)
     // Only redraw if the displayed string actually changed
     if (strcmp(oldStr, newStr) != 0)
     {
-        // Erase the old text
-        oledC_DrawString(80, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
-
-        // Draw the new text
-        oledC_DrawString(80, 2, 1, 1, (uint8_t *)newStr, OLEDC_COLOR_WHITE);
-
-        // Save the newStr for next comparison
+        oledC_DrawString(25, 2, 1, 1, (uint8_t *)oldStr, OLEDC_COLOR_BLACK);
+        oledC_DrawString(25, 2, 1, 1, (uint8_t *)newStr, OLEDC_COLOR_WHITE);
         strcpy(oldStr, newStr);
     }
 }
@@ -324,7 +322,6 @@ void drawClock(ClockTime *time)
     twoDigitString(time->seconds, buff);
     strcat(newTime, buff);
 
-    // If there is any change in time or format, clear old areas and redraw.
     if (strcmp(oldTime, newTime) != 0 || oldWas12H != is12HourFormat || oldPM != pm)
     {
         oledC_DrawString(8, 45, 2, 2, (uint8_t *)oldTime, OLEDC_COLOR_BLACK);
@@ -398,7 +395,7 @@ void handleTimeFormatSelection(void)
         s1WasPressed = s1State;
         s2WasPressed = s2State;
 
-        DELAY_milliseconds(100); // Adjust as needed.
+        DELAY_milliseconds(100);
     }
 }
 
@@ -527,18 +524,13 @@ bool detectTiltForSave(void)
     accel.y = readAxis(REG_DATAY0);
     accel.z = readAxis(REG_DATAZ0);
 
-    // Lower threshold => requires a more extreme tilt to return true.
-    // (Example: 600.0 is stricter than 700.0.)
     const float tiltThreshold = 600.0f;
 
-    // Convert raw values to a magnitude in 'mg' (if baseline is 1024 = 1G).
     float ax = accel.x * 4.0f;
     float ay = accel.y * 4.0f;
     float az = accel.z * 4.0f;
     float magnitude = sqrtf(ax * ax + ay * ay + az * az);
 
-    // We say “tilt” = “magnitude is below tiltThreshold.”
-    // e.g. if normal ~1024 mg is upright, then <600 mg is an extreme orientation.
     return (magnitude < tiltThreshold);
 }
 
@@ -559,8 +551,7 @@ void handleSetTimePage(void)
         DELAY_milliseconds(10);
     }
 
-    int tiltCounter = 0; // Debounce counter for the tilt
-    // Poll for tilt while handling input.
+    int tiltCounter = 0;
     while (inTimeSetSubpage)
     {
         handleSetTimeInput();
@@ -584,7 +575,7 @@ void handleSetTimePage(void)
             tiltCounter = 0; // Reset if no tilt is detected.
         }
 
-        DELAY_milliseconds(50); // Reduced delay for quicker response
+        DELAY_milliseconds(50);
     }
 }
 
@@ -746,7 +737,7 @@ void stepsGraph(void)
     graphActive = true;
     bool localGraphMode = true;
 
-    oledC_clearScreen(); // Only clear the screen once to avoid flickering
+    oledC_clearScreen();
 
     int x_left = 5;
     int x_right = GRAPH_WIDTH;
@@ -762,7 +753,7 @@ void stepsGraph(void)
 
         for (int x = x_left; x <= x_right; x += 3)
         {
-            oledC_DrawPoint(x, y_pos, OLEDC_COLOR_GRAY);
+            oledC_DrawPoint(x, y_pos, OLEDC_COLOR_GHOSTWHITE);
         }
 
         char label[4];
@@ -774,12 +765,10 @@ void stepsGraph(void)
     for (int i = 0; i <= 9; i++)
     {
         int x_tick = x_left + (i * (x_right - x_left) / 9);
-        oledC_DrawRectangle(x_tick, baseline - 2, x_tick + 2, baseline, OLEDC_COLOR_WHITE);
+        oledC_DrawRectangle(x_tick, baseline - 2, x_tick + 2, baseline, OLEDC_COLOR_GHOSTWHITE);
     }
 
-    // ----------------------------------------------------------------
-    // 4) Plot the stored step rates as a continuous line
-    // ----------------------------------------------------------------
+    //  Plot the stored step rates as a continuous line
     int prevX = x_left;
     int prevY = baseline - ((instantStepRate[0] * (baseline - top)) / 100);
 
@@ -790,7 +779,7 @@ void stepsGraph(void)
 
         if (instantStepRate[i] > 0 || instantStepRate[i - 1] > 0)
         {
-            oledC_DrawLine(prevX, prevY, curX, curY, 1, OLEDC_COLOR_WHITE);
+            oledC_DrawLine(prevX, prevY, curX, curY, 1, OLEDC_COLOR_BLUE);
         }
 
         prevX = curX;
@@ -813,16 +802,15 @@ void stepsGraph(void)
             break;
         }
 
-        // Long S1 => main clock
         if (s1State)
         {
             s1HoldCounter++;
             // ~2 seconds with a 100ms loop
             if (s1HoldCounter >= 20)
             {
-                oledC_clearScreen(); // *** Added: Clear the screen before leaving graph mode ***
+                oledC_clearScreen();
                 localGraphMode = false;
-                inMenu = false; // Return to main clock screen
+                inMenu = false;
                 forceClockRedraw = true;
                 break;
             }
@@ -835,11 +823,11 @@ void stepsGraph(void)
         DELAY_milliseconds(100);
     }
 
-    graphActive = false; // We’re leaving the graph
+    graphActive = false;
 }
 
 // ---------------- MENU SYSTEM  ----------------
-#define MENU_ITEMS_COUNT 5
+
 const char *menuItems[MENU_ITEMS_COUNT] = {
     "Pedometer Graph",
     "12H/24H Interval",
@@ -852,26 +840,20 @@ uint8_t selectedMenuItem = 0;
 
 void drawMenu(void)
 {
-    // Clear the screen to black.
     oledC_clearScreen();
 
-    // Draw the mini clock at the top right.
     updateMenuClock();
 
-    // Draw menu items (no "MENU" label)
     for (uint8_t i = 0; i < MENU_ITEMS_COUNT; i++)
     {
         uint8_t yPos = 20 + (i * 12);
         if (i == selectedMenuItem)
         {
-            // Draw a white highlight rectangle for the selected item.
             oledC_DrawRectangle(3, yPos - 2, 115, yPos + 10, OLEDC_COLOR_WHITE);
-            // Draw black text inside the blue rectangle.
             oledC_DrawString(4, yPos, 1, 1, (uint8_t *)menuItems[i], OLEDC_COLOR_BLACK);
         }
         else
         {
-            // Draw unselected items as white text on black.
             oledC_DrawString(4, yPos, 1, 1, (uint8_t *)menuItems[i], OLEDC_COLOR_WHITE);
         }
     }
@@ -880,9 +862,6 @@ void drawMenu(void)
 void updateMenuClock(void)
 {
     char timeStr[9], buff[3];
-    // If 12H, subtract 12 if hours >= 12, etc.
-    // Then append AM/PM if is12HourFormat is true.
-
     uint8_t displayHrs = currentTime.hours;
     bool pm = false;
     if (is12HourFormat)
@@ -908,9 +887,7 @@ void updateMenuClock(void)
     twoDigitString(currentTime.seconds, buff);
     strcat(timeStr, buff);
 
-    // Clear old clock
     oledC_DrawRectangle(30, 2, 115, 10, OLEDC_COLOR_BLACK);
-    // Draw time
     oledC_DrawString(30, 2, 1, 1, (uint8_t *)timeStr, OLEDC_COLOR_WHITE);
 
     // If 12H, append AM/PM
@@ -936,7 +913,6 @@ void executeMenuAction(void)
         drawMenu();
         break;
     case 2: // "Set Time"
-        // inMenu = false;
         handleSetTimePage();
         drawMenu();
         break;
@@ -994,19 +970,13 @@ void User_Initialize(void)
 }
 
 // ---------------- TIMER1 INTERRUPT  ----------------
-// Global or file-scope variable to indicate we just entered the menu
-static bool justEnteredMenu = false;
 
 void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
 {
-    // 1) Existing clock increments
     incrementTime(&currentTime);
     globalSeconds++;
-
-    // 2) Toggle foot icon (if you still use that)
     footToggle = !footToggle;
 
-    // 3) Check if S1 is held to enter the menu (only if not in the graph)
     if (!graphActive)
     {
         static uint8_t s1HoldCounter = 0;
@@ -1014,13 +984,11 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
         if (s1State)
         {
             s1HoldCounter++;
-            // If held for ~2 seconds, open menu
             if (s1HoldCounter >= 2 && !inMenu)
             {
                 inMenu = true;
                 selectedMenuItem = 0;
                 drawMenu();
-                justEnteredMenu = true;
                 s1HoldCounter = 0;
             }
         }
@@ -1030,38 +998,27 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
         }
     }
 
-    // 4) If not in the menu, do normal second-based housekeeping
     if (!inMenu)
     {
-        // Advance your ring buffer index for stepsHistory (if you still use it)
         currentSecondIndex = (currentSecondIndex + 1) % HISTORY_SIZE;
         stepsHistory[currentSecondIndex] = 0;
 
-        // ---- NEW SMOOTHING LOGIC ----
         static uint16_t oldSteps = 0;
         static uint8_t inactivity = 0;
 
-        // How many steps happened since last second?
         uint16_t totalSteps = stepCount;
-        uint16_t stepsInLastSecond = totalSteps - oldSteps;
+
+        uint16_t stepsThisSecond = totalSteps - oldSteps;
         oldSteps = totalSteps;
 
-        // Convert that to steps/min (steps * 60)
-        float newPace = (float)stepsInLastSecond * 60.0f;
+        float rawPace = (float)stepsThisSecond * 60.0f;
 
-        // Exponential smoothing:
-        float alpha = 0.15f; // lower = smoother, but slower
-        displayedPace = (1.0f - alpha) * displayedPace + alpha * newPace;
-
-        // If no steps for a while, gradually decay displayedPace to zero
-        if (stepsInLastSecond == 0)
+        if (stepsThisSecond == 0)
         {
             inactivity++;
-            if (inactivity >= 3) // e.g. after 3 consecutive seconds of no steps
+            if (inactivity >= 3)
             {
-                displayedPace *= 0.90f; // decay 10% per second
-                if (displayedPace < 1.0f)
-                    displayedPace = 0.0f;
+                rawPace = 0.0f;
             }
         }
         else
@@ -1069,17 +1026,9 @@ void __attribute__((__interrupt__, auto_psv)) _T1Interrupt(void)
             inactivity = 0;
         }
 
-        // Optional: clamp to max 100 steps/min if you want
-        if (displayedPace > 100.0f)
-        {
-            displayedPace = 100.0f;
-        }
-
-        // Store the smoothed pace into your graph buffer (for the line plot)
-        instantStepRate[globalSeconds % GRAPH_WIDTH] = (uint8_t)displayedPace;
+        newPaceRaw = rawPace;
     }
 
-    // 5) Clear the Timer1 interrupt flag
     IFS0bits.T1IF = 0;
 }
 
@@ -1114,13 +1063,11 @@ int main(void)
     {
         if (inMenu)
         {
-            // In menu mode: Handle navigation and update the mini clock.
             static bool s1WasPressed = false;
             static bool s2WasPressed = false;
 
             if (justEnteredMenu)
             {
-                // When first entering the menu, wait for the user to release the buttons.
                 justEnteredMenu = false;
                 bool s1State = (PORTAbits.RA11 == 0);
                 bool s2State = (PORTAbits.RA12 == 0);
@@ -1129,26 +1076,22 @@ int main(void)
             }
             else
             {
-                // Poll the button states.
                 bool s1State = (PORTAbits.RA11 == 0);
                 bool s2State = (PORTAbits.RA12 == 0);
 
-                // If both buttons are pressed, execute the selected action and delay.
                 if (s1State && s2State)
                 {
                     executeMenuAction();
-                    DELAY_milliseconds(200); // Wait 200ms to allow for debouncing.
+                    DELAY_milliseconds(200);
                 }
                 else
                 {
-                    // If S1 is newly pressed, move selection UP.
                     if (s1State && !s1WasPressed)
                     {
                         if (selectedMenuItem > 0)
                             selectedMenuItem--;
                         drawMenu();
                     }
-                    // If S2 is newly pressed, move selection DOWN.
                     if (s2State && !s2WasPressed)
                     {
                         if (selectedMenuItem < MENU_ITEMS_COUNT - 1)
@@ -1159,22 +1102,43 @@ int main(void)
                 s1WasPressed = s1State;
                 s2WasPressed = s2State;
 
-                // Update the mini clock so it stays current.
                 updateMenuClock();
             }
             wasInMenu = true;
         }
         else
         {
-            // When not in menu: If we were in menu in the previous loop, clear the mini clock area.
             if (wasInMenu)
             {
                 oledC_DrawRectangle(30, 2, 115, 10, OLEDC_COLOR_BLACK);
                 wasInMenu = false;
             }
 
-            // Run the normal pedometer/clock functions.
             detectStep();
+
+            float dp = displayedPace;
+            float rp = newPaceRaw;
+
+            if (dp < rp)
+            {
+                displayedPace = dp + 2.0f;
+                if (displayedPace > rp)
+                    displayedPace = rp;
+            }
+            else if (dp > rp)
+            {
+                displayedPace = dp - 2.0f;
+                if (displayedPace < rp)
+                    displayedPace = rp;
+            }
+
+            if (displayedPace < 0.5f)
+                displayedPace = 0.0f;
+            else if (displayedPace > 100.0f)
+                displayedPace = 100.0f;
+
+            instantStepRate[globalSeconds % GRAPH_WIDTH] = (uint8_t)displayedPace;
+
             drawSteps();
             drawClock(&currentTime);
             oledC_DrawRectangle(0, 0, 15, 15, OLEDC_COLOR_BLACK);
